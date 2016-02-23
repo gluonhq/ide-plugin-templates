@@ -1,0 +1,7 @@
+{
+    "name": "Gluon Desktop - Single View Project",
+    "description": "Creates a new Gluon based desktop Java application, as a Gradle project.",
+    "executions": [
+        "recipe.json.ftl"
+    ]
+}

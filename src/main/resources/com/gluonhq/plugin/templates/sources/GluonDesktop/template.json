@@ -1,0 +1,7 @@
+{
+    "name": "Gluon Desktop Application",
+    "description": "Creates a new Gluon Desktop application.",
+    "executions": [
+        "recipe.json.ftl"
+    ]
+}

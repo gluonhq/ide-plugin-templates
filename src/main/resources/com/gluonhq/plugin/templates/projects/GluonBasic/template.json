@@ -1,0 +1,7 @@
+{
+    "name": "Gluon Basic Project",
+    "description": "Creates a new Gluon based mobile Java application targeted for Android, iOS, desktop and embedded devices, as a Gradle project. The Gradle project applies the jfxmobile plugin to run, build and debug your project.",
+    "executions": [
+        "recipe.json.ftl"
+    ]
+}

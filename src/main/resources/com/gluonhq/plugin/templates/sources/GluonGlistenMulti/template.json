@@ -1,0 +1,7 @@
+{
+    "name": "Multiple View Project",
+    "description": "Creates a new Gluon Glisten application with multiple Views",
+    "executions": [
+        "recipe.json.ftl"
+    ]
+}

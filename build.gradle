@@ -1,0 +1,78 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply from: 'mavenPublish.gradle'
+
+sourceCompatibility = 1.7
+
+group = 'com.gluonhq'
+version = '2.0.0'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.glassfish:javax.json:1.0.4'
+    compile 'org.freemarker:freemarker:2.3.19'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.directory ? it : zipTree(it) } }
+    with jar
+}
+
+artifacts {
+    archives javadocJar
+    archives fatJar
+}
+
+task generateResourcesList(dependsOn: processResources) << {
+    def gradleWrapperDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/gradle/wrapper")
+    def androidAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/android/res")
+    def iosAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/ios/assets")
+
+    def projects = [ 'GluonBasic' , 'GluonGlisten' , 'GluonGlistenMulti', 'GluonGlistenMultiFXML' ]
+    projects.each {
+        def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
+        gradleWrapperList.withWriter('UTF-8') { out ->
+            fileTree(gradleWrapperDir).each {
+                def path = it.absolutePath - gradleWrapperDir.absolutePath
+                out.writeLine(path[1..path.length()-1])
+            }
+        }
+
+        def androidAssetsList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/android_res.lst")
+        androidAssetsList.withWriter('UTF-8') { out ->
+            fileTree(androidAssetsDir).each {
+                def path = it.absolutePath - androidAssetsDir.absolutePath
+                out.writeLine(path[1..path.length()-1])
+            }
+        }
+
+        def iosAssetsList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/ios_assets.lst")
+        iosAssetsList.withWriter('UTF-8') { out ->
+            fileTree(iosAssetsDir).each {
+                def path = it.absolutePath - iosAssetsDir.absolutePath
+                out.writeLine(path[1..path.length()-1])
+            }
+        }
+    }
+    
+    def projectsDesktop = [ 'GluonDesktop' ]
+    projectsDesktop.each {
+        def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
+        gradleWrapperList.withWriter('UTF-8') { out ->
+            fileTree(gradleWrapperDir).each {
+                def path = it.absolutePath - gradleWrapperDir.absolutePath
+                out.writeLine(path[1..path.length()-1])
+            }
+        }
+    }
+}
+tasks.classes.dependsOn generateResourcesList
