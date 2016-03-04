@@ -12,7 +12,10 @@ import com.gluonhq.charm.glisten.visual.Swatch;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 <#if desktopEnabled>import javafx.stage.Stage;</#if>
+<#if gluon_user_license_mobile?has_content && gluon_user_license_mobile != "        -    -    -    -            ">
+import com.gluonhq.charm.glisten.license.License;
 
+@License(key="${gluon_user_license_mobile?lower_case}")</#if>
 public class ${mainClassName} extends MobileApplication {
 
     public static final String PRIMARY_VIEW = HOME_VIEW;

@@ -2,12 +2,19 @@ package com.gluonhq.plugin.templates;
 
 public class ProjectConstants {
     
+    public static final String PLUGIN_VERSION = "2.0.0";
+    
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
     
     // Optin
-    public static final String PARAM_USER_EMAIL = "gluon_optin_email";
-    public static final String PARAM_USER_UPTODATE = "gluon_optin_uptodate";
+    public static final String PARAM_USER_IDE_OPTIN = "gluon_ide_optin";
+    public static final String PARAM_USER_EMAIL = "gluon_user_email";
+    public static final String PARAM_USER_UPTODATE = "gluon_user_uptodate";
+    public static final String PARAM_USER_LICENSE_MOBILE = "gluon_user_license_mobile";
+    public static final String PARAM_USER_LICENSE_DESKTOP = "gluon_user_license_desktop";
+    public static final String PARAM_USER_MAC_ADDRESS = "gluon_user_mac_address";
+    public static final String PARAM_USER_PLUGIN_VERSION = "gluon_user_plugin_version";
     
     public static final String PARAM_PROJECT_NAME = "projectName";
     public static final String PARAM_PROJECT_DIR = "projectDir";
