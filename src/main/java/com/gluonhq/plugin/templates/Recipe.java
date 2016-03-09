@@ -15,6 +15,7 @@ public class Recipe {
     private static final String COMMAND_COPYLIST = "copylist";
     private static final String COMMAND_MKDIR = "mkdir";
     private static final String COMMAND_PROCESS = "process";
+    private static final String COMMAND_PERMISSION = "permission";
 
     private List<Command> commands = new ArrayList<>();
 
@@ -34,6 +35,9 @@ public class Recipe {
                     break;
                 case COMMAND_PROCESS:
                     recipe.addCommand(new ProcessCommand(jsonCommand));
+                    break;
+                case COMMAND_PERMISSION:
+                    recipe.addCommand(new PermissionCommand(jsonCommand));
                     break;
                 case COMMAND_MKDIR:
                     recipe.addCommand(new MkdirCommand(jsonCommand));

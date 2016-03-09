@@ -59,7 +59,7 @@ public class RecipeContext {
         at = getTargetFile(at);
         at.mkdirs();
     }
-
+    
     public void process(String from, File to, boolean open) {
         try {
             from = getSourceResource(from);
@@ -78,6 +78,11 @@ public class RecipeContext {
         } catch (TemplateException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void permission(File at) {
+        at = getTargetFile(at);
+        FreeMarkerUtils.setExecutionPermission(at.toPath());
     }
 
     private File copyTemplateResource(String from, File to) throws IOException {

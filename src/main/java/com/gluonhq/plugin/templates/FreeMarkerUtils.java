@@ -5,8 +5,15 @@ import freemarker.template.TemplateException;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FreeMarkerUtils {
 
@@ -26,6 +33,23 @@ public class FreeMarkerUtils {
         out.flush();
         final String response = out.toString();
         return response.replaceAll("\\r", "");
+    }
+    
+    public static void setExecutionPermission(Path path) {
+        Set<PosixFilePermission> perms = new HashSet<>();
+        perms.add(PosixFilePermission.OWNER_READ);
+        perms.add(PosixFilePermission.OWNER_WRITE);
+        perms.add(PosixFilePermission.OWNER_EXECUTE);
+        perms.add(PosixFilePermission.GROUP_READ);
+        perms.add(PosixFilePermission.GROUP_EXECUTE);
+        perms.add(PosixFilePermission.OTHERS_READ);
+        perms.add(PosixFilePermission.OTHERS_EXECUTE);
+ 
+        try {
+            Files.setPosixFilePermissions(path, perms);
+        } catch (IOException ex) {
+            Logger.getLogger(FreeMarkerUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

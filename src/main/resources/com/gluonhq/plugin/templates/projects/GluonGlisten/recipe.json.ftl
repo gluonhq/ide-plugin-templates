@@ -11,6 +11,10 @@
     "to": "./"
   },
   {
+    "command": "permission",
+    "at": "./gradlew"
+  },
+  {
     "command": "mkdir",
     "at": "./src/main/java"
   },
