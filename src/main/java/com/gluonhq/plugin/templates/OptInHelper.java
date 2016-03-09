@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 
 public class OptInHelper {
 
-    public static void optIn(String email, Boolean keepUpToDate, String ide, String id, String version) {
+    public static void optIn(String email, Boolean keepUpToDate, String ide, String id, String version, boolean update) {
         try {
             String java = System.getProperty("java.version");
             String os = System.getProperty("os.arch") + " " + System.getProperty("os.name") + " " + System.getProperty("os.version");
@@ -19,7 +19,8 @@ public class OptInHelper {
                                    "&java=" + URLEncoder.encode(java, "UTF-8") + 
                                    "&type=" + ide +
                                    "&id=" + id +
-                                   "&version=" + version;
+                                   "&version=" + version +
+                                   (update ? "&update=true" : "");
             URL url = new URL("http://usage.gluonhq.com/ul/log?" + urlParameters);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
