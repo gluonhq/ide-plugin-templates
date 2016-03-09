@@ -1,6 +1,6 @@
 {
     "name": "Gluon Desktop - Single View Project",
-    "description": "Creates a new Gluon based desktop Java application, as a Gradle project.",
+    "description": "Using Gluon Desktop, create a desktop-only JavaFX application using a single view.",
     "executions": [
         "recipe.json.ftl"
     ]
