@@ -7,11 +7,15 @@ import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TemplateUtils {
     
+    private static final Logger LOG = Logger.getLogger(TemplateUtils.class.getName());
+
     public static boolean isValidNameView(String nameView) {
         return (nameView != null && !nameView.isEmpty() 
                 && nameView.substring(0, 1).matches("[a-zA-Z]") 
@@ -58,12 +62,12 @@ public class TemplateUtils {
             if (ni != null) {
                 macAddress = computeHash(ni.getHardwareAddress());
             } else {
-                System.out.println("Network Interface for the specified address is not found.");
+                LOG.log(Level.WARNING, "Network Interface for the specified address is not found.");
             }
         } catch (UnknownHostException e) {
-            System.out.println("Error host: " + e);
+            LOG.log(Level.SEVERE, "Error host: {0}", e);
         } catch (SocketException e) {
-            System.out.println("Error socket: " + e);
+            LOG.log(Level.SEVERE, "Error socket: {0}", e);
         }
         return macAddress;
     }
@@ -84,7 +88,7 @@ public class TemplateUtils {
     
             return hexStr;
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Error " + e);
+            LOG.log(Level.SEVERE, "Error {0}", e);
         }
         
         return "";
