@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.javafxports:jfxmobile-plugin:1.0.7'
+        classpath 'org.javafxports:jfxmobile-plugin:${mobilePlugin}'
     }
 }
 
@@ -19,15 +19,15 @@ repositories {
 mainClassName = '${mainClass}'
 
 dependencies {
-    compile 'com.gluonhq:charm:2.0.0'
+    compile 'com.gluonhq:charm:${mobileVersion}'
     <#if afterburnerEnabled>
     compile 'com.airhacks:afterburner.mfx:1.6.2'
     </#if>
-    androidRuntime 'com.gluonhq:charm-android:2.0.0'
-    iosRuntime 'com.gluonhq:charm-ios:2.0.0'
-    desktopRuntime 'com.gluonhq:charm-desktop:2.0.0'
+    androidRuntime 'com.gluonhq:charm-android:${mobileVersion}'
+    iosRuntime 'com.gluonhq:charm-ios:${mobileVersion}'
+    desktopRuntime 'com.gluonhq:charm-desktop:${mobileVersion}'
     <#if embeddedEnabled>
-    embeddedRuntime 'com.gluonhq:charm-desktop:2.0.0'
+    embeddedRuntime 'com.gluonhq:charm-desktop:${mobileVersion}'
     </#if>
 }
 

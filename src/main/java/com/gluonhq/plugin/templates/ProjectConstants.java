@@ -2,7 +2,10 @@ package com.gluonhq.plugin.templates;
 
 public class ProjectConstants {
     
-    public static final String PLUGIN_VERSION = "2.0.0";
+    public static final String PLUGIN_VERSION = "2.1.0";
+    public static final String GLUON_DESKTOP_VERSION = "1.1.0-RC1";
+    public static final String GLUON_MOBILE_VERSION = "2.1.0-RC1";
+    public static final String GLUON_MOBILE_PLUGIN = "1.0.7";
     
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
@@ -38,4 +41,8 @@ public class ProjectConstants {
 
     // Afterburner
     public static final String PARAM_AFTERBURNER_ENABLED = "afterburnerEnabled";
+    
+    public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
+    public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
+    public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
 }
