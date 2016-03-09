@@ -2,11 +2,8 @@ package ${packageName}.actions;
 
 import com.gluonhq.particle.annotation.ParticleActions;
 import com.gluonhq.particle.application.ParticleApplication;
-import com.gluonhq.particle.state.StateManager;
-import ${packageName}.view.BasicView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.inject.Inject;
@@ -15,12 +12,8 @@ import org.controlsfx.control.action.ActionProxy;
 @ParticleActions
 public class MenuActions {
 
-    @Inject
-    ParticleApplication app;
+    @Inject ParticleApplication app;
 
-    @Inject
-    private StateManager stateManager;
-    
     @ActionProxy(text="Exit", accelerator="alt+F4")
     private void exit() {
         app.exit();
@@ -35,19 +28,5 @@ public class MenuActions {
         alert.setContentText("This is a basic Gluon Desktop Application");
         alert.showAndWait();
     }
-    
-    @ActionProxy(text="Sign In")
-    private void signin() {
-        TextInputDialog input = new TextInputDialog(stateManager.getProperty("UserName").orElse("").toString());
-        input.setTitle("User name");
-        input.setHeaderText(null);
-        input.setContentText("Input your name:");
-        input
-            .showAndWait()
-            .ifPresent(user -> {
-                BasicView homeView = (BasicView) app.getParticle().getViewManager().getCurrentView();
-                homeView.addUser(user);
-            });
-    }
-    
+        
 }

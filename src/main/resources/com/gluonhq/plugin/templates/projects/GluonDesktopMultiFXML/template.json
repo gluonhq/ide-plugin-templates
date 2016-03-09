@@ -1,0 +1,7 @@
+{
+    "name": "Gluon Desktop - Multiple View Project with FXML",
+    "description": "Using Gluon Desktop, and including multiple Views created with FXML, creates a new Gluon based desktop Java application, as a Gradle project.",
+    "executions": [
+        "recipe.json.ftl"
+    ]
+}

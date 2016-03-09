@@ -20,13 +20,13 @@
   {
     "command": "process",
     "open": false,
-    "from": "ToolBarActions.java.ftl",
-    "to": "./src/main/java/${packageFolder}/actions/ToolBarActions.java"
+    "from": "style.css.ftl",
+    "to": "./src/main/resources/${packageFolder}/style.css"
   },
   {
     "command": "process",
     "open": false,
-    "from": "style.css.ftl",
-    "to": "./src/main/resources/${packageFolder}/style.css"
+    "from": "view.css.ftl",
+    "to": "./src/main/resources/${packageFolder}/view/basic.css"
   }
 ]

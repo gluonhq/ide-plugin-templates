@@ -1,0 +1,7 @@
+{
+    "name": "Gluon Desktop - Multiple View Project",
+    "description": "Using Gluon Desktop, and including multiple Views, creates a new Gluon based desktop Java application, as a Gradle project.",
+    "executions": [
+        "recipe.json.ftl"
+    ]
+}

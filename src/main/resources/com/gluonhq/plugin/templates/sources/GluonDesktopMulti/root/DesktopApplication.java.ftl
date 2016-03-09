@@ -12,12 +12,13 @@ public class ${mainClassName} extends ParticleApplication {
 
     @Override
     public void postInit(Scene scene) {
-        scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());
+        <#if cssProjectEnabled>
+        scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());</#if>
 
         setTitle("Gluon Desktop Application");
 
-        getParticle().buildMenu("File -> [signin,---, exit]", "Help -> [about]");
+        getParticle().buildMenu("File -> [exit]", "Help -> [about]");
         
-        getParticle().getToolBarActions().addAll(actions("signin"));
+        getParticle().getToolBarActions().addAll(actions("---", "about", "exit"));
     }
 }

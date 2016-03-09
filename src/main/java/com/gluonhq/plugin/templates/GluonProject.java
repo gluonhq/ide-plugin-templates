@@ -3,6 +3,8 @@ package com.gluonhq.plugin.templates;
 public enum GluonProject {
     
     DESKTOP_SINGLE("GluonDesktop", "SingleViewProject", "Gluon Desktop - Create a Single View Project"),
+    DESKTOP_MULTIVIEW("GluonDesktopMulti", "MultiViewProject", "Gluon Desktop - Create a Multi View Project"),
+    DESKTOP_MULTIVIEWFXML("GluonDesktopMultiFXML", "MultiViewProjectFXML", "Gluon Desktop - Create a Multi View Project with FXML"),
 
     MOBILE_SINGLE("GluonGlisten", "SingleViewProject", "Gluon Mobile - Create a Single View Project"),
     MOBILE_MULTIVIEW("GluonGlistenMulti", "MultiViewProject", "Gluon Mobile - Create a Multi View Project"),
