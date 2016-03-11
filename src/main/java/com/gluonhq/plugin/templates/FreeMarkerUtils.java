@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -36,6 +37,11 @@ public class FreeMarkerUtils {
     }
     
     public static void setExecutionPermission(Path path) {
+        String OS = System.getProperty("os.name").toLowerCase(Locale.ROOT);
+        if (OS.contains("win")) {
+            return;
+        }
+        
         Set<PosixFilePermission> perms = new HashSet<>();
         perms.add(PosixFilePermission.OWNER_READ);
         perms.add(PosixFilePermission.OWNER_WRITE);
@@ -47,7 +53,7 @@ public class FreeMarkerUtils {
  
         try {
             Files.setPosixFilePermissions(path, perms);
-        } catch (IOException ex) {
+        } catch (UnsupportedOperationException | IOException ex) {
             Logger.getLogger(FreeMarkerUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
