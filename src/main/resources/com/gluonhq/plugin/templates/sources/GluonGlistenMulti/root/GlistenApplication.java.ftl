@@ -48,7 +48,7 @@ public class ${mainClassName} extends MobileApplication {
 
     @Override
     public void postInit(Scene scene) {
-        Swatch.getRandom().assignTo(scene);
+        Swatch.BLUE.assignTo(scene);
 
         <#if cssProjectEnabled>
         scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());</#if>

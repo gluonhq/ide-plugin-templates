@@ -20,7 +20,7 @@ public class ${mainClassName} extends MobileApplication {
 
     @Override
     public void postInit(Scene scene) {
-        Swatch.getRandom().assignTo(scene);
+        Swatch.BLUE.assignTo(scene);
 
         <#if desktopEnabled>
         ((Stage) scene.getWindow()).getIcons().add(new Image(${mainClassName}.class.getResourceAsStream("/icon.png")));</#if>
