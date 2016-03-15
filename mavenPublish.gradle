@@ -8,7 +8,7 @@ configurations {
 }
 
 signing {
-    required = { gradle.taskGraph.hasTask(uploadPublished) && !version.endsWith("SNAPSHOT") }
+    required = { gradle.taskGraph.hasTask('uploadPublished') && !version.endsWith("SNAPSHOT") }
     sign configurations.archives
 }
 
