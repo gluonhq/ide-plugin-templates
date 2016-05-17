@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -60,7 +61,10 @@ public class TemplateUtils {
             InetAddress address = InetAddress.getLocalHost();
             NetworkInterface ni = NetworkInterface.getByInetAddress(address);
             if (ni != null) {
-                macAddress = computeHash(ni.getHardwareAddress());
+                byte[] ma = ni.getHardwareAddress();
+                if (ma != null) {
+                    macAddress = computeHash(ma);
+                }            
             } else {
                 LOG.log(Level.WARNING, "Network Interface for the specified address is not found.");
             }
@@ -69,6 +73,10 @@ public class TemplateUtils {
         } catch (SocketException e) {
             LOG.log(Level.SEVERE, "Error socket: {0}", e);
         }
+        if (macAddress.isEmpty()) {
+            macAddress = UUID.randomUUID().toString();
+        }
+        
         return macAddress;
     }
     
