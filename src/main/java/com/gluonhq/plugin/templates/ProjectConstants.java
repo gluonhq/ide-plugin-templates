@@ -1,15 +1,23 @@
 package com.gluonhq.plugin.templates;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Properties;
+
 public class ProjectConstants {
-    
+
     public static final String PLUGIN_VERSION = "2.2.0";
-    public static final String GLUON_DESKTOP_VERSION = "1.1.0";
-    public static final String GLUON_MOBILE_VERSION = "2.1.1";
-    public static final String GLUON_MOBILE_PLUGIN = "1.0.8";
-    
+    private static final String GLUON_DESKTOP_VERSION = "1.1.0";
+    private static final String GLUON_MOBILE_VERSION = "2.2.0";
+    private static final String GLUON_MOBILE_PLUGIN = "1.0.8";
+
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
-    
+
     // Optin
     public static final String PARAM_USER_IDE_OPTIN = "gluon_ide_optin";
     public static final String PARAM_USER_EMAIL = "gluon_user_email";
@@ -18,7 +26,7 @@ public class ProjectConstants {
     public static final String PARAM_USER_LICENSE_DESKTOP = "gluon_user_license_desktop";
     public static final String PARAM_USER_MAC_ADDRESS = "gluon_user_mac_address";
     public static final String PARAM_USER_PLUGIN_VERSION = "gluon_user_plugin_version";
-    
+
     public static final String PARAM_PROJECT_NAME = "projectName";
     public static final String PARAM_PROJECT_DIR = "projectDir";
     public static final String PARAM_PACKAGE_NAME = "packageName";
@@ -29,7 +37,7 @@ public class ProjectConstants {
     public static final String PARAM_DESKTOP_ENABLED = "desktopEnabled";
     public static final String PARAM_EMBEDDED_ENABLED = "embeddedEnabled";
     public static final String PARAM_IOS_ENABLED = "iosEnabled";
-    
+
     // Views
     public static final String PARAM_PRIMARY_VIEW = "primaryViewName";
     public static final String PARAM_SECONDARY_VIEW = "secondaryViewName";
@@ -41,8 +49,39 @@ public class ProjectConstants {
 
     // Afterburner
     public static final String PARAM_AFTERBURNER_ENABLED = "afterburnerEnabled";
-    
+
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
     public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
+
+    public static final Properties retrieveRemoteProperties() {
+        Properties properties = new Properties();
+        try {
+            URL url = new URL("http://download.gluonhq.com/ideplugins/settings.properties");
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+            conn.setRequestMethod("GET");
+            conn.setUseCaches(false);
+            conn.connect();
+            properties.load(conn.getInputStream());
+        } catch (MalformedURLException ex) {
+        } catch (IOException ex) {
+        }
+        return properties;
+    }
+    
+    public static final String getDesktopVersion() {
+        return retrieveRemoteProperties().getProperty("desktop", GLUON_DESKTOP_VERSION);
+    }
+    
+    public static final String getMobileVersion() {
+        return retrieveRemoteProperties().getProperty("mobile", GLUON_MOBILE_VERSION);
+    }
+    
+    public static final String getPluginVersion() {
+        return retrieveRemoteProperties().getProperty("plugin", GLUON_MOBILE_PLUGIN);
+    }
+
 }
