@@ -1,19 +1,18 @@
 package com.gluonhq.plugin.templates;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.Properties;
 
 public class ProjectConstants {
 
-    public static final String PLUGIN_VERSION = "2.2.0";
+    public static final String PLUGIN_VERSION = "2.4.0";
     private static final String GLUON_DESKTOP_VERSION = "1.1.0";
-    private static final String GLUON_MOBILE_VERSION = "2.2.0";
-    private static final String GLUON_MOBILE_PLUGIN = "1.0.8";
+    private static final String GLUON_MOBILE_VERSION = "3.0.0";
+    private static final String GLUON_DOWN_VERSION = "3.0.0";
+    private static final String GLUON_MOBILE_PLUGIN = "1.0.9";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
@@ -52,12 +51,14 @@ public class ProjectConstants {
 
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
+    public static final String PARAM_GLUON_DOWN_VERSION = "downVersion";
     public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
 
     public static final Properties retrieveRemoteProperties() {
         Properties properties = new Properties();
         try {
-            URL url = new URL("http://download.gluonhq.com/ideplugins/settings.properties");
+            // TODO: Fix url before Release to settings.properties
+            URL url = new URL("http://download.gluonhq.com/ideplugins/settings-snapshot.properties");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setConnectTimeout(5000);
@@ -80,6 +81,10 @@ public class ProjectConstants {
         return retrieveRemoteProperties().getProperty("mobile", GLUON_MOBILE_VERSION);
     }
     
+    public static final String getDownVersion() {
+        return retrieveRemoteProperties().getProperty("down", GLUON_DOWN_VERSION);
+    }
+
     public static final String getPluginVersion() {
         return retrieveRemoteProperties().getProperty("plugin", GLUON_MOBILE_PLUGIN);
     }

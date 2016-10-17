@@ -3,14 +3,10 @@ package ${packageName};
 import ${packageName}.views.${primaryViewName}View;
 import ${packageName}.views.${secondaryViewName}View;
 import com.gluonhq.charm.glisten.application.MobileApplication;
-import com.gluonhq.charm.glisten.control.Avatar;
-import com.gluonhq.charm.glisten.control.NavigationDrawer;
-import com.gluonhq.charm.glisten.control.NavigationDrawer.Item;
 import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 <#if afterburnerEnabled>
 import com.gluonhq.charm.glisten.mvc.View;
 </#if>
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.gluonhq.charm.glisten.visual.Swatch;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,37 +17,21 @@ import com.gluonhq.charm.glisten.license.License;
 @License(key="${gluon_user_license_mobile?lower_case}")</#if>
 public class ${mainClassName} extends MobileApplication {
 
-    public static final String PRIMARY_VIEW = HOME_VIEW;
-    public static final String SECONDARY_VIEW = "${secondaryViewName} View";
+    public static final String ${primaryViewName?upper_case}_VIEW = HOME_VIEW;
+    public static final String ${secondaryViewName?upper_case}_VIEW = "${secondaryViewName} View";
     public static final String MENU_LAYER = "Side Menu";
     
     @Override
     public void init() {
         <#if afterburnerEnabled>
-        addViewFactory(PRIMARY_VIEW, () -> (View) new ${primaryViewName}View().getView());
-        addViewFactory(SECONDARY_VIEW, () -> (View) new ${secondaryViewName}View().getView());
+        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> (View) new ${primaryViewName}View().getView());
+        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> (View) new ${secondaryViewName}View().getView());
         <#else>
-        addViewFactory(PRIMARY_VIEW, () -> new ${primaryViewName}View(PRIMARY_VIEW).getView());
-        addViewFactory(SECONDARY_VIEW, () -> new ${secondaryViewName}View(SECONDARY_VIEW).getView());
+        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> new ${primaryViewName}View(${primaryViewName?upper_case}_VIEW).getView());
+        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> new ${secondaryViewName}View(${secondaryViewName?upper_case}_VIEW).getView());
         </#if>
         
-        NavigationDrawer drawer = new NavigationDrawer();
-        
-        NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Mobile",
-                "Multi View Project",
-                new Avatar(21, new Image(${mainClassName}.class.getResourceAsStream("/icon.png"))));
-        drawer.setHeader(header);
-        
-        final Item primaryItem = new Item("${primaryViewName}", MaterialDesignIcon.HOME.graphic());
-        final Item secondaryItem = new Item("${secondaryViewName}", MaterialDesignIcon.DASHBOARD.graphic());
-        drawer.getItems().addAll(primaryItem, secondaryItem);
-        
-        drawer.selectedItemProperty().addListener((obs, oldItem, newItem) -> {
-            hideLayer(MENU_LAYER);
-            switchView(newItem.equals(primaryItem) ? PRIMARY_VIEW : SECONDARY_VIEW);
-        });
-        
-        addLayerFactory(MENU_LAYER, () -> new SidePopupView(drawer));
+        addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
     }
 
     @Override
