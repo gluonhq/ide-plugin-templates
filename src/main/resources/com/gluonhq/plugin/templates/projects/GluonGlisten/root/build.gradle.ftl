@@ -1,9 +1,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven { // TO BE REMOVED
-            url "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
     }
     dependencies {
         classpath 'org.javafxports:jfxmobile-plugin:${mobilePlugin}'
@@ -16,16 +13,6 @@ repositories {
     jcenter()
     maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'
-    }
-    maven { // TO BE REMOVED
-        url 'http://nexus.gluonhq.com/nexus/content/repositories/snapshots'
-        credentials {
-            username gluonNexusUsername
-            password gluonNexusPassword
-        }
-    }
-    maven { // TO BE REMOVED
-        url "https://oss.sonatype.org/content/repositories/snapshots/"
     }
 }
 
