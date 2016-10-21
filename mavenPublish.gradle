@@ -60,50 +60,12 @@ private configurePOM(def pom) {
     pom.project {
         name "Gluon IDE Plugin Templates"
         description "Gluon IDE Plugin Templates"
-        url 'http://gluonhq.com/products/tools/'
+        url 'https://gluonhq.com/products/mobile/trynow/'
         modelVersion '4.0.0'
         packaging 'jar'
-        developers {
-            developer {
-                name 'Johan Vos'
-                email 'johan.vos@gluonhq.com'
-                roles {
-                    role 'author'
-                    role 'developer'
-                }
-            }
-            developer {
-                name 'Joeri Sykora'
-                email 'joeri.sykora@gluonhq.com'
-                roles {
-                    role 'author'
-                    role 'developer'
-                }
-            }
-            developer {
-                name 'Erwin Morrhey'
-                email 'erwin.morrhey@gluonhq.com'
-                roles {
-                    role 'author'
-                    role 'developer'
-                }
-            }
-            developer {
-                name 'Eugene Ryzhikov'
-                email 'eugene.ryzhikov@gluonhq.com'
-                roles {
-                    role 'author'
-                    role 'developer'
-                }
-            }
-            developer {
-                name 'Jonathan Giles'
-                email 'jonathan.giles@gluonhq.com'
-                roles {
-                    role 'author'
-                    role 'developer'
-                }
-            }
+        organization {
+            name 'Gluon'
+            url 'https://gluonhq.com'
         }
     }
 }
