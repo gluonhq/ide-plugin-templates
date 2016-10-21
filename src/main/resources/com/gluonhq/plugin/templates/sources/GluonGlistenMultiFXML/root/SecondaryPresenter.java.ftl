@@ -18,7 +18,7 @@ public class ${secondaryViewName}Presenter {
         ${secondaryCSSName}.setShowTransitionFactory(BounceInRightTransition::new);
         
         ${secondaryCSSName}.getLayers().add(new FloatingActionButton(MaterialDesignIcon.INFO.text, 
-            e -> System.out.println("Info")));
+            e -> System.out.println("Info")).getLayer());
         
         ${secondaryCSSName}.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {

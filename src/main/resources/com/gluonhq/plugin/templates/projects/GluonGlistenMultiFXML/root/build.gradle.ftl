@@ -21,18 +21,15 @@ mainClassName = '${mainClass}'
 dependencies {
     compile 'com.gluonhq:charm:${mobileVersion}'
     <#if afterburnerEnabled>
-    compile 'com.airhacks:afterburner.mfx:1.6.2'
-    </#if>
-    androidRuntime 'com.gluonhq:charm-android:${mobileVersion}'
-    iosRuntime 'com.gluonhq:charm-ios:${mobileVersion}'
-    desktopRuntime 'com.gluonhq:charm-desktop:${mobileVersion}'
-    <#if embeddedEnabled>
-    embeddedRuntime 'com.gluonhq:charm-desktop:${mobileVersion}'
+    compileNoRetrolambda 'com.airhacks:afterburner.mfx:1.6.2'
     </#if>
 }
 
-<#if androidEnabled || iosEnabled>
 jfxmobile {
+    downConfig {
+        version = '${downVersion}'
+        plugins 'display', 'lifecycle', 'statusbar', 'storage'
+    }
     <#if androidEnabled>
     android {
         manifest = 'src/android/AndroidManifest.xml'
@@ -44,7 +41,6 @@ jfxmobile {
         forceLinkClasses = [
                 '${packageName}.**.*',
                 'com.gluonhq.**.*',
-                'io.datafx.**.*',
                 'javax.annotations.**.*',
                 'javax.inject.**.*',
                 'javax.json.**.*',
@@ -53,4 +49,3 @@ jfxmobile {
     }
     </#if>
 }
-</#if>
