@@ -1,0 +1,19 @@
+.label.title {
+    -fx-font-size: 1.0em;
+    -fx-font-weight: bold;
+}
+
+.label.name {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+}
+
+.label.description {
+    -fx-font-size: 0.8em;
+    -fx-font-style: italic;
+    -fx-font-weight: normal;
+}
+
+.buttons {
+    -fx-font-family: "FontAwesome";
+}

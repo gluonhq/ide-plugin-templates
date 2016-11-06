@@ -2,10 +2,10 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply from: 'mavenPublish.gradle'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
 group = 'com.gluonhq'
-version = '2.5.0-SNAPSHOT'
+version = '2.5.0'
 
 repositories {
     jcenter()
@@ -13,7 +13,8 @@ repositories {
 
 dependencies {
     compile 'org.glassfish:javax.json:1.0.4'
-    compile 'org.freemarker:freemarker:2.3.19'
+    compile 'org.freemarker:freemarker:2.3.23'
+    compile 'org.controlsfx:controlsfx:8.40.12'
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
