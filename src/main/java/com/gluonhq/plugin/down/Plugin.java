@@ -24,10 +24,10 @@ public enum Plugin {
     ORIENTATION("orientation", "Orientation Service. Requires Lifecycle service"),
     PICTURES("picture", "Pictures Service"),
     POSITION("position", "Position Service. Requires Lifecycle service"),
+    RUNTIME_ARGS("runtime-args", "Runtime Arguments Service"),
     SETTINGS("settings", "Settings Service"),
     STATUSBAR("statusbar", "StatusBar Service. Required by Gluon Charm"),
     STORAGE("storage", "Storage Service. Required by Gluon Charm"),
-    RUNTIME_ARGS("runtime-args", "Runtime Arguments Service"),
     VIBRATION("vibration", "Vibration Service");
     
     private final String name;
