@@ -33,14 +33,12 @@ public class PluginsFX extends BorderPane {
     static {
         Font.loadFont(PluginsFX.class.getResource("fontawesome-webfont.ttf").toExternalForm(), 14);
     }
-    
+
     public PluginsFX() {
         final Label label = new Label("Select the required plugins");
         label.getStyleClass().add("title");
-        HBox hBox = new HBox(label);
-        hBox.setAlignment(Pos.CENTER_LEFT);
-        hBox.setPadding(new Insets(10));
-        setTop(hBox);
+        setTop(label);
+        label.setMaxWidth(Double.MAX_VALUE);
         
         list = new ListSelectionView<>();
         list.setCellFactory(p -> new ListCell<Plugin>() {
@@ -52,10 +50,8 @@ public class PluginsFX extends BorderPane {
                 name.getStyleClass().add("name");
                 description = new Label();
                 description.getStyleClass().add("description");
-                HBox hBox = new HBox(description);
-                hBox.setPadding(new Insets(0, 0, 0, 5));
-                hBox.setAlignment(Pos.CENTER_LEFT);
-                vBox = new VBox(5, name, hBox);
+                vBox = new VBox(5, name, description);
+                vBox.setPadding( new Insets(5,5,5,5));
                 setGraphic(vBox);
                 setText(null);
             }
@@ -106,22 +102,12 @@ public class PluginsFX extends BorderPane {
             if (nv != null) {
                 nv.windowProperty().addListener((obs2, ov2, nv2) -> {
                     Platform.runLater(() -> {
-                        Button b1 = (Button) lookup(".move-to-target-button");
-                        b1.getStyleClass().add("buttons");
-                        b1.setGraphic(new Label(String.valueOf('\uf105'))); // ANGLE_RIGHT
-                        
-                        Button b2 = (Button) lookup(".move-to-target-all-button");
-                        b2.getStyleClass().add("buttons");
-                        b2.setGraphic(new Label(String.valueOf('\uf101'))); // ANGLE_DOUBLE_RIGHT
-                        
-                        Button b3 = (Button) lookup(".move-to-source-button");
-                        b3.getStyleClass().add("buttons");
-                        b3.setGraphic(new Label(String.valueOf('\uf104'))); // ANGLE_LEFT
-                        
-                        Button b4 = (Button) lookup(".move-to-source-all-button");
-                        b4.getStyleClass().add("buttons");
-                        b4.setGraphic(new Label(String.valueOf('\uf100'))); // ANGLE_DOUBLE_LEFT
-                        
+
+                        setButtonGraphic(".move-to-target-button",     '\uf105');   // ANGLE_RIGHT
+                        setButtonGraphic(".move-to-target-all-button", '\uf101' );  // ANGLE_DOUBLE_RIGHT
+                        setButtonGraphic(".move-to-source-button",     '\uf104');   // ANGLE_LEFT
+                        setButtonGraphic(".move-to-source-all-button", '\uf100' );  // ANGLE_DOUBLE_LEFT
+
                         // This solves blurry jfxpanel on Mac:
                         ListView source = ((ListSelectionViewSkin) list.getSkin()).getSourceListView();
                         source.getSelectionModel().selectFirst();
@@ -130,6 +116,14 @@ public class PluginsFX extends BorderPane {
                 });
             }
         });
+    }
+
+    private void setButtonGraphic( String buttonStyleClass, char graphic ) {
+        Button button = (Button) lookup("buttonStyleClass");
+        if ( button != null ) {
+            button.getStyleClass().add("buttons");
+            button.setGraphic(new Label(String.valueOf(graphic)));
+        }
     }
     
     public void loadPlugins(PluginsBean pluginsBean) {

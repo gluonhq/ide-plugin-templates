@@ -1,16 +1,21 @@
 .label.title {
     -fx-font-size: 1.0em;
     -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 0 0 1 0;
+    -fx-graphic: url("gm.png");
+    -fx-graphic-text-gap: 10;
 }
 
 .label.name {
     -fx-font-size: 1.1em;
     -fx-font-weight: bold;
+    -fx-text-fill: steelblue;
 }
 
 .label.description {
-    -fx-font-size: 0.8em;
-    -fx-font-style: italic;
     -fx-font-weight: normal;
 }
 
