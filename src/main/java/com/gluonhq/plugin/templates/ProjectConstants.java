@@ -10,9 +10,11 @@ public class ProjectConstants {
 
     public static final String PLUGIN_VERSION = "2.4.0";
     private static final String GLUON_DESKTOP_VERSION = "1.1.0";
-    private static final String GLUON_MOBILE_VERSION = "4.0.0";
+    private static final String GLUON_MOBILE_VERSION = "4.1.0";
     private static final String GLUON_DOWN_VERSION = "3.0.0";
-    private static final String GLUON_MOBILE_PLUGIN = "1.1.0";
+    private static final String GLUON_MOBILE_PLUGIN = "1.1.1";
+    // TODO: Use Release version
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.1.0-SNAPSHOT";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
@@ -53,6 +55,7 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
     public static final String PARAM_GLUON_DOWN_VERSION = "downVersion";
     public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
+    public static final String PARAM_GLUON_GLISTEN_AFTERBURNER_VERSION = "glistenAfterburnerVersion";
 
     public static final Properties retrieveRemoteProperties() {
         Properties properties = new Properties();
@@ -87,6 +90,10 @@ public class ProjectConstants {
 
     public static final String getPluginVersion() {
         return retrieveRemoteProperties().getProperty("plugin", GLUON_MOBILE_PLUGIN);
+    }
+    
+    public static final String getGlistenAfterburnerVersion() {
+        return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
     }
 
 }

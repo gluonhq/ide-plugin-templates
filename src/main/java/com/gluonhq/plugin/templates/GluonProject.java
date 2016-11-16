@@ -8,7 +8,8 @@ public enum GluonProject {
 
     MOBILE_SINGLE("GluonGlisten", "SingleViewProject", "Gluon Mobile - Create a Single View Project"),
     MOBILE_MULTIVIEW("GluonGlistenMulti", "MultiViewProject", "Gluon Mobile - Create a Multi View Project"),
-    MOBILE_MULTIVIEWFXML("GluonGlistenMultiFXML", "MultiViewProjectFXML", "Gluon Mobile - Create a Multi View Project with FXML");
+    MOBILE_MULTIVIEWFXML("GluonGlistenMultiFXML", "MultiViewProjectFXML", "Gluon Mobile - Create a Multi View Project with FXML"),
+    MOBILE_MULTIVIEW_GAF("GluonGlistenMultiFXMLGAf", "MultiViewProjectFXMLGAf", "Gluon Mobile - Create a Glisten-Afterburner Project");
 
     /**
      * type of project. 
