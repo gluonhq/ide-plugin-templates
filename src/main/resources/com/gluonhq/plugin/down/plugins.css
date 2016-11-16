@@ -17,8 +17,24 @@
 
 .label.description {
     -fx-font-weight: normal;
+    -fx-font-size: 0.9em;
 }
 
 .buttons {
     -fx-font-family: "FontAwesome";
+}
+
+.icon {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: steelblue;
+    -fx-font-size: 1.3em;
+    -fx-pref-width: 20;
+}
+
+.icon:hover {
+    -fx-cursor: hand;
+}
+
+.list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected > .container > * > .label {
+    -fx-text-fill: white;
 }

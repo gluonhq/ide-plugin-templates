@@ -86,6 +86,7 @@ public class PluginsBean {
             return;
         }
         setPlugins(Stream.of(pluginsLine.split("\\,"))
+                    .filter(s -> s.contains("'"))
                     .map(s -> s.substring(s.indexOf("'") + 1, s.lastIndexOf("'")))
                     .map(s -> Plugin.byName(s).orElse(null))
                     .filter(Objects::nonNull)
@@ -103,8 +104,25 @@ public class PluginsBean {
         if (lineNumber == -1 || lines == null || lines.isEmpty()) {
             return lines;
         }
+        
+        // add missing dependencies
+        List<Plugin> dependencies = plugins
+                                    .stream()
+                                    .map(Plugin::getDependencies)
+                                    .flatMap(List::stream)
+                                    .distinct()
+                                    .map(s -> Plugin.byName(s).orElse(null))
+                                    .filter(Objects::nonNull)
+                                    .filter(p -> !plugins.contains(p))
+                                    .collect(Collectors.toList());
+        
+        List<Plugin> finalPlugins = Stream.concat(plugins.stream(), dependencies.stream())
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+        
         String pluginsLine = "        plugins " + 
-                            plugins
+                            finalPlugins
                                 .stream()
                                 .map(p -> "'" + p.getName() + "'")
                                 .sorted()

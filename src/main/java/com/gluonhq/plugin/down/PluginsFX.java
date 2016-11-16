@@ -5,6 +5,8 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,13 +25,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -66,20 +66,29 @@ public class PluginsFX extends BorderPane {
             private Plugin item;
             private final VBox vBox; 
             private final Label name;
-            private final Hyperlink help;
+            private final Label help;
             private final Label description;
             {
                 name = new Label();
                 name.getStyleClass().add("name");
-                help = new Hyperlink("More...");
-                help.setOnAction(e -> openURL(GLUON_PLUGIN_URL + item.getUrl()));
                 description = new Label();
+                description.setMaxWidth(280);
                 description.getStyleClass().add("description");
-                HBox hBox = new HBox(5, description, help);
-                hBox.setAlignment(Pos.CENTER_LEFT);
-                vBox = new VBox(5, name, hBox);
+                vBox = new VBox(5, name, description);
                 vBox.setPadding(new Insets(5));
-                setGraphic(vBox);
+                
+                help = new Label(String.valueOf(FontAwesome.Glyph.INFO_CIRCLE.getChar()));
+                help.getStyleClass().add("icon");
+                help.setOnMouseClicked(e -> openURL(GLUON_PLUGIN_URL + item.getUrl()));
+                VBox vBoxHelp = new VBox(help);
+                vBoxHelp.setAlignment(Pos.CENTER);
+                vBoxHelp.setPadding(new Insets(5));
+                
+                HBox hBox = new HBox(5, vBox, vBoxHelp);
+                hBox.getStyleClass().add("container");
+                hBox.setAlignment(Pos.CENTER_RIGHT);
+                HBox.setHgrow(vBox, Priority.ALWAYS);
+                setGraphic(hBox);
                 setText(null);
             }
 
@@ -105,7 +114,8 @@ public class PluginsFX extends BorderPane {
         Button buttonHelp = new Button("Help");
         buttonHelp.getStyleClass().add("buttons");
         buttonHelp.setOnAction(e -> openURL(GLUON_DOWN_URL));
-
+        ButtonBar.setButtonData(buttonHelp, ButtonData.HELP); 
+        
         buttonCancel = new Button("Cancel");
         buttonCancel.setCancelButton(true);
         ButtonBar.setButtonData(buttonCancel, ButtonData.CANCEL_CLOSE); 
@@ -122,9 +132,7 @@ public class PluginsFX extends BorderPane {
         });
         
         ButtonBar buttonBar = new ButtonBar();
-        Pane pane = new Pane();
-        HBox.setHgrow(pane, Priority.ALWAYS);
-        buttonBar.getButtons().addAll(buttonHelp, pane, buttonCancel, buttonOk);
+        buttonBar.getButtons().addAll(buttonHelp, buttonCancel, buttonOk);
         buttonBar.setPadding(new Insets(10));
         setBottom(buttonBar);
         
@@ -165,7 +173,7 @@ public class PluginsFX extends BorderPane {
                                 }
                             }
                         });
-
+                        
                         SCENE_READY.set(true);
                     });
                 });
