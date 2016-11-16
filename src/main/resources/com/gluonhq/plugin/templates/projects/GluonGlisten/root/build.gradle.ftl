@@ -25,6 +25,7 @@ dependencies {
 jfxmobile {
     downConfig {
         version = '${downVersion}'
+        // Do not edit the line below. Use Gluon Mobile Settings in your project context menu instead
         plugins 'display', 'lifecycle', 'statusbar', 'storage'
     }
     <#if androidEnabled>

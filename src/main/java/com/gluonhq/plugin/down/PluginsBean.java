@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class PluginsBean {
@@ -15,6 +16,51 @@ public class PluginsBean {
     private List<Plugin> plugins;
     
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    
+    private int lineNumber;
+    private int linesToReplace;
+    private final List<String> lines;
+
+    public PluginsBean(List<String> lines) {
+        this.lines = lines;
+        
+        if (lines != null && !lines.isEmpty()) {
+            lineNumber = IntStream.range(0, lines.size())
+                .filter(i -> lines.get(i).contains("plugins"))
+                .findAny().orElse(-1);
+            if (lineNumber > -1) {
+                int index = lineNumber;
+                String pluginLine = lines.get(index++).trim();
+                String next = pluginLine;
+                while (next.endsWith(",") || next.endsWith("\\")) {
+                    next = lines.get(index++).trim();
+                    pluginLine = pluginLine.replaceAll("\\\\", "").trim()
+                            .concat(" ")
+                            .concat(next.replaceAll("\\\\", "").trim());
+                }
+                linesToReplace = index - lineNumber;
+                loadPlugins(pluginLine);
+            } else {
+                PluginsFX.showError("Error: plugins not found");
+                // no plugins line. Add it before downConfig end bracket
+                int downConfigLine = IntStream.range(0, lines.size())
+                    .filter(i -> lines.get(i).contains("downConfig"))
+                    .findFirst().orElse(-1);
+                if (downConfigLine > 1) {
+                    lineNumber = IntStream.range(downConfigLine, lines.size())
+                        .filter(i -> lines.get(i).contains("}"))
+                        .findAny().orElse(-1);
+                } else {
+                    PluginsFX.showError("Error: downConfig not found");
+                }
+                loadPlugins(null);
+            }
+        } else {
+            // no build.gradle file
+            PluginsFX.showError("Error: Build.gradle can't be read");
+            loadPlugins(null);
+        }
+    }
         
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         pcs.addPropertyChangeListener(pcl);
@@ -28,13 +74,13 @@ public class PluginsBean {
         return plugins;
     }
 
-    /**
-     * Parse the build.gradle line containing "plugins" to get 
-     * the list of Plugins
-     * 
-     * @param pluginsLine, a String with the current list of plugins
-     */
-    public void loadPlugins(String pluginsLine) {
+    public void setPlugins(List<Plugin> plugins) {
+        List<Plugin> oldPlugins = this.plugins;
+        this.plugins = plugins;
+        pcs.firePropertyChange(PLUGINS_PROPERTY, oldPlugins, plugins);
+    }
+    
+    private void loadPlugins(String pluginsLine) {
         if (pluginsLine == null || pluginsLine.isEmpty()) {
             setPlugins(new ArrayList<>());
             return;
@@ -47,25 +93,31 @@ public class PluginsBean {
                     .collect(Collectors.toList()));
     }
     
-    public void setPlugins(List<Plugin> plugins) {
-        List<Plugin> oldPlugins = this.plugins;
-        this.plugins = plugins;
-        pcs.firePropertyChange(PLUGINS_PROPERTY, oldPlugins, plugins);
-    }
-    
     /**
-     * Return the "plugins" line for the build.gradle 
+     * Return the build file in a list of lines, containing the changes with the 
+     * selected files
      * 
-     * @return a String with all the selected plugins
+     * @return a List of String with the new build.gradle, including the selected plugins
      */
-    public String savePlugins() {
-        String pluginsLine = "\tplugins " + 
+    public List<String> savePlugins() {
+        if (lineNumber == -1 || lines == null || lines.isEmpty()) {
+            return lines;
+        }
+        String pluginsLine = "        plugins " + 
                             plugins
                                 .stream()
-                                .map(p -> "'"+p.getName()+"'")
+                                .map(p -> "'" + p.getName() + "'")
                                 .sorted()
                                 .collect(Collectors.joining(", "));
-        return pluginsLine;
+        
+        List<String> list = IntStream.range(0, lineNumber)
+                .mapToObj(lines::get)
+                .collect(Collectors.toList());
+        list.add(pluginsLine);
+        list.addAll(IntStream.range(lineNumber + linesToReplace, lines.size())
+                .mapToObj(lines::get)
+                .collect(Collectors.toList()));
+        return list;
     }
     
 }
