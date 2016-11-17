@@ -25,34 +25,38 @@ public class PluginsBean {
         this.lines = lines;
         
         if (lines != null && !lines.isEmpty()) {
-            lineNumber = IntStream.range(0, lines.size())
-                .filter(i -> lines.get(i).contains("plugins"))
-                .findAny().orElse(-1);
-            if (lineNumber > -1) {
-                int index = lineNumber;
-                String pluginLine = lines.get(index++).trim();
-                String next = pluginLine;
-                while (next.endsWith(",") || next.endsWith("\\")) {
-                    next = lines.get(index++).trim();
-                    pluginLine = pluginLine.replaceAll("\\\\", "").trim()
-                            .concat(" ")
-                            .concat(next.replaceAll("\\\\", "").trim());
-                }
-                linesToReplace = index - lineNumber;
-                loadPlugins(pluginLine);
-            } else {
-                PluginsFX.showError("Error: plugins not found");
-                // no plugins line. Add it before downConfig end bracket
-                int downConfigLine = IntStream.range(0, lines.size())
+            int downConfigLine = IntStream.range(0, lines.size())
                     .filter(i -> lines.get(i).contains("downConfig"))
                     .findFirst().orElse(-1);
-                if (downConfigLine > 1) {
+            if (downConfigLine > -1) {
+                int endDownConfigLine = IntStream.range(downConfigLine, lines.size())
+                    .filter(i -> lines.get(i).contains("}"))
+                    .findFirst().orElse(lines.size());
+            
+                lineNumber = IntStream.range(downConfigLine, endDownConfigLine)
+                    .filter(i -> lines.get(i).contains("plugins"))
+                    .findAny().orElse(-1);
+                if (lineNumber > -1) {
+                    int index = lineNumber;
+                    String pluginLine = lines.get(index++).trim();
+                    String next = pluginLine;
+                    while (next.endsWith(",") || next.endsWith("\\")) {
+                        next = lines.get(index++).trim();
+                        pluginLine = pluginLine.replaceAll("\\\\", "").trim()
+                                .concat(" ")
+                                .concat(next.replaceAll("\\\\", "").trim());
+                    }
+                    linesToReplace = index - lineNumber;
+                    loadPlugins(pluginLine);
+                } else {
+                    // no plugins line. Add it before downConfig end bracket
                     lineNumber = IntStream.range(downConfigLine, lines.size())
                         .filter(i -> lines.get(i).contains("}"))
                         .findAny().orElse(-1);
-                } else {
-                    PluginsFX.showError("Error: downConfig not found");
+                    loadPlugins(null);
                 }
+            } else {
+                PluginsFX.showError("Error: downConfig not found");
                 loadPlugins(null);
             }
         } else {
