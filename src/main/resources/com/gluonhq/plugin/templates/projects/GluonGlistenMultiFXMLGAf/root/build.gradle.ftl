@@ -10,8 +10,6 @@ buildscript {
 apply plugin: 'org.javafxports.jfxmobile'
 
 repositories {
-// TODO: Remove mavenLocal()
-    mavenLocal()
     jcenter()
     maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'

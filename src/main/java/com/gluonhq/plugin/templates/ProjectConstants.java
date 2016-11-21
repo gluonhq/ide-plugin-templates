@@ -13,8 +13,7 @@ public class ProjectConstants {
     private static final String GLUON_MOBILE_VERSION = "4.1.0";
     private static final String GLUON_DOWN_VERSION = "3.0.0";
     private static final String GLUON_MOBILE_PLUGIN = "1.1.1";
-    // TODO: Use Release version
-    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.1.0-SNAPSHOT";
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.1.0";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
@@ -60,7 +59,6 @@ public class ProjectConstants {
     public static final Properties retrieveRemoteProperties() {
         Properties properties = new Properties();
         try {
-            // TODO: Fix url before Release to settings.properties
             URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.4.properties");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
