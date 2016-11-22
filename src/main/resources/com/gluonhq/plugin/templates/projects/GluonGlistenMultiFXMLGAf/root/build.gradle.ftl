@@ -19,11 +19,7 @@ repositories {
 mainClassName = '${mainClass}'
 
 dependencies {
-// TODO: Use Afterburner version without retrolambda and remove this workaround:
-    compile ('com.gluonhq:glisten-afterburner:${glistenAfterburnerVersion}') {
-         exclude group: 'com.airhacks', module: 'afterburner.mfx'
-    }
-    compileNoRetrolambda 'com.airhacks:afterburner.mfx:1.6.2'
+    compile 'com.gluonhq:glisten-afterburner:${glistenAfterburnerVersion}'
 }
 
 jfxmobile {
