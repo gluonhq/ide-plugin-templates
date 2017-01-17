@@ -27,6 +27,7 @@ public enum Plugin {
     ORIENTATION("orientation", "Orientation Service. Requires Lifecycle service", "OrientationService.html", "lifecycle"),
     PICTURES("picture", "Pictures Service", "PicturesService.html"),
     POSITION("position", "Position Service. Requires Lifecycle service", "PositionService.html", "lifecycle"),
+    PUSH_NOTIFICATIONS("push-notifications", "Push Notifications Service. Requires Runtime Args service", "PushNotificationsService.html", "runtime-args"),
     RUNTIME_ARGS("runtime-args", "Runtime Arguments Service", "RuntimeArgsService.html"),
     SETTINGS("settings", "Settings Service", "SettingsService.html"),
     STATUSBAR("statusbar", "StatusBar Service. Required by Gluon Charm", "StatusBarService.html"),

@@ -21,7 +21,7 @@ mainClassName = '${mainClass}'
 dependencies {
     compile 'com.gluonhq:charm:${mobileVersion}'
     <#if afterburnerEnabled>
-    compileNoRetrolambda 'com.airhacks:afterburner.mfx:1.6.2'
+    compile 'com.airhacks:afterburner.mfx:1.6.3'
     </#if>
 }
 
