@@ -8,12 +8,6 @@
   {
     "command": "process",
     "open": false,
-    "from": "DrawerManager.java.ftl",
-    "to": "./src/main/java/${packageFolder}/DrawerManager.java"
-  },
-  {
-    "command": "process",
-    "open": false,
     "from": "AppViewManager.java.ftl",
     "to": "./src/main/java/${packageFolder}/views/AppViewManager.java"
   },
