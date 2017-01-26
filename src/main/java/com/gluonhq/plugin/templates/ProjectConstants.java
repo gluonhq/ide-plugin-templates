@@ -46,9 +46,15 @@ public class ProjectConstants {
     public static final String PARAM_PROJECT_CSS_ENABLED = "cssProjectEnabled";
     public static final String PARAM_PRIMARY_CSS_ENABLED = "cssPrimaryViewEnabled";
     public static final String PARAM_SECONDARY_CSS_ENABLED = "cssSecondaryViewEnabled";
+    public static final String PARAM_VIEWS = "views";
 
     // Afterburner
     public static final String PARAM_AFTERBURNER_ENABLED = "afterburnerEnabled";
+
+    // Gluon CloudLink
+    public static final String PARAM_GLUON_CLOUDLINK_HOST = "gluonCloudLinkHost";
+    public static final String PARAM_GLUON_CLOUDLINK_APPLICATION_KEY = "gluonCloudLinkApplicationKey";
+    public static final String PARAM_GLUON_CLOUDLINK_APPLICATION_SECRET = "gluonCloudLinkApplicationSecret";
 
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";

@@ -32,6 +32,10 @@ public class RecipeContext {
         this.filesToOpen = new ArrayList<>();
     }
 
+    public Map<String, Object> getParameters() {
+        return parameters;
+    }
+
     public List<File> getFilesToOpen() {
         return filesToOpen;
     }

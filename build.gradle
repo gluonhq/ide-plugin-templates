@@ -38,7 +38,7 @@ task generateResourcesList(dependsOn: processResources) << {
     def androidAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/android/res")
     def iosAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/ios/assets")
 
-    def projects = [ 'GluonBasic' , 'GluonGlisten' , 'GluonGlistenMulti', 'GluonGlistenMultiFXML', 'GluonGlistenMultiFXMLGAf' ]
+    def projects = [ 'DashboardMobileMultiFXML', 'GluonBasic' , 'GluonGlisten' , 'GluonGlistenMulti', 'GluonGlistenMultiFXML', 'GluonGlistenMultiFXMLGAf' ]
     projects.each {
         def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
         gradleWrapperList.withWriter('UTF-8') { out ->

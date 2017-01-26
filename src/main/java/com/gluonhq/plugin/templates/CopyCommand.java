@@ -10,7 +10,7 @@ public class CopyCommand extends Command {
     private File to;
 
     public CopyCommand(JsonObject jsonCommand) {
-        open = jsonCommand.containsKey("open") ? jsonCommand.getBoolean("open") : false;
+        open = jsonCommand.getBoolean("open", false);
         from = jsonCommand.getString("from");
         to = new File(jsonCommand.getString("to"));
     }

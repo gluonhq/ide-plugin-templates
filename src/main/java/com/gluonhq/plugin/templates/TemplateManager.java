@@ -29,10 +29,12 @@ public class TemplateManager {
         return instance;
     }
 
-    public List<Template> getProjectTemplates() {
+    public List<Template> getProjectTemplates(GluonProjectTarget target) {
         List<Template> templates = new ArrayList<>();
 
         for (GluonProject project : GluonProject.values()) {
+            if (!project.isTargetSupported(target)) continue;
+
             String type = project.getType();
             URL gluonBasicTemplate = Template.class.getResource(CATEGORY_PROJECTS + "/" + type + "/" + TEMPLATE_JSON_NAME);
             if (gluonBasicTemplate != null) {
