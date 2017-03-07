@@ -46,6 +46,7 @@ public class ProjectConstants {
     public static final String PARAM_PROJECT_CSS_ENABLED = "cssProjectEnabled";
     public static final String PARAM_PRIMARY_CSS_ENABLED = "cssPrimaryViewEnabled";
     public static final String PARAM_SECONDARY_CSS_ENABLED = "cssSecondaryViewEnabled";
+    public static final String PARAM_REMOTE_FUNCTIONS = "functions";
     public static final String PARAM_VIEWS = "views";
 
     // Afterburner

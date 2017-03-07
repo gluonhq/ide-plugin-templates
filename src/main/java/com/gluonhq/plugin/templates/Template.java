@@ -77,7 +77,7 @@ public class Template implements Comparable<Template> {
             String json = FreeMarkerUtils.processFreemarkerTemplate(freemarker, parameters, templateRoot + "/" + recipeResource);
 
             Recipe recipe = Recipe.parse(new StringReader(json));
-
+            
             RecipeContext recipeContext = new RecipeContext(freemarker, parameters, templateRoot + "/root", projectRoot);
             recipe.execute(recipeContext);
 

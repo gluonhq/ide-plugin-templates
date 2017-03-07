@@ -54,7 +54,7 @@ public class Recipe {
 
     public void execute(RecipeContext recipeContext) {
         for (Command command : commands) {
-            command.execute(recipeContext);
+            command.execute(recipeContext); 
         }
     }
 }

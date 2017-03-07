@@ -10,6 +10,12 @@
     "open": false,
     "from": "DrawerManager.java.ftl",
     "to": "./src/main/java/${packageFolder}/DrawerManager.java"
+  },
+  {
+    "command": "process",
+    "open": false,
+    "from": "RemoteService.java.ftl",
+    "to": "./src/main/java/${packageFolder}/RemoteService.java"
   }
 <#list views as view>
 , {
