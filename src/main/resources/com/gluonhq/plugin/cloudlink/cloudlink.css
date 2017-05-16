@@ -1,0 +1,11 @@
+.label.title {
+    -fx-font-size: 1.0em;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-padding: 10 10 10 50;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-image: url('gcl.png');
+    -fx-background-size: 30px 30px;
+    -fx-background-repeat: no-repeat;
+}
