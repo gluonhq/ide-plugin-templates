@@ -7,5 +7,11 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-image: url('gcl.png');
     -fx-background-size: 30px 30px;
+    -fx-background-position: 10px 3px;
     -fx-background-repeat: no-repeat;
+}
+
+.grid {
+    -fx-padding: 20px;
+    -fx-vgap: 10px;
 }
