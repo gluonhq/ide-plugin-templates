@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "FontAwesome";
+  src: url('../fontawesome-webfont.ttf');
+}
+
 .label.title {
     -fx-font-size: 1.0em;
     -fx-font-weight: bold;
@@ -6,12 +11,19 @@
     -fx-border-color: lightgrey;
     -fx-border-width: 0 0 1 0;
     -fx-background-image: url('gcl.png');
-    -fx-background-size: 30px 30px;
-    -fx-background-position: 10px 3px;
+    -fx-background-size: 35px 35px;
+    -fx-background-position: 10px 6px;
     -fx-background-repeat: no-repeat;
 }
 
-.grid {
-    -fx-padding: 20px;
-    -fx-vgap: 10px;
+.label.grid {
+    -fx-font-size: 1.1em;
+    -fx-text-fill: steelblue;
+}
+
+.icon {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: steelblue;
+    -fx-font-size: 1.3em;
+    -fx-pref-width: 20;
 }

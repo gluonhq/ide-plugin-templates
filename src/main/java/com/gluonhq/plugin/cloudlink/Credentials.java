@@ -6,8 +6,27 @@ import java.beans.PropertyChangeSupport;
 public class Credentials {
     
     public static final String CREDENTIALS_PROPERTY = "CREDENTIALS";
+    public static final String USERKEY_PROPERTY = "USER_KEY";
     
+    private String userKey;
+    private boolean keepLogged;
     private String credentials;
+
+    public Credentials() {
+        this(null, false, null);
+    }
+    
+    public Credentials(String userKey, boolean keepLogged, String credentials) {
+        this.userKey = userKey;
+        this.keepLogged = keepLogged;
+        this.credentials = credentials;
+    }
+    
+    void setUserKey(boolean keepLogged, String userKey) {
+        this.keepLogged = keepLogged;
+        pcs.firePropertyChange(USERKEY_PROPERTY, getUserKey(), userKey);
+        this.userKey = userKey;
+    }
     
     void setApplication(Application application) {
         String oldCredentials = credentials;
@@ -23,6 +42,14 @@ public class Credentials {
 
     public void removePropertyChangeListener(PropertyChangeListener pcl) {
         pcs.removePropertyChangeListener(pcl);
+    }
+    
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public boolean isKeepLogged() {
+        return keepLogged;
     }
     
     public String getCredentials() {

@@ -14,9 +14,10 @@ public class ProjectConstants {
     private static final String GLUON_DOWN_VERSION = "3.2.4";
     private static final String GLUON_MOBILE_PLUGIN = "1.3.4";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.1.0";
-
+    
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
+    public static final String DEFAULT_CLOUDLINK_HOST = "https://cloud.gluonhq.com";
 
     // Optin
     public static final String PARAM_USER_IDE_OPTIN = "gluon_ide_optin";
@@ -56,6 +57,7 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_CLOUDLINK_HOST = "gluonCloudLinkHost";
     public static final String PARAM_GLUON_CLOUDLINK_APPLICATION_KEY = "gluonCloudLinkApplicationKey";
     public static final String PARAM_GLUON_CLOUDLINK_APPLICATION_SECRET = "gluonCloudLinkApplicationSecret";
+    public static final String PARAM_GLUON_CLOUDLINK_USER_KEY = "gluonCloudLinkUserKey";
 
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";

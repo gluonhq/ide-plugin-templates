@@ -49,7 +49,7 @@ public class PluginsFX extends BorderPane {
     private static final BooleanProperty SCENE_READY = new SimpleBooleanProperty();
     
     static {
-        Font.loadFont(PluginsFX.class.getResource("fontawesome-webfont.ttf").toExternalForm(), 14);
+        Font.loadFont(PluginsFX.class.getResource("/com/gluonhq/plugin/fontawesome-webfont.ttf").toExternalForm(), 14);
     }
 
     public PluginsFX() {
