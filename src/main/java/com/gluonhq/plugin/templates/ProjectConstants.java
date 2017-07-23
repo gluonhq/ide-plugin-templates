@@ -63,20 +63,24 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
     public static final String PARAM_GLUON_GLISTEN_AFTERBURNER_VERSION = "glistenAfterburnerVersion";
 
+    private static Properties properties;
+    
     public static final Properties retrieveRemoteProperties() {
-        Properties properties = new Properties();
-        try {
-            URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.4.properties");
+        if (properties == null) {
+            properties = new Properties();
+            try {
+                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.4.properties");
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setConnectTimeout(5000);
-            conn.setReadTimeout(5000);
-            conn.setRequestMethod("GET");
-            conn.setUseCaches(false);
-            conn.connect();
-            properties.load(conn.getInputStream());
-        } catch (MalformedURLException ex) {
-        } catch (IOException ex) {
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(5000);
+                conn.setReadTimeout(5000);
+                conn.setRequestMethod("GET");
+                conn.setUseCaches(false);
+                conn.connect();
+                properties.load(conn.getInputStream());
+            } catch (MalformedURLException ex) {
+            } catch (IOException ex) {
+            }
         }
         return properties;
     }
