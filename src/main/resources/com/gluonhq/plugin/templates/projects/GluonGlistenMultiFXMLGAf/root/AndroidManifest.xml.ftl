@@ -5,7 +5,6 @@
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
         <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="21"/>
-        <activity android:name="com.gluonhq.impl.charm.down.plugins.android.PermissionRequestActivity" />
         <application android:label="${projectName}" android:name="android.support.multidex.MultiDexApplication" android:icon="@mipmap/ic_launcher">
                 <activity android:name="javafxports.android.FXActivity" android:label="${projectName}" android:configChanges="orientation|screenSize">
                         <meta-data android:name="main.class" android:value="${mainClass}"/>
@@ -15,5 +14,7 @@
                                 <category android:name="android.intent.category.LAUNCHER"/>
                         </intent-filter>
                 </activity>
+
+                <activity android:name="com.gluonhq.impl.charm.down.plugins.android.PermissionRequestActivity" />
         </application>
 </manifest>
