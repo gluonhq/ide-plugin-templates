@@ -9,11 +9,11 @@ import java.util.Properties;
 public class ProjectConstants {
 
     public static final String PLUGIN_VERSION = "2.4.0";
-    private static final String GLUON_DESKTOP_VERSION = "1.1.0";
-    private static final String GLUON_MOBILE_VERSION = "4.3.1";
-    private static final String GLUON_DOWN_VERSION = "3.2.4";
-    private static final String GLUON_MOBILE_PLUGIN = "1.3.4";
-    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.1.0";
+    private static final String GLUON_DESKTOP_VERSION = "1.1.3";
+    private static final String GLUON_MOBILE_VERSION = "4.3.6";
+    private static final String GLUON_DOWN_VERSION = "3.5.0";
+    private static final String GLUON_MOBILE_PLUGIN = "1.3.8";
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.2.0";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
