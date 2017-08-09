@@ -14,5 +14,7 @@
                                 <category android:name="android.intent.category.LAUNCHER"/>
                         </intent-filter>
                 </activity>
+
+                <activity android:name="com.gluonhq.impl.charm.down.plugins.android.PermissionRequestActivity" />
         </application>
 </manifest>
