@@ -1,18 +1,13 @@
-@font-face {
-  font-family: "FontAwesome";
-  src: url('../fontawesome-webfont.ttf');
-}
-
 .label.title {
-    -fx-font-size: 1.0em;
+    -fx-font-size: 1.1em;
     -fx-font-weight: bold;
     -fx-background-color: white;
-    -fx-padding: 10 10 10 50;
+    -fx-padding: 10 10 10 65;
     -fx-border-color: lightgrey;
     -fx-border-width: 0 0 1 0;
-    -fx-background-image: url('gcl.png');
-    -fx-background-size: 35px 35px;
-    -fx-background-position: 10px 6px;
+    -fx-background-image: url('G_Cyan_Cloud.png');
+    -fx-background-size: 48px 48px;
+    -fx-background-position: 9px 5px;
     -fx-background-repeat: no-repeat;
 }
 
@@ -21,9 +16,7 @@
     -fx-text-fill: steelblue;
 }
 
-.icon {
-    -fx-font-family: "FontAwesome";
+.label.info {
+    -fx-font-size: 0.9em;
     -fx-text-fill: steelblue;
-    -fx-font-size: 1.3em;
-    -fx-pref-width: 20;
 }

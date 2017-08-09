@@ -35,7 +35,7 @@ public enum Plugin {
     STATUSBAR("statusbar", "StatusBar Service. Required by Gluon Charm", "StatusBarService.html"),
     STORAGE("storage", "Storage Service. Required by Gluon Charm", "StorageService.html"),
     VIBRATION("vibration", "Vibration Service", "VibrationService.html"),
-    VIDEO("video", "Video Service", "VideoService.html");
+    VIDEO("video", "Video Service. Requires Storage service", "VideoService.html");
 
     private final String name;
     private final String description;

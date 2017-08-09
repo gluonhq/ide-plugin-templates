@@ -16,6 +16,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.CheckBox;
@@ -25,7 +26,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javax.swing.SwingUtilities;
-import org.controlsfx.glyphfont.FontAwesome;
 
 public class AccountFX extends BorderPane {
     
@@ -42,12 +42,6 @@ public class AccountFX extends BorderPane {
 
     @FXML
     private Label errorLabel;
-
-    @FXML
-    private Label userLabel;
-
-    @FXML
-    private Label passLabel;
 
     @FXML
     private Hyperlink signUpLink;
@@ -78,8 +72,6 @@ public class AccountFX extends BorderPane {
     }
     
     public void initialize() {
-        userLabel.setText(String.valueOf(FontAwesome.Glyph.USER.getChar()));
-        passLabel.setText(String.valueOf(FontAwesome.Glyph.LOCK.getChar()));
         errorLabel.setVisible(false);
         
         signUpLink.setOnAction(e -> browse("http://gluonhq.com/products/cloudlink/buy"));
@@ -92,6 +84,7 @@ public class AccountFX extends BorderPane {
             e.consume();
             errorLabel.setVisible(false);
             checking.set(true);
+            setCursor(Cursor.WAIT);
             new Thread(getLoginTask()).start();
         });
         ButtonBar.setButtonData(loginButton, ButtonBar.ButtonData.OK_DONE); 
@@ -137,6 +130,7 @@ public class AccountFX extends BorderPane {
             @Override
             protected void succeeded() {
                 checking.set(false);
+                setCursor(Cursor.DEFAULT);
                 final String value = getValue();
                 if (value != null) {
                     SwingUtilities.invokeLater(() -> credentials.setUserKey(rememberCheck.isSelected(), value));
@@ -148,6 +142,7 @@ public class AccountFX extends BorderPane {
             @Override
             protected void failed() {
                 checking.set(false);
+                setCursor(Cursor.DEFAULT);
                 errorLabel.setVisible(true);
             }
         };
