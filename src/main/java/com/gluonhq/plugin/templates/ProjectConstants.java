@@ -106,5 +106,6 @@ public class ProjectConstants {
     public static final String getGlistenAfterburnerVersion() {
         return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
     }
+    
 
 }
