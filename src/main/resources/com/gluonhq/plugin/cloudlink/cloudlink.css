@@ -11,12 +11,3 @@
     -fx-background-repeat: no-repeat;
 }
 
-.label.grid {
-    -fx-font-size: 1.1em;
-    -fx-text-fill: steelblue;
-}
-
-.label.info {
-    -fx-font-size: 0.9em;
-    -fx-text-fill: steelblue;
-}

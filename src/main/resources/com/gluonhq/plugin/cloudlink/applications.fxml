@@ -13,25 +13,28 @@
 
 <fx:root minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@cloudlink.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <GridPane prefHeight="350.0" prefWidth="400.0">
+      <GridPane hgap="10.0" prefHeight="350.0" prefWidth="400.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="116.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="6.0" prefWidth="444.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="keyText" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label styleClass="grid" text="Key" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label styleClass="grid" text="Secret" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="currentAppBox" prefWidth="400.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+            <Label text="Key" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label text="Secret" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="currentAppBox" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
             <TextField fx:id="secretText" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label styleClass="grid" text="Applications" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label styleClass="info" text="Select from the list below the Gluon CloudLink application to which this mobile application will be linked to. &#10;Click Apply to add its key and secret token to the mobile application." wrapText="true" GridPane.columnSpan="2" />
+            <Label text="Applications" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="Select from the list below the Gluon CloudLink application to which this mobile application will be linked to. &#10;Its key and secret tokens will be added to the mobile application." wrapText="true" GridPane.columnSpan="2">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding></Label>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

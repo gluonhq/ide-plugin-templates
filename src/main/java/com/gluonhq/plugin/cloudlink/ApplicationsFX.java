@@ -91,6 +91,8 @@ public class ApplicationsFX extends BorderPane {
             applyButton.setDisable(currentAppBox.getValue() == null || currentAppBox.getValue().equals(existingApp));
         });
         
+        currentAppBox.prefWidthProperty().bind(keyText.widthProperty());
+        
         ButtonBar.setButtonData(cancelButton, ButtonBar.ButtonData.CANCEL_CLOSE); 
         ButtonBar.setButtonData(applyButton, ButtonBar.ButtonData.APPLY); 
         ButtonBar.setButtonData(logoutButton, ButtonBar.ButtonData.HELP); 
