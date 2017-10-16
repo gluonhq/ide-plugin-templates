@@ -3,68 +3,68 @@
     "command": "process",
     "open": true,
     "from": "GlistenApplication.java.ftl",
-    "to": "./src/main/java/${packageFolder}/${mainClassName}.java"
+    "to": "./${projectNameApp}/src/main/java/${packageFolder}/${mainClassName}.java"
   },
   {
     "command": "process",
     "open": false,
     "from": "AppViewManager.java.ftl",
-    "to": "./src/main/java/${packageFolder}/views/AppViewManager.java"
+    "to": "./${projectNameApp}/src/main/java/${packageFolder}/views/AppViewManager.java"
   },
   {
     "command": "process",
     "open": false,
     "from": "PrimaryPresenter.java.ftl",
-    "to": "./src/main/java/${packageFolder}/views/${primaryViewName}Presenter.java"
+    "to": "./${projectNameApp}/src/main/java/${packageFolder}/views/${primaryViewName}Presenter.java"
   },
   {
     "command": "process",
     "open": false,
     "from": "SecondaryPresenter.java.ftl",
-    "to": "./src/main/java/${packageFolder}/views/${secondaryViewName}Presenter.java"
+    "to": "./${projectNameApp}/src/main/java/${packageFolder}/views/${secondaryViewName}Presenter.java"
   },
   {
     "command": "process",
     "open": false,
     "from": "primary.fxml.ftl",
-    "to": "./src/main/resources/${packageFolder}/views/${primaryCSSName}.fxml"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/views/${primaryCSSName}.fxml"
   },
   {
     "command": "process",
     "open": false,
     "from": "secondary.fxml.ftl",
-    "to": "./src/main/resources/${packageFolder}/views/${secondaryCSSName}.fxml"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/views/${secondaryCSSName}.fxml"
   }
 <#if cssProjectEnabled>
 , {
     "command": "process",
     "open": false,
     "from": "root.css.ftl",
-    "to": "./src/main/resources/${packageFolder}/style.css"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/style.css"
   }
 </#if>
 , {
     "command": "process",
     "open": false,
     "from": "style.css.ftl",
-    "to": "./src/main/resources/${packageFolder}/views/${primaryCSSName}.css"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/views/${primaryCSSName}.css"
   },
   {
     "command": "process",
     "open": false,
     "from": "primary.properties.ftl",
-    "to": "./src/main/resources/${packageFolder}/views/${primaryCSSName}.properties"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/views/${primaryCSSName}.properties"
   },
   {
     "command": "process",
     "open": false,
     "from": "style.css.ftl",
-    "to": "./src/main/resources/${packageFolder}/views/${secondaryCSSName}.css"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/views/${secondaryCSSName}.css"
   },
   {
     "command": "process",
     "open": false,
     "from": "secondary.properties.ftl",
-    "to": "./src/main/resources/${packageFolder}/views/${secondaryCSSName}.properties"
+    "to": "./${projectNameApp}/src/main/resources/${packageFolder}/views/${secondaryCSSName}.properties"
   }
 ]

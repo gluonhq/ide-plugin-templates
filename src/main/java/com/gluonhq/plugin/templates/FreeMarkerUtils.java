@@ -19,10 +19,21 @@ import java.util.logging.Logger;
 public class FreeMarkerUtils {
 
     public static Map<String, Object> createParameterMap(Map<String, Object> parameters) {
-        final Map<String, Object> parameterMap = new HashMap<String, Object>();
+        final Map<String, Object> parameterMap = new HashMap<>();
 
         // Parameters supplied by user
         parameterMap.putAll(parameters);
+        
+        final Object projectName = parameterMap.get("projectName");
+        if (projectName == null || String.valueOf(projectName).isEmpty()) {
+            throw new IllegalArgumentException("Error: projectName can't be null or empty");
+        }
+
+        String name = String.valueOf(projectName);
+        if (! name.toLowerCase(Locale.ROOT).endsWith("app")) {
+            name = name + "App";
+        }
+        parameterMap.put("projectNameApp", name);
 
         return parameterMap;
     }

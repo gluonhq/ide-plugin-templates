@@ -1,8 +1,14 @@
 [
+<#-- root -->
   {
     "command": "process",
-    "from": "build.gradle.ftl",
+    "from": "/root/build.gradle.ftl",
     "to": "./build.gradle"
+  },
+  {
+    "command": "process",
+    "from": "/root/settings.gradle.ftl",
+    "to": "./settings.gradle"
   },
   {
     "command": "copylist",
@@ -14,91 +20,101 @@
     "command": "permission",
     "at": "./gradlew"
   },
+<#-- app -->
   {
     "command": "mkdir",
-    "at": "./src/main/java"
+    "at": "./${projectNameApp}"
+  },
+  {
+    "command": "process",
+    "from": "build.gradle.ftl",
+    "to": "./${projectNameApp}/build.gradle"
   },
   {
     "command": "mkdir",
-    "at": "./src/main/resources"
+    "at": "./${projectNameApp}/src/main/java"
+  },
+  {
+    "command": "mkdir",
+    "at": "./${projectNameApp}/src/main/resources"
   }
 <#if androidEnabled>
   ,{
     "command": "mkdir",
-    "at": "./src/android/java"
+    "at": "./${projectNameApp}/src/android/java"
   },
   {
     "command": "mkdir",
-    "at": "./src/android/resources"
+    "at": "./${projectNameApp}/src/android/resources"
   },
   {
     "command": "mkdir",
-    "at": "./src/android/assets"
+    "at": "./${projectNameApp}/src/android/assets"
   },
   {
     "command": "mkdir",
-    "at": "./src/android/res"
+    "at": "./${projectNameApp}/src/android/res"
   },
   {
     "command": "process",
     "from": "AndroidManifest.xml.ftl",
-    "to": "./src/android/AndroidManifest.xml"
+    "to": "./${projectNameApp}/src/android/AndroidManifest.xml"
   },
   {
     "command": "copylist",
     "list": "android_res.lst",
     "base": "/android/res",
-    "to": "./src/android/res"
+    "to": "./${projectNameApp}/src/android/res"
   }
 </#if>
 <#if iosEnabled>
   ,{
     "command": "mkdir",
-    "at": "./src/ios/java"
+    "at": "./${projectNameApp}/src/ios/java"
   },
   {
     "command": "mkdir",
-    "at": "./src/ios/resources"
+    "at": "./${projectNameApp}/src/ios/resources"
   },
   {
     "command": "mkdir",
-    "at": "./src/ios/assets"
+    "at": "./${projectNameApp}/src/ios/assets"
   },
   {
     "command": "process",
     "from": "Info.plist.ftl",
-    "to": "./src/ios/Default-Info.plist"
+    "to": "./${projectNameApp}/src/ios/Default-Info.plist"
   },
   {
     "command": "copylist",
     "list": "ios_assets.lst",
     "base": "/ios/assets",
-    "to": "./src/ios/assets"
+    "to": "./${projectNameApp}/src/ios/assets"
   }
 </#if>
 <#if desktopEnabled>
   ,{
     "command": "mkdir",
-    "at": "./src/desktop/java"
+    "at": "./${projectNameApp}/src/desktop/java"
   },
   {
     "command": "mkdir",
-    "at": "./src/desktop/resources"
+    "at": "./${projectNameApp}/src/desktop/resources"
   },
   {
     "command": "copy",
     "from": "/desktop/icon.png",
-    "to": "./src/main/resources/icon.png"
+    "to": "./${projectNameApp}/src/main/resources/icon.png"
   }
 </#if>
 <#if embeddedEnabled>
   ,{
     "command": "mkdir",
-    "at": "./src/embedded/java"
+    "at": "./${projectNameApp}/src/embedded/java"
   },
   {
     "command": "mkdir",
-    "at": "./src/embedded/resources"
+    "at": "./${projectNameApp}/src/embedded/resources"
   }
 </#if>
 ]
