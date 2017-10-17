@@ -7,7 +7,7 @@
         <key>CFBundleVersion</key>
         <string>1.0</string>
         <key>CFBundleExecutable</key>
-        <string>${projectName}</string>
+        <string>${projectNameApp}</string>
         <key>CFBundleIconFiles</key>
         <array>
                 <string>Icon-60</string>
