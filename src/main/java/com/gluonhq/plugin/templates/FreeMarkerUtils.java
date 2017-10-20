@@ -24,17 +24,21 @@ public class FreeMarkerUtils {
         // Parameters supplied by user
         parameterMap.putAll(parameters);
         
-        final Object projectName = parameterMap.get("projectName");
+        final Object projectName = parameterMap.get(ProjectConstants.PARAM_PROJECT_NAME);
         if (projectName == null || String.valueOf(projectName).isEmpty()) {
-            throw new IllegalArgumentException("Error: projectName can't be null or empty");
+            // check if it is a Gluon Function subProject
+            final Object projectFnName = parameterMap.get(ProjectConstants.PARAM_GLUON_FUNCTION_PROJECT_NAME);
+            if (projectFnName == null || String.valueOf(projectFnName).isEmpty()) {
+                throw new IllegalArgumentException("Error: projectName can't be null or empty");
+            }
+        } else {
+            // Gluon Mobile subProject
+            String name = String.valueOf(projectName);
+            if (! name.toLowerCase(Locale.ROOT).endsWith("app")) {
+                name = name + "App";
+            }
+            parameterMap.put("projectNameApp", name);
         }
-
-        String name = String.valueOf(projectName);
-        if (! name.toLowerCase(Locale.ROOT).endsWith("app")) {
-            name = name + "App";
-        }
-        parameterMap.put("projectNameApp", name);
-
         return parameterMap;
     }
 

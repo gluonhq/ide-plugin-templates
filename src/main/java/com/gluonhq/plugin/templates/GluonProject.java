@@ -13,8 +13,10 @@ public enum GluonProject {
     MOBILE_MULTIVIEWFXML("GluonGlistenMultiFXML", "MultiViewProjectFXML", "Gluon Mobile - Create a Multi View Project with FXML", GluonProjectTarget.IDE),
     MOBILE_MULTIVIEW_GAF("GluonGlistenMultiFXMLGAf", "MultiViewProjectFXMLGAf", "Gluon Mobile - Create a Glisten-Afterburner Project", GluonProjectTarget.IDE),
 
-    DASHBOARD_MOBILE_MULTIVIEWFXML("DashboardMobileMultiFXML", "MultiViewProjectFXML", "Gluon Dashboard - Create a Multi View Project with FXML", GluonProjectTarget.DASHBOARD);
+    FUNCTION("GluonFunction", "GluonFunction", "Gluon Function - Create a Gluon Function Project", GluonProjectTarget.IDE),
 
+    DASHBOARD_MOBILE_MULTIVIEWFXML("DashboardMobileMultiFXML", "MultiViewProjectFXML", "Gluon Dashboard - Create a Multi View Project with FXML", GluonProjectTarget.DASHBOARD);
+    
     /**
      * type of project. 
      * This has to be defined in the build.gradle script projects array

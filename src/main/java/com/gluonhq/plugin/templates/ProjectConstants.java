@@ -65,6 +65,10 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
     public static final String PARAM_GLUON_GLISTEN_AFTERBURNER_VERSION = "glistenAfterburnerVersion";
 
+    // Function
+    public static final String PARAM_GLUON_FUNCTION_NAME = "functionName";
+    public static final String PARAM_GLUON_FUNCTION_PROJECT_NAME = "projectNameFn";
+    
     private static Properties properties;
     
     public static final Properties retrieveRemoteProperties() {
