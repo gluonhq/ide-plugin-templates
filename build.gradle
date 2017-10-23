@@ -33,45 +33,48 @@ artifacts {
     archives fatJar
 }
 
-task generateResourcesList(dependsOn: processResources) << {
+task generateResourcesList(dependsOn: processResources) {
     def gradleWrapperDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/gradle/wrapper")
     def androidAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/android/res")
     def iosAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/ios/assets")
 
     def projects = [ 'DashboardMobileMultiFXML', 'GluonBasic' , 'GluonGlisten' , 'GluonGlistenMulti', 'GluonGlistenMultiFXML', 'GluonGlistenMultiFXMLGAf' ]
-    projects.each {
-        def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
-        gradleWrapperList.withWriter('UTF-8') { out ->
-            fileTree(gradleWrapperDir).each {
-                def path = it.absolutePath - gradleWrapperDir.absolutePath
-                out.writeLine(path[1..path.length()-1])
-            }
-        }
-
-        def androidAssetsList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/android_res.lst")
-        androidAssetsList.withWriter('UTF-8') { out ->
-            fileTree(androidAssetsDir).each {
-                def path = it.absolutePath - androidAssetsDir.absolutePath
-                out.writeLine(path[1..path.length()-1])
-            }
-        }
-
-        def iosAssetsList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/ios_assets.lst")
-        iosAssetsList.withWriter('UTF-8') { out ->
-            fileTree(iosAssetsDir).each {
-                def path = it.absolutePath - iosAssetsDir.absolutePath
-                out.writeLine(path[1..path.length()-1])
-            }
-        }
-    }
-    
     def projectsDesktop = [ 'GluonDesktop', 'GluonDesktopMulti', 'GluonDesktopMultiFXML', 'GluonGlistenMultiFXMLGAf' ]
-    projectsDesktop.each {
-        def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
-        gradleWrapperList.withWriter('UTF-8') { out ->
-            fileTree(gradleWrapperDir).each {
-                def path = it.absolutePath - gradleWrapperDir.absolutePath
-                out.writeLine(path[1..path.length()-1])
+
+    doLast {
+        projects.each {
+            def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
+            gradleWrapperList.withWriter('UTF-8') { out ->
+                fileTree(gradleWrapperDir).each {
+                    def path = it.absolutePath - gradleWrapperDir.absolutePath
+                    out.writeLine(path[1..path.length()-1])
+                }
+            }
+
+            def androidAssetsList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/android_res.lst")
+            androidAssetsList.withWriter('UTF-8') { out ->
+                fileTree(androidAssetsDir).each {
+                    def path = it.absolutePath - androidAssetsDir.absolutePath
+                    out.writeLine(path[1..path.length()-1])
+                }
+            }
+
+            def iosAssetsList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/ios_assets.lst")
+            iosAssetsList.withWriter('UTF-8') { out ->
+                fileTree(iosAssetsDir).each {
+                    def path = it.absolutePath - iosAssetsDir.absolutePath
+                    out.writeLine(path[1..path.length()-1])
+                }
+            }
+        }
+
+        projectsDesktop.each {
+            def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
+            gradleWrapperList.withWriter('UTF-8') { out ->
+                fileTree(gradleWrapperDir).each {
+                    def path = it.absolutePath - gradleWrapperDir.absolutePath
+                    out.writeLine(path[1..path.length() - 1])
+                }
             }
         }
     }
