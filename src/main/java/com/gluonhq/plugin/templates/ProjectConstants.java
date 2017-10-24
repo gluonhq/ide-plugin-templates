@@ -58,6 +58,7 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_CLOUDLINK_APPLICATION_KEY = "gluonCloudLinkApplicationKey";
     public static final String PARAM_GLUON_CLOUDLINK_APPLICATION_SECRET = "gluonCloudLinkApplicationSecret";
     public static final String PARAM_GLUON_CLOUDLINK_USER_KEY = "gluonCloudLinkUserKey";
+    public static final String PARAM_GLUON_CLOUDLINK_IDE_KEY = "gluonCloudLinkIdeKey";
 
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
