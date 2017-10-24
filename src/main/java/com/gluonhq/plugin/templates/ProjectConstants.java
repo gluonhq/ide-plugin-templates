@@ -67,6 +67,7 @@ public class ProjectConstants {
 
     // Function
     public static final String PARAM_GLUON_FUNCTION_NAME = "functionName";
+    public static final String PARAM_GLUON_FUNCTION_METHOD_NAME = "functionMethodName";
     public static final String PARAM_GLUON_FUNCTION_PROJECT_NAME = "projectNameFn";
     
     private static Properties properties;

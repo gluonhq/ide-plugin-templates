@@ -41,7 +41,11 @@ public class Function implements Serializable {
         this.packageName = packageName;
         pcs.firePropertyChange(PACKAGE_NAME_PROPERTY, oldPackageName, packageName);
     }
-    
+
+    public String getMethodName() {
+        return "call";
+    }
+
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     
     public void addPropertyChangeListener(PropertyChangeListener pcl) {

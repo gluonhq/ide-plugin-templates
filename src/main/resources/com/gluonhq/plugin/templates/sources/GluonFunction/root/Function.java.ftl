@@ -1,11 +1,9 @@
 package ${packageName};
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 public class ${functionName} {
 
-    public void call(InputStream input, OutputStream output) {
+    public String ${functionMethodName}(String input) {
         // TODO: write your function code here
+        return "output";
     }
 }

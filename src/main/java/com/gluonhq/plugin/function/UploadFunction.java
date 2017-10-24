@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
 
+import static com.gluonhq.plugin.templates.ProjectConstants.DEFAULT_CLOUDLINK_HOST;
+
 public class UploadFunction {
 
     private static final String LINE_FEED = "\r\n";
@@ -21,7 +23,7 @@ public class UploadFunction {
     private static final String CONTENT_TYPE = "multipart/form-data";
 
     public static void upload(String gluonIdeKey, String functionName, String functionEntrypoint, File gfBundle) throws IOException {
-        String spec = "https://stagingcloud.gluonhq.com/3/data/ide/functions/GLUON/" + functionName;
+        String spec = DEFAULT_CLOUDLINK_HOST + "/3/data/ide/functions/GLUON/" + functionName;
 
         URL url = new URL(spec);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -65,7 +67,7 @@ public class UploadFunction {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(finalInputStream))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                System.err.println(line);
             }
         }
     }
