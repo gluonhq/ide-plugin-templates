@@ -9,6 +9,7 @@ public class Application implements Serializable {
     private String name;
     private String secret;
     private String serverKey;
+    private String ideKey;
     private String customer;
 
     public String getIdentifier() {
@@ -49,6 +50,14 @@ public class Application implements Serializable {
 
     public void setServerKey(String serverKey) {
         this.serverKey = serverKey;
+    }
+
+    public String getIdeKey() {
+        return ideKey;
+    }
+
+    public void setIdeKey(String ideKey) {
+        this.ideKey = ideKey;
     }
 
     public String getCustomer() {
