@@ -1,6 +1,7 @@
 package com.gluonhq.plugin.code;
 
 import static com.gluonhq.plugin.templates.ProjectConstants.DEFAULT_CLOUDLINK_HOST;
+import com.gluonhq.plugin.templates.TemplateUtils;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -20,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -27,6 +30,8 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonReader;
 import javax.swing.SwingUtilities;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 public class CodeFX extends BorderPane {
 
@@ -43,6 +48,9 @@ public class CodeFX extends BorderPane {
 
     @FXML
     private TextField resultTypeText;
+    
+    @FXML
+    private MenuButton menuButton;
 
     @FXML
     private ChoiceBox<String> typeBox;
@@ -74,6 +82,17 @@ public class CodeFX extends BorderPane {
     }
     
     public void initialize() {
+        ValidationSupport validationSupport = new ValidationSupport();
+
+        validationSupport.registerValidator(functionGivenNameText, Validator.combine(
+                Validator.createEmptyValidator("A valid function name is required"),
+                Validator.<String>createPredicateValidator(s -> ! s.contains(" "), "The function name can't have spaces")));
+        
+        validationSupport.registerValidator(resultTypeText, Validator.combine(
+                Validator.createEmptyValidator("A valid result type is required"),
+                Validator.<String>createPredicateValidator(s -> ! s.contains(" "), "The result type is not valid")));
+        
+        
         functionsBox.valueProperty().addListener(o -> {
             final String remoteFunction = functionsBox.getValue();
             if (remoteFunction != null) {
@@ -89,7 +108,7 @@ public class CodeFX extends BorderPane {
         typeBox.setItems(list);
         typeBox.setValue(list.get(0));
         
-        applyButton.disableProperty().bind(functionGivenNameText.textProperty().isEmpty().or(resultTypeText.textProperty().isEmpty()));
+        applyButton.disableProperty().bind(validationSupport.invalidProperty());
         functionsBox.prefWidthProperty().bind(functionGivenNameText.widthProperty());
         typeBox.prefWidthProperty().bind(functionGivenNameText.widthProperty());
         
@@ -98,8 +117,11 @@ public class CodeFX extends BorderPane {
         
         functionGivenNameText.disableProperty().bind(functionsBox.valueProperty().isNull());
         resultTypeText.disableProperty().bind(functionGivenNameText.disableProperty());
+        menuButton.disableProperty().bind(functionGivenNameText.disableProperty());
         typeBox.disableProperty().bind(functionGivenNameText.disableProperty());
         errorLabel.setVisible(false);
+        
+        menuButton.getItems().forEach(item -> item.setOnAction(e -> resultTypeText.setText(item.getText())));
         
         cancelButton.setOnAction(e -> 
             SwingUtilities.invokeLater(() -> {

@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -31,6 +32,9 @@ public class ApplicationsFX extends BorderPane {
 
     private static final Logger LOGGER = Logger.getLogger(ApplicationsFX.class.getName());
     
+    @FXML
+    private GridPane grid;
+
     @FXML
     private TextField keyText;
 
@@ -54,8 +58,10 @@ public class ApplicationsFX extends BorderPane {
     
     private Credentials credentials;
     private Application existingApp;
+    private final boolean allowDisableApply;
     
-    public ApplicationsFX(String userKey, boolean keepLogged) {
+    public ApplicationsFX(String userKey, boolean keepLogged, boolean allowDisableApply) {
+        this.allowDisableApply = allowDisableApply;
         credentials = new Credentials(userKey, keepLogged, null);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("applications.fxml"));
@@ -68,6 +74,7 @@ public class ApplicationsFX extends BorderPane {
     }
     
     public void initialize() {
+        currentAppBox.prefWidthProperty().bind(keyText.widthProperty());
         currentAppBox.setConverter(new StringConverter<Application>() {
             
             @Override public String toString(Application app) {
@@ -88,10 +95,8 @@ public class ApplicationsFX extends BorderPane {
                 keyText.clear();
                 secretText.clear();
             }
-            applyButton.setDisable(currentAppBox.getValue() == null || currentAppBox.getValue().equals(existingApp));
+            applyButton.setDisable(currentAppBox.getValue() == null || (allowDisableApply && currentAppBox.getValue().equals(existingApp)));
         });
-        
-        currentAppBox.prefWidthProperty().bind(keyText.widthProperty());
         
         ButtonBar.setButtonData(cancelButton, ButtonBar.ButtonData.CANCEL_CLOSE); 
         ButtonBar.setButtonData(applyButton, ButtonBar.ButtonData.APPLY); 
@@ -109,6 +114,7 @@ public class ApplicationsFX extends BorderPane {
     
     public void loadApplications(String jsonConfig) {
         setCursor(Cursor.WAIT);
+        grid.setDisable(true); 
         buttonBar.setDisable(true);
         new Thread(getApplicationsTask(jsonConfig))
                 .start();
@@ -182,6 +188,7 @@ public class ApplicationsFX extends BorderPane {
                 } else {
                     currentAppBox.getItems().clear();
                 }
+                grid.setDisable(false);
                 buttonBar.setDisable(false);
                 setCursor(Cursor.DEFAULT);
             }
@@ -189,6 +196,7 @@ public class ApplicationsFX extends BorderPane {
             @Override
             protected void failed() {
                 currentAppBox.getItems().clear();
+                grid.setDisable(false);
                 buttonBar.setDisable(false);
                 setCursor(Cursor.DEFAULT);
             }

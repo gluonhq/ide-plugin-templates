@@ -18,15 +18,21 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="6.0" prefWidth="444.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Label text="Function Name" GridPane.halignment="RIGHT" />
-            <Label text="Package Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <TextField fx:id="functionText" GridPane.columnIndex="1" />
-            <TextField fx:id="packageText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Function Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="Package Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="functionText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="packageText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Add a Gluon Function subproject to your project by providing a function name and a package name. Later on, this function can be pushed to Gluon CloudLink at any time using Upload Gluon Function." wrapText="true" GridPane.columnSpan="2">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </Label>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
