@@ -129,18 +129,20 @@ public class ApplicationsFX extends BorderPane {
                     switch (status) {
                         case 200:
                         case 201:
-                            JsonReader createReader = Json.createReader(new InputStreamReader(openConnection.getInputStream()));
-                            JsonArray readArray = createReader.readArray();
-
                             List<Application> list = new ArrayList<>();
-                            readArray.iterator().forEachRemaining(value -> {
-                                JsonObject obj = (JsonObject) value;
-                                Application app = new Application();
-                                app.setName(obj.getString("name"));
-                                app.setIdentifier(obj.getString("identifier"));
-                                app.setSecret(obj.getString("secret"));
-                                list.add(app);
-                            });
+                            try (JsonReader createReader = Json.createReader(new InputStreamReader(openConnection.getInputStream()))) {
+                                JsonArray readArray = createReader.readArray();
+
+                                readArray.iterator().forEachRemaining(value -> {
+                                    JsonObject obj = (JsonObject) value;
+                                    Application app = new Application();
+                                    app.setName(obj.getString("name"));
+                                    app.setIdentifier(obj.getString("identifier"));
+                                    app.setSecret(obj.getString("secret"));
+                                    app.setIdeKey(obj.getString("ideKey"));
+                                    list.add(app);
+                                });
+                            }
                             return list;
                     }
 

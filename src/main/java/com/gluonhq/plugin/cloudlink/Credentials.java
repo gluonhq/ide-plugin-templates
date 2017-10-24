@@ -11,6 +11,7 @@ public class Credentials {
     private String userKey;
     private boolean keepLogged;
     private String credentials;
+    private String ideKey;
 
     public Credentials() {
         this(null, false, null);
@@ -28,12 +29,17 @@ public class Credentials {
         this.userKey = userKey;
     }
     
+    void setIdeKey(String ideKey) {
+        this.ideKey = ideKey;
+    }
+    
     void setApplication(Application application) {
         String oldCredentials = credentials;
+        setIdeKey(application.getIdeKey());
         credentials = createCloudLinkConfigText(application);
         pcs.firePropertyChange(CREDENTIALS_PROPERTY, oldCredentials, credentials);
     }
-    
+
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
@@ -48,6 +54,10 @@ public class Credentials {
         return userKey;
     }
 
+    public String getIdeKey() {
+        return ideKey;
+    }
+    
     public boolean isKeepLogged() {
         return keepLogged;
     }
