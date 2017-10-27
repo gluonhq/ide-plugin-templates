@@ -25,12 +25,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javax.swing.SwingUtilities;
 
 public class AccountFX extends BorderPane {
     
     private static final Logger LOGGER = Logger.getLogger(AccountFX.class.getName());
     
+    @FXML
+    private GridPane grid;
+
     @FXML
     private TextField userText;
 
@@ -82,6 +86,7 @@ public class AccountFX extends BorderPane {
                     .or(checking));
         loginButton.addEventFilter(ActionEvent.ACTION, e -> {
             e.consume();
+            grid.setDisable(true); 
             errorLabel.setVisible(false);
             checking.set(true);
             setCursor(Cursor.WAIT);
@@ -130,6 +135,7 @@ public class AccountFX extends BorderPane {
             @Override
             protected void succeeded() {
                 checking.set(false);
+                grid.setDisable(false);
                 setCursor(Cursor.DEFAULT);
                 final String value = getValue();
                 if (value != null) {
@@ -143,6 +149,7 @@ public class AccountFX extends BorderPane {
             protected void failed() {
                 checking.set(false);
                 setCursor(Cursor.DEFAULT);
+                grid.setDisable(false);
                 errorLabel.setVisible(true);
             }
         };

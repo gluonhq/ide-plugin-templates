@@ -35,8 +35,12 @@ public class Credentials {
     
     void setApplication(Application application) {
         String oldCredentials = credentials;
-        setIdeKey(application.getIdeKey());
-        credentials = createCloudLinkConfigText(application);
+        if (application != null) {
+            setIdeKey(application.getIdeKey());
+            credentials = createCloudLinkConfigText(application);
+        } else {
+            credentials = null;
+        }
         pcs.firePropertyChange(CREDENTIALS_PROPERTY, oldCredentials, credentials);
     }
 

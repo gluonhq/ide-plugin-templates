@@ -6,7 +6,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +59,23 @@ public class TemplateUtils {
         return email != null && !email.isEmpty() && matcher.matches();
     }
     
+    public static boolean isValidPackageName(String str) {
+        if (str == null || (str.length() > 0 && 
+                (str.charAt(0) == '.' || str.charAt(str.length() - 1) == '.'))) {
+            return false;
+        }
+        String[] tokens = str.split("\\.");
+        for (String token : tokens) {
+            if ("".equals(token)) {
+                return false;
+            }
+            if (! isJavaIdentifier(token)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public static String getMacAddress(){
         String macAddress = "";
         try {
@@ -100,5 +121,44 @@ public class TemplateUtils {
         }
         
         return "";
+    }
+    
+    private static boolean isJavaIdentifier(String id) {
+        if (id == null || id.isEmpty()) {
+            return false;
+        }
+        int cp = id.codePointAt(0);
+        if (! Character.isJavaIdentifierStart(cp)) {
+            return false;
+        }
+        for (int i = Character.charCount(cp); i < id.length(); i += Character.charCount(cp)) {
+            cp = id.codePointAt(i);
+            if (! Character.isJavaIdentifierPart(cp)) {
+                return false;
+            }
+        }
+        
+        return ! KEYWORDS.contains(id);
+    }
+    
+    private final static Set<String> KEYWORDS;
+    static {
+        Set<String> s = new HashSet<>();
+        String [] kws = {
+            "abstract", "continue",     "for",          "new",          "switch",
+            "assert",   "default",      "if",           "package",      "synchronized",
+            "boolean",  "do",           "goto",         "private",      "this",
+            "break",    "double",       "implements",   "protected",    "throw",
+            "byte",     "else",         "import",       "public",       "throws",
+            "case",     "enum",         "instanceof",   "return",       "transient",
+            "catch",    "extends",      "int",          "short",        "try",
+            "char",     "final",        "interface",    "static",       "void",
+            "class",    "finally",      "long",         "strictfp",     "volatile",
+            "const",    "float",        "native",       "super",        "while",
+            // literals
+            "null",     "true",         "false"
+        };
+        s.addAll(Arrays.asList(kws));
+        KEYWORDS = Collections.unmodifiableSet(s);
     }
 }
