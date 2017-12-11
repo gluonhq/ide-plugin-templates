@@ -1,17 +1,13 @@
 package com.gluonhq.plugin.cloudlink;
 
-import static com.gluonhq.plugin.templates.ProjectConstants.DEFAULT_CLOUDLINK_HOST;
+import com.gluonhq.plugin.dialogs.DialogUtils;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.concurrent.Task;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -20,12 +16,9 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.swing.SwingUtilities;
 
 public class ApplicationsFX extends BorderPane {
@@ -33,16 +26,10 @@ public class ApplicationsFX extends BorderPane {
     private static final Logger LOGGER = Logger.getLogger(ApplicationsFX.class.getName());
     
     @FXML
-    private GridPane grid;
-
-    @FXML
     private TextField keyText;
 
     @FXML
     private TextField secretText;
-
-    @FXML
-    private ButtonBar buttonBar;
 
     @FXML
     private Button cancelButton;
@@ -59,6 +46,7 @@ public class ApplicationsFX extends BorderPane {
     private Credentials credentials;
     private Application existingApp;
     private final boolean allowDisableApply;
+    private CompletableFuture<Void> futureTask;
     
     public ApplicationsFX(String userKey, boolean keepLogged, boolean allowDisableApply) {
         this.allowDisableApply = allowDisableApply;
@@ -102,8 +90,12 @@ public class ApplicationsFX extends BorderPane {
         ButtonBar.setButtonData(applyButton, ButtonBar.ButtonData.APPLY); 
         ButtonBar.setButtonData(logoutButton, ButtonBar.ButtonData.HELP); 
         
-        cancelButton.setOnAction(e -> 
-            SwingUtilities.invokeLater(() -> credentials.setApplication(null)));
+        cancelButton.setOnAction(e -> {
+            if (futureTask != null && ! futureTask.isDone()) {
+                futureTask.cancel(true);
+            }
+            SwingUtilities.invokeLater(() -> credentials.setApplication(null));
+        });
         applyButton.setOnAction(e -> 
             SwingUtilities.invokeLater(() -> credentials.setApplication(currentAppBox.getValue())));
         logoutButton.setOnAction(e -> 
@@ -112,99 +104,62 @@ public class ApplicationsFX extends BorderPane {
         logoutButton.setVisible(credentials.isKeepLogged());
     }
     
-    public void loadApplications(String jsonConfig) {
-        setCursor(Cursor.WAIT);
-        grid.setDisable(true); 
-        buttonBar.setDisable(true);
-        new Thread(getApplicationsTask(jsonConfig))
-                .start();
-    }
-    
-    private Task<List<Application>> getApplicationsTask(String jsonConfig) {
-        return new Task<List<Application>>() {
-
-            @Override
-            protected List<Application> call() throws Exception {
-                HttpURLConnection openConnection = null;
-                try {
-                    URL url = new URL(DEFAULT_CLOUDLINK_HOST + "/3/account/dashboard/applications");
-                    openConnection = (HttpURLConnection) url.openConnection();
-                    openConnection.addRequestProperty("Authorization", "Basic " + credentials.getUserKey());
-
-                    int status = openConnection.getResponseCode();
-                    switch (status) {
-                        case 200:
-                        case 201:
-                            List<Application> list = new ArrayList<>();
-                            try (JsonReader createReader = Json.createReader(new InputStreamReader(openConnection.getInputStream()))) {
-                                JsonArray readArray = createReader.readArray();
-
-                                readArray.iterator().forEachRemaining(value -> {
-                                    JsonObject obj = (JsonObject) value;
-                                    Application app = new Application();
-                                    app.setName(obj.getString("name"));
-                                    app.setIdentifier(obj.getString("identifier"));
-                                    app.setSecret(obj.getString("secret"));
-                                    app.setIdeKey(obj.getString("ideKey"));
-                                    list.add(app);
-                                });
-                            }
-                            return list;
-                    }
-
-                } catch (MalformedURLException ex) {
-                    LOGGER.log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    LOGGER.log(Level.SEVERE, null, ex);
-                } finally {
-                    if (openConnection != null) {
-                        try {
-                            openConnection.disconnect();
-                        } catch (Exception ex) {
-                           LOGGER.log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
-                return null;
-            }
-            
-            @Override
-            protected void succeeded() {
-                List<Application> list = getValue();
-                if (list != null) {
-                    currentAppBox.getItems().setAll(list);
-                    if (jsonConfig != null && !jsonConfig.isEmpty()) {
-                        JsonObject object = Json.createReader(new StringReader(jsonConfig)).readObject()
-                                .getJsonObject("gluonCredentials");
-                        if (object != null) {
-                            existingApp = currentAppBox.getItems().stream()
-                                    .filter(app -> app.getIdentifier().equals(object.getString("applicationKey")) &&
-                                            app.getSecret().equals(object.getString("applicationSecret")))
-                                    .findFirst()
-                                    .orElse(null);
-                            currentAppBox.setValue(existingApp);
-                        }
-                    }
-                } else {
-                    currentAppBox.getItems().clear();
-                }
-                grid.setDisable(false);
-                buttonBar.setDisable(false);
-                setCursor(Cursor.DEFAULT);
-            }
-
-            @Override
-            protected void failed() {
-                currentAppBox.getItems().clear();
-                grid.setDisable(false);
-                buttonBar.setDisable(false);
-                setCursor(Cursor.DEFAULT);
-            }
-            
-        };
-    }
-
     public Credentials getCredentials() {
         return credentials;
     }
+    
+    public void loadApplications(String jsonConfig) {
+        disableDialog();
+        
+        futureTask = DialogUtils.supplyAsync(new ApplicationsTask(credentials.getUserKey()))
+                .exceptionally(ex -> {
+                    LOGGER.log(Level.SEVERE, "Error retrieving applications", ex);
+                    restoreDialog(null);
+                    return null;
+                })
+                .thenAccept(applicationsList -> {
+                    if (applicationsList != null) {
+                        if (jsonConfig != null && !jsonConfig.isEmpty()) {
+                            JsonObject object = Json.createReader(new StringReader(jsonConfig)).readObject()
+                                    .getJsonObject("gluonCredentials");
+                            if (object != null) {
+                                existingApp = applicationsList.stream()
+                                        .filter(app -> app.getIdentifier().equals(object.getString("applicationKey")) &&
+                                                app.getSecret().equals(object.getString("applicationSecret")))
+                                        .findFirst()
+                                        .orElse(null);
+                            }
+                        }
+                    }
+                    restoreDialog(applicationsList);
+                });
+    }
+    
+    private void disableDialog() {
+        existingApp = null;
+        disableControls(true);
+        setCursor(Cursor.WAIT);
+    }
+
+    private void restoreDialog(List<Application> applicationsList) {
+        Platform.runLater(() -> {
+            disableControls(false);
+            setCursor(Cursor.DEFAULT);
+            if (applicationsList != null) {
+                currentAppBox.getItems().setAll(applicationsList);
+                currentAppBox.setValue(existingApp);
+            } else {
+                currentAppBox.getItems().clear();
+            }
+        });
+    }
+    
+    private void disableControls(boolean disable) {
+        currentAppBox.setDisable(disable);
+        keyText.setDisable(disable);
+        secretText.setDisable(disable);
+        logoutButton.setDisable(disable);
+        applyButton.setDisable(disable);
+    }
+    
 }

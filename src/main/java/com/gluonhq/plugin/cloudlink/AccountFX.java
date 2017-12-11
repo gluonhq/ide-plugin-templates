@@ -1,18 +1,17 @@
 package com.gluonhq.plugin.cloudlink;
 
-import static com.gluonhq.plugin.templates.ProjectConstants.DEFAULT_CLOUDLINK_HOST;
+import com.gluonhq.plugin.dialogs.DialogUtils;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Base64;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,16 +24,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javax.swing.SwingUtilities;
 
 public class AccountFX extends BorderPane {
     
     private static final Logger LOGGER = Logger.getLogger(AccountFX.class.getName());
     
-    @FXML
-    private GridPane grid;
-
     @FXML
     private TextField userText;
 
@@ -58,6 +53,8 @@ public class AccountFX extends BorderPane {
     
     @FXML
     private Button cancelButton;
+    
+    private CompletableFuture<Void> futureTask;
     
     private final BooleanProperty checking = new SimpleBooleanProperty();
 
@@ -86,74 +83,56 @@ public class AccountFX extends BorderPane {
                     .or(checking));
         loginButton.addEventFilter(ActionEvent.ACTION, e -> {
             e.consume();
-            grid.setDisable(true); 
-            errorLabel.setVisible(false);
-            checking.set(true);
-            setCursor(Cursor.WAIT);
-            new Thread(getLoginTask()).start();
+            disableDialog();
+            
+            futureTask = DialogUtils.supplyAsync(new AccountTask(userText.getText(), passText.getText()))
+                .exceptionally(ex -> {
+                    LOGGER.log(Level.SEVERE, "Error retrieving account", ex);
+                    restoreDialog(null);
+                    return null;
+                })
+                .thenAccept(this::restoreDialog);
         });
         ButtonBar.setButtonData(loginButton, ButtonBar.ButtonData.OK_DONE); 
         ButtonBar.setButtonData(cancelButton, ButtonBar.ButtonData.CANCEL_CLOSE); 
         
-        cancelButton.setOnAction(e -> SwingUtilities.invokeLater(() -> credentials.setUserKey(false, null)));
+        cancelButton.setOnAction(e -> {
+            if (futureTask != null && ! futureTask.isDone()) {
+                futureTask.cancel(true);
+            }
+            SwingUtilities.invokeLater(() -> credentials.setUserKey(false, null));
+        });
     }    
     
     public Credentials getCredentials() {
         return credentials;
     }
     
-    private Task<String> getLoginTask() {
-        return new Task<String>() {
-            @Override
-            protected String call() throws Exception {
-                HttpURLConnection openConnection = null;
-                String key = Base64.getEncoder().encodeToString((userText.getText() + ":" + passText.getText()).getBytes());
-                try {
-                    URL url = new URL(DEFAULT_CLOUDLINK_HOST + "/3/account/dashboard/applications");
-                    openConnection = (HttpURLConnection) url.openConnection();
-                    openConnection.addRequestProperty("Authorization", "Basic " + key);
-                    int status = openConnection.getResponseCode();
-                    if (status == 200) {
-                        return key;
-                    }
-                } catch (MalformedURLException ex) {
-                    LOGGER.log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    LOGGER.log(Level.SEVERE, null, ex);
-                } finally {
-                    if (openConnection != null) {
-                        try {
-                            openConnection.disconnect();
-                        } catch (Exception ex) {
-                           LOGGER.log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
-                return null;
-            }
+    private void disableDialog() {
+        Platform.runLater(() -> {
+            errorLabel.setVisible(false);
+            checking.set(true);
+            disableControls(true);
+            setCursor(Cursor.WAIT);
+        });
+    }
 
-            @Override
-            protected void succeeded() {
-                checking.set(false);
-                grid.setDisable(false);
-                setCursor(Cursor.DEFAULT);
-                final String value = getValue();
-                if (value != null) {
-                    SwingUtilities.invokeLater(() -> credentials.setUserKey(rememberCheck.isSelected(), value));
-                } else {
-                    errorLabel.setVisible(true);
-                }
-            }
-
-            @Override
-            protected void failed() {
-                checking.set(false);
-                setCursor(Cursor.DEFAULT);
-                grid.setDisable(false);
-                errorLabel.setVisible(true);
-            }
-        };
+    private void restoreDialog(String key) {
+        if (key != null) {
+            SwingUtilities.invokeLater(() -> credentials.setUserKey(rememberCheck.isSelected(), key));
+        }
+        Platform.runLater(() -> {
+            disableControls(false);
+            setCursor(Cursor.DEFAULT);
+            checking.set(false);
+            errorLabel.setVisible(key == null);
+        });
+    }
     
+    private void disableControls(boolean disable) {
+        userText.setDisable(disable);
+        passText.setDisable(disable);
+        rememberCheck.setDisable(disable);
     }
     
     private void browse(String uri) {
@@ -171,4 +150,5 @@ public class AccountFX extends BorderPane {
             }
         }
     }
+    
 }
