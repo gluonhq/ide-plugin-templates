@@ -1,11 +1,7 @@
 package com.gluonhq.plugin.cloudlink;
 
 import com.gluonhq.plugin.dialogs.DialogUtils;
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,8 +71,8 @@ public class AccountFX extends BorderPane {
     public void initialize() {
         errorLabel.setVisible(false);
         
-        signUpLink.setOnAction(e -> browse("http://gluonhq.com/products/cloudlink/buy"));
-        lostPassLink.setOnAction(e -> browse("https://gluonhq.com/my-account/lost-password/"));
+        signUpLink.setOnAction(e -> DialogUtils.openURL("http://gluonhq.com/products/cloudlink/buy"));
+        lostPassLink.setOnAction(e -> DialogUtils.openURL("https://gluonhq.com/my-account/lost-password/"));
         
         loginButton.disableProperty().bind(userText.textProperty().isEmpty()
                     .or(passText.textProperty().isEmpty())
@@ -133,22 +129,6 @@ public class AccountFX extends BorderPane {
         userText.setDisable(disable);
         passText.setDisable(disable);
         rememberCheck.setDisable(disable);
-    }
-    
-    private void browse(String uri) {
-        if (!Desktop.isDesktopSupported()) {
-            return;
-        }
-        Desktop desktop = Desktop.getDesktop();
-        if (desktop.isSupported(Desktop.Action.BROWSE)){
-            try {
-                desktop.browse(new URL(uri).toURI());
-            } catch (MalformedURLException | URISyntaxException ex) {
-                LOGGER.log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                LOGGER.log(Level.SEVERE, null, ex);
-            }
-        }
     }
     
 }

@@ -1,10 +1,7 @@
 package com.gluonhq.plugin.down;
 
+import com.gluonhq.plugin.dialogs.DialogUtils;
 import impl.org.controlsfx.skin.ListSelectionViewSkin;
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -77,7 +74,7 @@ public class PluginsFX extends BorderPane {
                 
                 help = new Label(String.valueOf(FontAwesome.Glyph.INFO_CIRCLE.getChar()));
                 help.getStyleClass().add("icon");
-                help.setOnMouseClicked(e -> openURL(GLUON_PLUGIN_URL + item.getUrl()));
+                help.setOnMouseClicked(e -> DialogUtils.openURL(GLUON_PLUGIN_URL + item.getUrl()));
                 VBox vBoxHelp = new VBox(help);
                 vBoxHelp.setAlignment(Pos.CENTER);
                 vBoxHelp.setPadding(new Insets(5));
@@ -111,7 +108,7 @@ public class PluginsFX extends BorderPane {
         
         Button buttonHelp = new Button("Help");
         buttonHelp.getStyleClass().add("buttons");
-        buttonHelp.setOnAction(e -> openURL(GLUON_DOWN_URL));
+        buttonHelp.setOnAction(e -> DialogUtils.openURL(GLUON_DOWN_URL));
         ButtonBar.setButtonData(buttonHelp, ButtonData.HELP); 
         
         buttonCancel = new Button("Cancel");
@@ -200,19 +197,6 @@ public class PluginsFX extends BorderPane {
         
         return pluginsBean;
     }
-    
-    private void openURL(String url) {
-        if (Desktop.isDesktopSupported()) {
-            Desktop desktop = Desktop.getDesktop();
-            if (desktop.isSupported(Desktop.Action.BROWSE)) {
-                try {
-                    desktop.browse(new URI(url));
-                } catch (IOException | URISyntaxException ex) {
-                    showError("Error launching browser: " + ex);
-                }
-            }
-        }
-    } 
     
     /**
      * Shows an error in a non-blocking dialog
