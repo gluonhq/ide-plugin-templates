@@ -13,6 +13,8 @@ public enum GluonProject {
     MOBILE_MULTIVIEWFXML("GluonGlistenMultiFXML", "MultiViewProjectFXML", "Gluon Mobile - Create a Multi View Project with FXML", GluonProjectTarget.IDE),
     MOBILE_MULTIVIEW_GAF("GluonGlistenMultiFXMLGAf", "MultiViewProjectFXMLGAf", "Gluon Mobile - Create a Glisten-Afterburner Project", GluonProjectTarget.IDE),
 
+    MOBILE_SINGLE_GVM("GluonGlistenGvm", "SingleViewProject - Gluon VM", "Gluon Mobile - Create a Single View Project with Gluon VM", GluonProjectTarget.IDE),
+
     FUNCTION("GluonFunction", "GluonFunction", "Gluon Function - Create a Gluon Function Project", GluonProjectTarget.IDE),
 
     DASHBOARD_MOBILE_MULTIVIEWFXML("DashboardMobileMultiFXML", "MultiViewProjectFXML", "Gluon Dashboard - Create a Multi View Project with FXML", GluonProjectTarget.DASHBOARD);
