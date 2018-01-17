@@ -28,6 +28,7 @@ targetCompatibility = 1.8
 dependencies {
     if (JavaVersion.current() == JavaVersion.VERSION_1_9) {
         compile 'com.gluonhq:charm:${mobileGvmVersion}'
+        androidRuntime 'com.gluonhq:charm:${mobileVersion}'
     } else {
         compile 'com.gluonhq:charm:${mobileVersion}'
     }
