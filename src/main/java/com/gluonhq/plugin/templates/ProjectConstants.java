@@ -12,8 +12,8 @@ public class ProjectConstants {
 
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
     private static final String GLUON_MOBILE_VERSION = "4.4.1";
-    private static final String GLUON_MOBILE_GVM_VERSION = "5.0.0";
-    private static final String GLUON_DOWN_VERSION = "3.6.0";
+    private static final String GLUON_MOBILE_GVM_VERSION = "4.4.0-jdk9";
+    private static final String GLUON_DOWN_VERSION = "3.7.0";
     private static final String GLUON_MOBILE_PLUGIN = "1.3.10";
     private static final String GLUON_MOBILE_GVM_PLUGIN = "2.0.0";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.2.0";

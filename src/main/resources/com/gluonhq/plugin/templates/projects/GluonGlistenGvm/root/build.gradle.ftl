@@ -2,6 +2,9 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven {
+            url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'
+        }
     }
     dependencies {
         classpath 'org.javafxports:jfxmobile-plugin:${mobileGvmPlugin}'
