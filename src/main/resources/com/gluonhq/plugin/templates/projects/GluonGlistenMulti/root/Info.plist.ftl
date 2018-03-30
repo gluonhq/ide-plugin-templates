@@ -8,19 +8,8 @@
         <string>1.0</string>
         <key>CFBundleExecutable</key>
         <string>${projectNameApp}</string>
-        <key>CFBundleIconFiles</key>
-        <array>
-                <string>Icon-60</string>
-                <string>Icon-76</string>
-                <string>Icon-Small-40</string>
-                <string>Icon-Small</string>
-        </array>
-        <key>CFBundleIconFiles~ipad</key>
-        <array>
-                <string>Icon-76</string>
-                <string>Icon-Small-40</string>
-                <string>Icon-Small</string>
-        </array>
+        <key>CFBundleIconName</key>
+        <string>AppIcon</string>
         <key>CFBundleName</key>
         <string>${projectName}</string>
         <key>CFBundlePackageType</key>
