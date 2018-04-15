@@ -12,20 +12,13 @@ public class ${primaryViewName}View <#if afterburnerEnabled>extends FXMLView {
 
 }<#else>{
 
-    private final String name;
-
-    public ${primaryViewName}View(String name) {
-        this.name = name;
-    }
-    
     public View getView() {
         try {
             View view = FXMLLoader.load(${primaryViewName}View.class.getResource("${primaryCSSName}.fxml"));
-            view.setName(name);
             return view;
         } catch (IOException e) {
             System.out.println("IOException: " + e);
-            return new View(name);
+            return new View();
         }
     }
 }
