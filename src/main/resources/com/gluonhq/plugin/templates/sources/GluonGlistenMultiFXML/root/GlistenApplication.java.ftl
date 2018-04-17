@@ -3,7 +3,6 @@ package ${packageName};
 import ${packageName}.views.${primaryViewName}View;
 import ${packageName}.views.${secondaryViewName}View;
 import com.gluonhq.charm.glisten.application.MobileApplication;
-import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 <#if afterburnerEnabled>
 import com.gluonhq.charm.glisten.mvc.View;
 </#if>
@@ -19,7 +18,6 @@ public class ${mainClassName} extends MobileApplication {
 
     public static final String ${primaryViewName?upper_case}_VIEW = HOME_VIEW;
     public static final String ${secondaryViewName?upper_case}_VIEW = "${secondaryViewName} View";
-    public static final String MENU_LAYER = "Side Menu";
     
     @Override
     public void init() {
@@ -27,11 +25,11 @@ public class ${mainClassName} extends MobileApplication {
         addViewFactory(${primaryViewName?upper_case}_VIEW, () -> (View) new ${primaryViewName}View().getView());
         addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> (View) new ${secondaryViewName}View().getView());
         <#else>
-        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> new ${primaryViewName}View(${primaryViewName?upper_case}_VIEW).getView());
-        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> new ${secondaryViewName}View(${secondaryViewName?upper_case}_VIEW).getView());
+        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> new ${primaryViewName}View().getView());
+        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> new ${secondaryViewName}View().getView());
         </#if>
-        
-        addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
+
+        DrawerManager.buildDrawer(this);
     }
 
     @Override

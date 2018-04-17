@@ -4,7 +4,6 @@ import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import ${packageName}.${mainClassName};
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -21,7 +20,7 @@ public class ${primaryViewName}Presenter {
             if (newValue) {
                 AppBar appBar = MobileApplication.getInstance().getAppBar();
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().showLayer(${mainClassName}.MENU_LAYER)));
+                        MobileApplication.getInstance().getDrawer().open()));
                 appBar.setTitleText("${primaryViewName}");
                 appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
                         System.out.println("Search")));

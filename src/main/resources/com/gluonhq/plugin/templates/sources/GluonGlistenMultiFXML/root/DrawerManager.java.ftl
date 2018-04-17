@@ -10,18 +10,14 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.Item;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import static ${packageName}.${mainClassName}.MENU_LAYER;
 import static ${packageName}.${mainClassName}.${primaryViewName?upper_case}_VIEW;
 import static ${packageName}.${mainClassName}.${secondaryViewName?upper_case}_VIEW;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 
 public class DrawerManager {
 
-    private final NavigationDrawer drawer;
-
-    public DrawerManager() {
-        this.drawer = new NavigationDrawer();
+    public static void buildDrawer(MobileApplication app) {
+        NavigationDrawer drawer = app.getDrawer();
         
         NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Mobile",
                 "Multi View Project",
@@ -41,24 +37,5 @@ public class DrawerManager {
             });
             drawer.getItems().add(quitItem);
         }
-        
-        drawer.addEventHandler(NavigationDrawer.ITEM_SELECTED, 
-                e -> MobileApplication.getInstance().hideLayer(MENU_LAYER));
-        
-        MobileApplication.getInstance().viewProperty().addListener((obs, oldView, newView) -> updateItem(newView.getName()));
-        updateItem(${primaryViewName?upper_case}_VIEW);
-    }
-    
-    private void updateItem(String nameView) {
-        for (Node item : drawer.getItems()) {
-            if (item instanceof ViewItem && ((ViewItem) item).getViewName().equals(nameView)) {
-                drawer.setSelectedItem(item);
-                break;
-            }
-        }
-    }
-    
-    public NavigationDrawer getDrawer() {
-        return drawer;
     }
 }

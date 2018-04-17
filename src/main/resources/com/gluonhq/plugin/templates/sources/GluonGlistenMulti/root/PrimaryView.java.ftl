@@ -1,11 +1,9 @@
 package ${packageName}.views;
 
-import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.control.Icon;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import ${packageName}.${mainClassName};
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,8 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class ${primaryViewName}View extends View {
 
-    public ${primaryViewName}View(String name) {
-        super(name);
+    public ${primaryViewName}View() {
         
         <#if cssPrimaryViewEnabled>
         getStylesheets().add(${primaryViewName}View.class.getResource("${primaryCSSName}.css").toExternalForm());</#if>
@@ -33,7 +30,7 @@ public class ${primaryViewName}View extends View {
 
     @Override
     protected void updateAppBar(AppBar appBar) {
-        appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> MobileApplication.getInstance().showLayer(${mainClassName}.MENU_LAYER)));
+        appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> getApplication().getDrawer().open()));
         appBar.setTitleText("${primaryViewName}");
         appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> System.out.println("Search")));
     }

@@ -11,8 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class BasicView extends View {
 
-    public BasicView(String name) {
-        super(name);
+    public BasicView() {
         
         Label label = new Label("Hello JavaFX World!");
 

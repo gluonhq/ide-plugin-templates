@@ -15,7 +15,7 @@ public class ${mainClassName} extends MobileApplication {
 
     @Override
     public void init() {
-        addViewFactory(BASIC_VIEW, () -> new BasicView(BASIC_VIEW));
+        addViewFactory(BASIC_VIEW, () -> new BasicView());
     }
 
     @Override

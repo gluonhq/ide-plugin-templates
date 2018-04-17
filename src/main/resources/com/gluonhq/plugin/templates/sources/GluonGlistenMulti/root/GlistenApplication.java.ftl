@@ -3,7 +3,6 @@ package ${packageName};
 import ${packageName}.views.${primaryViewName}View;
 import ${packageName}.views.${secondaryViewName}View;
 import com.gluonhq.charm.glisten.application.MobileApplication;
-import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.visual.Swatch;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,14 +15,13 @@ public class ${mainClassName} extends MobileApplication {
 
     public static final String ${primaryViewName?upper_case}_VIEW = HOME_VIEW;
     public static final String ${secondaryViewName?upper_case}_VIEW = "${secondaryViewName} View";
-    public static final String MENU_LAYER = "Side Menu";
     
     @Override
     public void init() {
-        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> new ${primaryViewName}View(${primaryViewName?upper_case}_VIEW));
-        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> new ${secondaryViewName}View(${secondaryViewName?upper_case}_VIEW));
+        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> new ${primaryViewName}View());
+        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> new ${secondaryViewName}View());
         
-        addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
+        DrawerManager.buildDrawer(this);
     }
 
     @Override
