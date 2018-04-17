@@ -1,7 +1,0 @@
-{
-    "name": "Multiple View Project with FXML",
-    "description": "Creates a new Gluon Mobile application with multiple Views created with FXML",
-    "executions": [
-        "recipe.json.ftl"
-    ]
-}
