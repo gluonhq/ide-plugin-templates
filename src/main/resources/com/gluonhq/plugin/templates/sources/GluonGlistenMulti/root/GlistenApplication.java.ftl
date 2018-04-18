@@ -18,8 +18,8 @@ public class ${mainClassName} extends MobileApplication {
     
     @Override
     public void init() {
-        addViewFactory(${primaryViewName?upper_case}_VIEW, () -> new ${primaryViewName}View());
-        addViewFactory(${secondaryViewName?upper_case}_VIEW, () -> new ${secondaryViewName}View());
+        addViewFactory(${primaryViewName?upper_case}_VIEW, ${primaryViewName}View::new);
+        addViewFactory(${secondaryViewName?upper_case}_VIEW, ${secondaryViewName}View::new);
         
         DrawerManager.buildDrawer(this);
     }

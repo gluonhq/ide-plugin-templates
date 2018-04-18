@@ -11,11 +11,9 @@ import com.gluonhq.charm.glisten.license.License;
 @License(key="${gluon_user_license_mobile?lower_case}")</#if>
 public class ${mainClassName} extends MobileApplication {
 
-    public static final String BASIC_VIEW = HOME_VIEW;
-
     @Override
     public void init() {
-        addViewFactory(BASIC_VIEW, () -> new BasicView());
+        addViewFactory(HOME_VIEW, BasicView::new);
     }
 
     @Override
