@@ -16,7 +16,7 @@ public class ProjectConstants {
     private static final String GLUON_DOWN_VERSION = "3.7.0";
     private static final String GLUON_MOBILE_PLUGIN = "1.3.10";
     private static final String GLUON_MOBILE_GVM_PLUGIN = "2.0.0";
-    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.3.0";
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.4.0";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
