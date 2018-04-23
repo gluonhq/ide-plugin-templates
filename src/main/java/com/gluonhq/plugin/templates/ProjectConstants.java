@@ -8,12 +8,12 @@ import java.util.Properties;
 
 public class ProjectConstants {
 
-    public static final String PLUGIN_VERSION = "2.4.0";
+    public static final String PLUGIN_VERSION = "2.7.0";
 
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
     private static final String GLUON_MOBILE_VERSION = "5.0.0";
     private static final String GLUON_MOBILE_GVM_VERSION = "5.0.0-jdk9";
-    private static final String GLUON_DOWN_VERSION = "3.7.0";
+    private static final String GLUON_DOWN_VERSION = "3.8.0";
     private static final String GLUON_MOBILE_PLUGIN = "1.3.10";
     private static final String GLUON_MOBILE_GVM_PLUGIN = "2.0.0";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.4.0";
@@ -82,7 +82,7 @@ public class ProjectConstants {
         if (properties == null) {
             properties = new Properties();
             try {
-                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.4.properties");
+                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.7.properties");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
