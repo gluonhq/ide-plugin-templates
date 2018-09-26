@@ -6,6 +6,8 @@
         <string>${mainClass}</string>
         <key>CFBundleVersion</key>
         <string>1.0</string>
+        <key>CFBundleShortVersionString</key>
+        <string>1.0</string>
         <key>CFBundleExecutable</key>
         <string>${projectNameApp}</string>
         <key>CFBundleIconName</key>
@@ -16,6 +18,10 @@
         <string>APPL</string>
         <key>LSRequiresIPhoneOS</key>
         <true/>
+        <key>MinimumOSVersion</key>
+        <string>8.0</string>
+        <key>UIRequiresFullScreen</key>
+        <string>YES</string>
         <key>UISupportedInterfaceOrientations</key>
         <array>
                 <string>UIInterfaceOrientationPortrait</string>
