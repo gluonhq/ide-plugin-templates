@@ -24,12 +24,12 @@ uploadPublished {
         // configure repositories in a doFirst so we can late bind the properties
         repositories {
             mavenDeployer {
-                def repoUrl = getStringProperty('publishRepositoryUrl', 'http://nexus.gluonhq.com/nexus/content/repositories/releases/');
+                def repoUrl = getStringProperty('publishRepositoryUrl', 'https://nexus.gluonhq.com/nexus/content/repositories/releases/');
                 configurePOM(pom)
                 addFilter('base') { artifact, file -> artifact.name == 'ide-plugin-templates' }
                 addFilter('all') { artifact, file -> artifact.name == 'ide-plugin-templates-all' }
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-                snapshotRepository(url: "http://nexus.gluonhq.com/nexus/content/repositories/snapshots/") {
+                snapshotRepository(url: "https://nexus.gluonhq.com/nexus/content/repositories/snapshots/") {
                     authentication userName: gluonNexusUsername, password: gluonNexusPassword
                 }
                 repository(url: repoUrl) {
