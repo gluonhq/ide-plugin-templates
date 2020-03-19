@@ -1,7 +1,0 @@
-{
-    "name": "Gluon Mobile - Single View Project on Gluon VM",
-    "description": "Creates a Gluon Mobile based Java application with a Single View running on Gluon VM. It is targeted for Android, iOS, desktop and embedded devices, as a Gradle project. The Gradle project applies the jfxmobile plugin to run, build and debug your project.",
-    "executions": [
-        "recipe.json.ftl"
-    ]
-}

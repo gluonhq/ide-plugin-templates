@@ -2,21 +2,23 @@ package com.gluonhq.plugin.templates;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
 public class ProjectConstants {
 
+    // TODO: What is its usage. Only found in GluonOptInWizardStep.java
     public static final String PLUGIN_VERSION = "2.7.0";
 
+    private static final String JAVAFX_MAVEN_PLUGIN = "0.0.4";
+    private static final String JAVAFX_GRADLE_PLUGIN = "0.0.8";
+
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
-    private static final String GLUON_MOBILE_VERSION = "5.0.0";
-    private static final String GLUON_MOBILE_GVM_VERSION = "5.0.0-jdk9";
-    private static final String GLUON_DOWN_VERSION = "3.8.0";
-    private static final String GLUON_MOBILE_PLUGIN = "1.3.10";
-    private static final String GLUON_MOBILE_GVM_PLUGIN = "2.0.0";
-    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "1.4.0";
+    private static final String GLUON_MOBILE_VERSION = "6.0.3";
+    private static final String GLUON_ATTACH_VERSION = "4.0.5";
+    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.18";
+    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.0.15";
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.3";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
@@ -41,6 +43,7 @@ public class ProjectConstants {
     public static final String PARAM_DESKTOP_ENABLED = "desktopEnabled";
     public static final String PARAM_EMBEDDED_ENABLED = "embeddedEnabled";
     public static final String PARAM_IOS_ENABLED = "iosEnabled";
+    public static final String PARAM_BUILD_TOOL = "buildTool";
 
     // Views
     public static final String PARAM_PRIMARY_VIEW = "primaryViewName";
@@ -65,16 +68,19 @@ public class ProjectConstants {
 
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
-    public static final String PARAM_GLUON_MOBILE_GVM_VERSION = "mobileGvmVersion";
-    public static final String PARAM_GLUON_DOWN_VERSION = "downVersion";
-    public static final String PARAM_GLUON_MOBILE_PLUGIN = "mobilePlugin";
-    public static final String PARAM_GLUON_MOBILE_GVM_PLUGIN = "mobileGvmPlugin";
+    public static final String PARAM_GLUON_ATTACH_VERSION = "attachVersion";
+    public static final String PARAM_GLUON_CLIENT_MAVEN_PLUGIN = "clientMavenPlugin";
+    public static final String PARAM_GLUON_CLIENT_GRADLE_PLUGIN = "clientGradlePlugin";
     public static final String PARAM_GLUON_GLISTEN_AFTERBURNER_VERSION = "glistenAfterburnerVersion";
 
     // Function
     public static final String PARAM_GLUON_FUNCTION_NAME = "functionName";
     public static final String PARAM_GLUON_FUNCTION_METHOD_NAME = "functionMethodName";
     public static final String PARAM_GLUON_FUNCTION_PROJECT_NAME = "projectNameFn";
+    
+    // OpenJFX
+    public static final String PARAM_JAVAFX_MAVEN_PLUGIN = "javafxMavenPlugin";
+    public static final String PARAM_JAVAFX_GRADLE_PLUGIN = "javafxGradlePlugin";
     
     private static Properties properties;
     
@@ -91,7 +97,6 @@ public class ProjectConstants {
                 conn.setUseCaches(false);
                 conn.connect();
                 properties.load(conn.getInputStream());
-            } catch (MalformedURLException ex) {
             } catch (IOException ex) {
             }
         }
@@ -106,24 +111,28 @@ public class ProjectConstants {
         return retrieveRemoteProperties().getProperty("mobile", GLUON_MOBILE_VERSION);
     }
 
-    public static final String getMobileGvmVersion() {
-        return retrieveRemoteProperties().getProperty("mobile_gvm", GLUON_MOBILE_GVM_VERSION);
+    public static final String getAttachVersion() {
+        return retrieveRemoteProperties().getProperty("attach", GLUON_ATTACH_VERSION);
     }
 
-    public static final String getDownVersion() {
-        return retrieveRemoteProperties().getProperty("down", GLUON_DOWN_VERSION);
+    public static final String getClientMavenPluginVersion() {
+        return retrieveRemoteProperties().getProperty("clientMavenPlugin", GLUON_CLIENT_MAVEN_PLUGIN);
     }
 
-    public static final String getPluginVersion() {
-        return retrieveRemoteProperties().getProperty("plugin", GLUON_MOBILE_PLUGIN);
-    }
-
-    public static final String getPluginGvmVersion() {
-        return retrieveRemoteProperties().getProperty("plugin_gvm", GLUON_MOBILE_GVM_PLUGIN);
+    public static final String getClientGradlePluginVersion() {
+        return retrieveRemoteProperties().getProperty("clientGradlePlugin", GLUON_CLIENT_GRADLE_PLUGIN);
     }
 
     public static final String getGlistenAfterburnerVersion() {
         return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
+    }
+
+    public static final String getJavaFXMavenPluginVersion() {
+        return retrieveRemoteProperties().getProperty("javafxMavenPlugin", JAVAFX_MAVEN_PLUGIN);
+    }
+
+    public static final String getJavaFXGradlePluginVersion() {
+        return retrieveRemoteProperties().getProperty("javafxGradlePlugin", JAVAFX_GRADLE_PLUGIN);
     }
 
 }

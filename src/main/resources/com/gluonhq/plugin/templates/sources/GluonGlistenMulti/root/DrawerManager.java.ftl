@@ -1,8 +1,8 @@
 package ${packageName};
 
-import com.gluonhq.charm.down.Platform;
-import com.gluonhq.charm.down.Services;
-import com.gluonhq.charm.down.plugins.LifecycleService;
+import com.gluonhq.attach.lifecycle.LifecycleService;
+import com.gluonhq.attach.util.Platform;
+import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.Avatar;
@@ -10,9 +10,10 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.Item;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
+import javafx.scene.image.Image;
+
 import static ${packageName}.${mainClassName}.${primaryViewName?upper_case}_VIEW;
 import static ${packageName}.${mainClassName}.${secondaryViewName?upper_case}_VIEW;
-import javafx.scene.image.Image;
 
 public class DrawerManager {
 

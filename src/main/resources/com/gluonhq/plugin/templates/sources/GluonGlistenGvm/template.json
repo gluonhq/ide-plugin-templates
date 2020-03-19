@@ -1,7 +1,0 @@
-{
-    "name": "Single View Project on Gluon VM",
-    "description": "Creates a new Gluon Glisten application running on Gluon VM with a single View",
-    "executions": [
-        "recipe.json.ftl"
-    ]
-}

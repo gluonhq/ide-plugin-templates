@@ -1,6 +1,6 @@
 {
     "name": "Gluon Mobile - Multi View Project with FXML",
-    "description": "Using Gluon Mobile, and including multiple Views created with FXML, creates a new Gluon Mobile based Java application, targeted for Android, iOS, desktop and embedded devices, as a Gradle project. The Gradle project applies the jfxmobile plugin to run, build and debug your project.",
+    "description": "Using Gluon Mobile, and including multiple Views created with FXML, creates a new Gluon Mobile based Java application, targeted for Android, iOS, desktop and embedded devices. The Maven/Gradle project applies the client plugin to create native images of your project.",
     "executions": [
         "recipe.json.ftl"
     ]
