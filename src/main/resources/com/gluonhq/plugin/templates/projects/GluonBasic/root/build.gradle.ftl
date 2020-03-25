@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.javafxports:jfxmobile-plugin:${mobilePlugin}'
+        classpath 'org.javafxports:jfxmobile-plugin:1.3.10'
     }
 }
 
