@@ -115,16 +115,16 @@ public class ProjectConstants {
         return retrieveRemoteProperties().getProperty("attach", GLUON_ATTACH_VERSION);
     }
 
+    public static final String getGlistenAfterburnerVersion() {
+        return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
+    }
+
     public static final String getClientMavenPluginVersion() {
         return retrieveRemoteProperties().getProperty("clientMavenPlugin", GLUON_CLIENT_MAVEN_PLUGIN);
     }
 
     public static final String getClientGradlePluginVersion() {
         return retrieveRemoteProperties().getProperty("clientGradlePlugin", GLUON_CLIENT_GRADLE_PLUGIN);
-    }
-
-    public static final String getGlistenAfterburnerVersion() {
-        return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
     }
 
     public static final String getJavaFXMavenPluginVersion() {
