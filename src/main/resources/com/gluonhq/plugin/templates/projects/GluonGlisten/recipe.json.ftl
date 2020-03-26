@@ -31,5 +31,10 @@
   {
     "command": "mkdir",
     "at": "./src/main/resources"
+  },
+  {
+    "command": "copy",
+    "from": "/desktop/icon.png",
+    "to": "./src/main/resources/icon.png"
   }
 ]
