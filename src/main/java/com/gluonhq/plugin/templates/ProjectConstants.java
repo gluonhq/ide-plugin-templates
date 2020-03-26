@@ -88,7 +88,7 @@ public class ProjectConstants {
         if (properties == null) {
             properties = new Properties();
             try {
-                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.7.properties");
+                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.10.properties");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
