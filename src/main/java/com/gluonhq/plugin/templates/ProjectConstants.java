@@ -10,6 +10,7 @@ public class ProjectConstants {
     // TODO: What is its usage. Only found in GluonOptInWizardStep.java
     public static final String PLUGIN_VERSION = "2.7.0";
 
+    private static final String JAVAFX_VERSION = "11";
     private static final String JAVAFX_MAVEN_PLUGIN = "0.0.4";
     private static final String JAVAFX_GRADLE_PLUGIN = "0.0.8";
 
@@ -24,7 +25,7 @@ public class ProjectConstants {
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
     public static final String DEFAULT_CLOUDLINK_HOST = "https://cloud.gluonhq.com";
 
-    // Optin
+    // Option
     public static final String PARAM_USER_IDE_OPTIN = "gluon_ide_optin";
     public static final String PARAM_USER_EMAIL = "gluon_user_email";
     public static final String PARAM_USER_UPTODATE = "gluon_user_uptodate";
@@ -79,6 +80,7 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_FUNCTION_PROJECT_NAME = "projectNameFn";
     
     // OpenJFX
+    public static final String PARAM_JAVAFX_VERSION = "javafxVersion";
     public static final String PARAM_JAVAFX_MAVEN_PLUGIN = "javafxMavenPlugin";
     public static final String PARAM_JAVAFX_GRADLE_PLUGIN = "javafxGradlePlugin";
     
@@ -125,6 +127,10 @@ public class ProjectConstants {
 
     public static final String getClientGradlePluginVersion() {
         return retrieveRemoteProperties().getProperty("clientGradlePlugin", GLUON_CLIENT_GRADLE_PLUGIN);
+    }
+
+    public static final String getJavaFXVersion() {
+        return retrieveRemoteProperties().getProperty("javafx", JAVAFX_VERSION);
     }
 
     public static final String getJavaFXMavenPluginVersion() {

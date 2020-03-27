@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <javafx.version>13.0.1</javafx.version>
+        <javafx.version>${javafxVersion}</javafx.version>
         <attach.version>${attachVersion}</attach.version>
         <client.plugin.version>${clientMavenPlugin}</client.plugin.version>
         <javafx.plugin.version>${javafxMavenPlugin}</javafx.plugin.version>
