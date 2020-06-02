@@ -15,11 +15,11 @@ public class ProjectConstants {
     private static final String JAVAFX_GRADLE_PLUGIN = "0.0.8";
 
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
-    private static final String GLUON_MOBILE_VERSION = "6.0.3";
-    private static final String GLUON_ATTACH_VERSION = "4.0.5";
-    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.18";
-    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.0.15";
-    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.3";
+    private static final String GLUON_MOBILE_VERSION = "6.0.5";
+    private static final String GLUON_ATTACH_VERSION = "4.0.7";
+    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.26";
+    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.26";
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.5";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
