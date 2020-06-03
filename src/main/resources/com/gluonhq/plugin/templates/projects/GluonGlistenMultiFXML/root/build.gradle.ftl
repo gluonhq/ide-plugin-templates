@@ -1,16 +1,11 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.javafxports:jfxmobile-plugin:1.3.10'
-    }
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '${javafxGradlePlugin}'
+    id 'com.gluonhq.client-gradle-plugin' version '${clientGradlePlugin}'
 }
 
-apply plugin: 'org.javafxports.jfxmobile'
-
 repositories {
-    jcenter()
+    mavenCentral()
     maven {
         url 'https://nexus.gluonhq.com/nexus/content/repositories/releases'
     }
@@ -19,34 +14,26 @@ repositories {
 mainClassName = '${mainClass}'
 
 dependencies {
-    compile 'com.gluonhq:charm:5.0.0'
+    compile 'com.gluonhq:charm-glisten:${mobileVersion}'
     <#if afterburnerEnabled>
     compile 'com.airhacks:afterburner.mfx:1.6.3'
     </#if>
 }
 
-jfxmobile {
-    downConfig {
-        version = '3.8.0'
-        // Do not edit the line below. Use Gluon Mobile Settings in your project context menu instead
-        plugins 'display', 'lifecycle', 'statusbar', 'storage'
-    }
-    <#if androidEnabled>
-    android {
-        manifest = 'src/android/AndroidManifest.xml'
-    }
-    </#if>
+javafx {
+    version = '${javafxVersion}'
+    modules = [ 'javafx.controls' ]
+}
+
+gluonClient {
     <#if iosEnabled>
-    ios {
-        infoPList = file('src/ios/Default-Info.plist')
-        forceLinkClasses = [
-                '${packageName}.**.*',
-                'com.gluonhq.**.*',
-                'javax.annotations.**.*',
-                'javax.inject.**.*',
-                'javax.json.**.*',
-                'org.glassfish.json.**.*'
-        ]
-    }
+    // target = 'ios' // Uncomment to enable iOS
     </#if>
+    <#if androidEnabled>
+    // target = 'android' // Uncomment to enable Android
+    </#if>
+    attachConfig {
+        version = "${attachVersion}"
+        services 'display', 'lifecycle', 'statusbar', 'storage'
+    }
 }

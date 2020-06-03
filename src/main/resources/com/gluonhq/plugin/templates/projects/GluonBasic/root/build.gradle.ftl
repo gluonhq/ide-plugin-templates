@@ -1,31 +1,32 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.javafxports:jfxmobile-plugin:1.3.10'
-    }
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '${javafxGradlePlugin}'
+    id 'com.gluonhq.client-gradle-plugin' version '${clientGradlePlugin}'
 }
 
-apply plugin: 'org.javafxports.jfxmobile'
-
 repositories {
-    jcenter()
+    mavenCentral()
+    maven {
+        url 'https://nexus.gluonhq.com/nexus/content/repositories/releases'
+    }
 }
 
 mainClassName = '${mainClass}'
 
-<#if androidEnabled || iosEnabled>
-jfxmobile {
-    <#if androidEnabled>
-    android {
-        manifest = 'src/android/AndroidManifest.xml'
-    }
-    </#if>
+dependencies {
+    compile 'com.gluonhq:charm:${mobileVersion}'
+}
+
+javafx {
+    version = '${javafxVersion}'
+    modules = [ 'javafx.controls' ]
+}
+
+gluonClient {
     <#if iosEnabled>
-    ios {
-        infoPList = file('src/ios/Default-Info.plist')
-    }
+    // target = 'ios' // Uncomment to enable iOS
+    </#if>
+    <#if androidEnabled>
+    // target = 'android' // Uncomment to enable Android
     </#if>
 }
-</#if>
