@@ -22,7 +22,7 @@ dependencies {
 
 javafx {
     version = '${javafxVersion}'
-    modules = [ 'javafx.controls' ]
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 gluonClient {
