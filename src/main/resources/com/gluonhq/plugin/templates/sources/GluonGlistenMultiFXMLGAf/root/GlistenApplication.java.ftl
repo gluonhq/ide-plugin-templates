@@ -25,4 +25,8 @@ public class ${mainClassName} extends MobileApplication {
         <#if desktopEnabled>
         ((Stage) scene.getWindow()).getIcons().add(new Image(${mainClassName}.class.getResourceAsStream("/icon.png")));</#if>
     }
+
+    public static void main(String args[]) {
+        launch(args);
+    }
 }
