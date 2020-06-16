@@ -1,6 +1,6 @@
 {
     "name": "Gluon Mobile - Multiple View Project with Glisten Afterburner",
-    "description": "Using Gluon Mobile and the Glisten Afterburner framework, includes multiple Views created with FXML and creates a new Gluon Mobile based Java application, targeted for Android, iOS, desktop and embedded devices. The Maven/Gradle project applies the client plugin to create native images of your project.",
+    "description": "Creates a Gluon Mobile based Java application with multiple views designed with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses Glisten-Afterburner framework and Gluon Client plugin to create native images for the aforementioned platforms.",
     "executions": [
         "recipe.json.ftl"
     ]
