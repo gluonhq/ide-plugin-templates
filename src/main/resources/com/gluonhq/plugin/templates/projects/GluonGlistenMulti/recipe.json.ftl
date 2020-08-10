@@ -41,5 +41,10 @@
     "command": "copy",
     "from": "/desktop/icon.png",
     "to": "./src/main/resources/icon.png"
+  },
+  {
+    "command": "process",
+    "from": "README.md.ftl",
+    "to": "./README.md"
   }
 ]

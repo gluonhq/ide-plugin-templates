@@ -8,17 +8,17 @@ import java.util.Properties;
 public class ProjectConstants {
 
     // TODO: What is its usage. Only found in GluonOptInWizardStep.java
-    public static final String PLUGIN_VERSION = "2.7.0";
+    public static final String PLUGIN_VERSION = "2.8.0";
 
     private static final String JAVAFX_VERSION = "11";
     private static final String JAVAFX_MAVEN_PLUGIN = "0.0.4";
-    private static final String JAVAFX_GRADLE_PLUGIN = "0.0.8";
+    private static final String JAVAFX_GRADLE_PLUGIN = "0.0.9";
 
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
     private static final String GLUON_MOBILE_VERSION = "6.0.5";
-    private static final String GLUON_ATTACH_VERSION = "4.0.7";
-    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.26";
-    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.26";
+    private static final String GLUON_ATTACH_VERSION = "4.0.8";
+    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.30";
+    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.30";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.5";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
