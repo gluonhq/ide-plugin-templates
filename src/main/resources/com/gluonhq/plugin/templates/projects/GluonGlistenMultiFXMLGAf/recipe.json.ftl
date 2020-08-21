@@ -6,6 +6,13 @@
     "from": "pom.xml.ftl",
     "to": "./pom.xml"
   },
+  <#if ide == "netbeans">
+    {
+    "command": "process",
+    "from": "nbactions.xml.ftl",
+    "to": "./nbactions.xml"
+    },
+  </#if>
 <#elseif buildTool == "gradle">
   {
     "command": "process",

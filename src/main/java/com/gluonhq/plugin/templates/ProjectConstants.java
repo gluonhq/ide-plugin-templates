@@ -9,6 +9,9 @@ public class ProjectConstants {
 
     // TODO: What is its usage. Only found in GluonOptInWizardStep.java
     public static final String PLUGIN_VERSION = "2.8.0";
+    public static final String IDE_ECLIPSE = "eclipse";
+    public static final String IDE_INTELLIJ = "intellij";
+    public static final String IDE_NETBEANS = "netbeans";
 
     private static final String JAVAFX_VERSION = "11";
     private static final String JAVAFX_MAVEN_PLUGIN = "0.0.4";
@@ -45,6 +48,7 @@ public class ProjectConstants {
     public static final String PARAM_EMBEDDED_ENABLED = "embeddedEnabled";
     public static final String PARAM_IOS_ENABLED = "iosEnabled";
     public static final String PARAM_BUILD_TOOL = "buildTool";
+    public static final String PARAM_IDE = "ide";
 
     // Views
     public static final String PARAM_PRIMARY_VIEW = "primaryViewName";
