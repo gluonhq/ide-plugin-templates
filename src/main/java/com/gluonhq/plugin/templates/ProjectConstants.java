@@ -20,8 +20,8 @@ public class ProjectConstants {
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
     private static final String GLUON_MOBILE_VERSION = "6.0.5";
     private static final String GLUON_ATTACH_VERSION = "4.0.8";
-    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.30";
-    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.30";
+    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.31";
+    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.31";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.5";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
