@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>${packageName}</groupId>
-    <artifactId>${mainClassName?lower_case}</artifactId>
+    <artifactId>${projectName?lower_case?replace("\\s+", "-", "r")}</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>>${projectName}</name>
