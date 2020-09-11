@@ -20,6 +20,11 @@
     "to": "./build.gradle"
   },
   {
+    "command": "process",
+    "from": "settings.gradle.ftl",
+    "to": "./settings.gradle"
+  },
+  {
     "command": "copylist",
     "list": "gradle_wrapper.lst",
     "base": "/gradle/wrapper",
