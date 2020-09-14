@@ -6,14 +6,12 @@
             <packaging>jar</packaging>
         </packagings>
         <goals>
-            <goal>clean</goal>
             <goal>javafx:run</goal>
         </goals>
     </action>
     <action>
         <actionName>debug</actionName>
         <goals>
-            <goal>clean</goal>
             <goal>javafx:run@ide-debug</goal>
         </goals>
         <properties>
@@ -23,7 +21,6 @@
     <action>
         <actionName>profile</actionName>
         <goals>
-            <goal>clean</goal>
             <goal>javafx:run@ide-profile</goal>
         </goals>
     </action>
@@ -31,7 +28,6 @@
         <actionName>CUSTOM-jlink</actionName>
         <displayName>jlink</displayName>
         <goals>
-            <goal>clean</goal>
             <goal>compile</goal>
             <goal>javafx:jlink</goal>
         </goals>
