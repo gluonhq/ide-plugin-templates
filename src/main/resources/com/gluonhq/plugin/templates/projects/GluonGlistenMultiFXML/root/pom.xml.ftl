@@ -105,14 +105,12 @@
                         <list>storage</list>
                     </attachList>
                     <bundlesList>
-                        <list>hellofx.hello</list>
+                        <list>${packageName}.views.${primaryCSSName}</list>
+                        <list>${packageName}.views.${secondaryCSSName}</list>
                     </bundlesList>
                     <reflectionList>
-                        <list>javafx.fxml.FXMLLoader</list>
-                        <list>${packageName}.PrimaryPresenter</list>
-                        <list>${packageName}.SecondaryPresenter</list>
-                        <list>javafx.scene.control.Button</list>
-                        <list>javafx.scene.control.Label</list>
+                        <list>${packageName}.views.${primaryViewName}Presenter</list>
+                        <list>${packageName}.views.${secondaryViewName}Presenter</list>
                     </reflectionList>
                     <mainClass>${r"${mainClassName}"}</mainClass>
                 </configuration>
