@@ -3,6 +3,7 @@ package com.gluonhq.plugin.templates;
 import freemarker.template.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -21,25 +22,34 @@ public class Template implements Comparable<Template> {
 
     private TemplateMetadata metadata;
 
+    private final GluonProject project;
     private final String projectName;
     private final String templateRoot;
 
     private final List<File> filesToOpen = new ArrayList<>();
 
-    Template(String projectName, String rootResourcePath) {
-        this.projectName = projectName;
-        templateRoot = rootResourcePath;
+    Template(GluonProject project, String rootResourcePath) {
+        this.project = project;
+        this.projectName = project.getType();
+        this.templateRoot = rootResourcePath;
+    }
+
+    public GluonProject getGluonProject() {
+        return this.project;
     }
 
     public String getProjectName() {
         return projectName;
     }
+    
+    public String getTemplateRoot() {
+        return templateRoot;
+    }
 
     public TemplateMetadata getMetadata() {
         if (metadata == null) {
-            metadata = TemplateManager.getInstance().getTemplateMetadata(templateRoot);
+            metadata = TemplateManager.getInstance().getTemplateMetadata(this);
         }
-
         return metadata;
     }
 
@@ -50,13 +60,20 @@ public class Template implements Comparable<Template> {
     public void render(File projectRoot, Map<String, Object> parameters) {
         filesToOpen.clear();
 
-        Configuration freemarker = new Configuration();
-        freemarker.setDefaultEncoding(StandardCharsets.UTF_8.name());
-        freemarker.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        freemarker.setClassForTemplateLoading(Template.class, "");
-
-        Map<String, Object> parameterMap = createParameterMap(parameters);
-        processFile(projectRoot, freemarker, parameterMap);
+        try {
+            Configuration freemarker = new Configuration(Configuration.VERSION_2_3_20);
+            freemarker.setDefaultEncoding(StandardCharsets.UTF_8.name());
+            freemarker.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+            if (getGluonProject().isDownloaded()) {
+                freemarker.setDirectoryForTemplateLoading(new File(getTemplateRoot()));
+            } else {
+                freemarker.setClassForTemplateLoading(Template.class, getTemplateRoot());
+            }
+            Map<String, Object> parameterMap = createParameterMap(parameters);
+            processFile(projectRoot, freemarker, parameterMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private Map<String, Object> createParameterMap(Map<String, Object> parameters) {
@@ -74,11 +91,11 @@ public class Template implements Comparable<Template> {
 
     private void executeRecipe(Configuration freemarker, String recipeResource, Map<String, Object> parameters, File projectRoot) {
         try {
-            String json = FreeMarkerUtils.processFreemarkerTemplate(freemarker, parameters, templateRoot + "/" + recipeResource);
+            String json = FreeMarkerUtils.processFreemarkerTemplate(freemarker, parameters, recipeResource);
 
             Recipe recipe = Recipe.parse(new StringReader(json));
             
-            RecipeContext recipeContext = new RecipeContext(freemarker, parameters, templateRoot + "/root", projectRoot);
+            RecipeContext recipeContext = new RecipeContext(freemarker, parameters,"/root", projectRoot);
             recipe.execute(recipeContext);
 
             filesToOpen.addAll(recipeContext.getFilesToOpen());
