@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 apply from: 'mavenPublish.gradle'
+apply from: 'templates.gradle'
 
 sourceCompatibility = 1.8
 
