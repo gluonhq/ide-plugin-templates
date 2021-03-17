@@ -28,9 +28,9 @@ jobs:
       - name: Upload templates
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          host: ${{ secrets.SCP_HOST }}
+          username: ${{ secrets.SCP_USERNAME }}
+          key: ${{ secrets.UPLOADER_SSHKEY }}
+          port: ${{ secrets.SCP_PORT }}
           source: "build/templates"
-          target: "ideplugins/templates"
+          target: ${{ secrets.SCP_TARGET }}

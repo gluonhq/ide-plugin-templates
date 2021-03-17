@@ -35,12 +35,12 @@ jobs:
       - name: Upload templates
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          host: ${{ secrets.SCP_HOST }}
+          username: ${{ secrets.SCP_USERNAME }}
+          key: ${{ secrets.UPLOADER_SSHKEY }}
+          port: ${{ secrets.SCP_PORT }}
           source: "build/templates"
-          target: "ideplugins/templates"
+          target: ${{ secrets.SCP_TARGET }}
 
       - name: Commit next development version
         run: |
@@ -48,6 +48,6 @@ jobs:
           newVersion=${TAG%.*}.$((${TAG##*.} + 1)) # Update version by 1
           sed -i "s/^version = '.*'$/version = '$newVersion-SNAPSHOT'/g" build.gradle
           git commit build.gradle -m "New ide templates development version: $newVersion"
-          git push https://gluon-bot:$GITHUB_PASSWORD@github.com/$GITHUB_REPOSITORY HEAD:master
+          git push https://gluon-bot:$GLUONBOT_PASSWORD@github.com/$GITHUB_REPOSITORY HEAD:master
         env:
-          GITHUB_PASSWORD: ${{ secrets.GITHUB_PASSWORD }}
+          GITHUB_PASSWORD: ${{ secrets.GLUONBOT_PASSWORD }}
