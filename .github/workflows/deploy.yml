@@ -34,3 +34,4 @@ jobs:
           port: ${{ secrets.SCP_PORT }}
           source: "build/templates"
           target: ${{ secrets.SCP_TARGET }}
+          strip_components: 2
