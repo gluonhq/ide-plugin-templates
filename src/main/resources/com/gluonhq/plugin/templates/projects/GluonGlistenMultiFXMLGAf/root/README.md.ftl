@@ -9,12 +9,11 @@ models and services into Presenter.
 
 ## Pre-requisites
 
-Please checkout the prerequisites to run this application [here](https://github.com/gluonhq/client-maven-plugin#requirements).
+Please checkout the prerequisites to run this application [here](https://github.com/gluonhq/gluonfx-maven-plugin#requirements).
 
 ## Instructions
 
-> **Note**: The following are command line instructions. For IDE specific instructions please checkout
-[IDE documentation](https://docs.gluonhq.com/client/#_ide) of the client plugin.
+> **Note**: The following are command line instructions. For IDE specific instructions please checkout [IDE section](https://docs.gluonhq.com/#_ide) of the Gluon documentation.
 
 These application can run on the JVM on desktop platforms. To run the application, execute the following command:
 
@@ -32,29 +31,28 @@ To create a native image, execute the following command:
 
 ```
 <#if buildTool == "maven">
-mvn client:build client:run
+mvn gluonfx:build gluonfx:run
 <#elseif buildTool == "gradle">
 ./gradlew nativeBuild nativeRun
 </#if>
 ```
 
-> **Note**: The above client commands are target-platform dependent and might change depending on the platform.
+> **Note**: The above commands are target-platform dependent and might change depending on the platform.
 For more details, please check
 <#if buildTool == "maven">
-    [Client Maven Goals](https://github.com/gluonhq/client-maven-plugin#2-goals).
+    [GluonFX Maven Goals](https://github.com/gluonhq/gluonfx-maven-plugin#2-goals).
 <#elseif buildTool == "gradle">
-    [Client Gradle Tasks](https://github.com/gluonhq/client-gradle-plugin/#2-tasks)
+    [GluonFX Gradle Tasks](https://github.com/gluonhq/gluonfx-gradle-plugin/#2-tasks)
 </#if>
 
 ## Configuration
 
-To configure the client plugin, please checkout the [Configuration documentation](https://docs.gluonhq.com/client/#_configuration).
+To configure the GluonFX plugin, please checkout the [configuration documentation](https://docs.gluonhq.com/#_configuration).
 
 ## More information
 
 Here are some helpful links:
 
-* [Gluon Client documentation](https://docs.gluonhq.com/client)
-* [Gluon Mobile documentation](https://docs.gluonhq.com/mobile)
-* [Client Maven Plugin](https://github.com/gluonhq/client-maven-plugin)
-* [Client Gradle Plugin](https://github.com/gluonhq/client-gradle-plugin)
+* [Gluon documentation](https://docs.gluonhq.com/)
+* [GluonFX Maven Plugin](https://github.com/gluonhq/gluonfx-maven-plugin)
+* [GluonFX Gradle Plugin](https://github.com/gluonhq/gluonfx-gradle-plugin)

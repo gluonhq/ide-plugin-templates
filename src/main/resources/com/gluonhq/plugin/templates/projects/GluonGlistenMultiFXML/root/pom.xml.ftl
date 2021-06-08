@@ -13,7 +13,7 @@
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>${javafxVersion}</javafx.version>
         <attach.version>${attachVersion}</attach.version>
-        <client.plugin.version>${clientMavenPlugin}</client.plugin.version>
+        <gluonfx.plugin.version>${gluonfxMavenPlugin}</gluonfx.plugin.version>
         <javafx.plugin.version>${javafxMavenPlugin}</javafx.plugin.version>
         <mainClassName>${mainClass}</mainClassName>
     </properties>
@@ -94,20 +94,16 @@
 
             <plugin>
                 <groupId>com.gluonhq</groupId>
-                <artifactId>client-maven-plugin</artifactId>
-                <version>${r"${client.plugin.version}"}</version>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>${r"${gluonfx.plugin.version}"}</version>
                 <configuration>
-                    <target>${r"${client.target}"}</target>
+                    <target>${r"${gluonfx.target}"}</target>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
                         <list>statusbar</list>
                         <list>storage</list>
                     </attachList>
-                    <bundlesList>
-                        <list>${packageName}.views.${primaryCSSName}</list>
-                        <list>${packageName}.views.${secondaryCSSName}</list>
-                    </bundlesList>
                     <reflectionList>
                         <list>${packageName}.views.${primaryViewName}Presenter</list>
                         <list>${packageName}.views.${secondaryViewName}Presenter</list>
@@ -125,7 +121,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <client.target>host</client.target>
+                <gluonfx.target>host</gluonfx.target>
             </properties>
             <dependencies>
                 <dependency>
@@ -151,13 +147,13 @@
         <profile>
             <id>ios</id>
             <properties>
-                <client.target>ios</client.target>
+                <gluonfx.target>ios</gluonfx.target>
             </properties>
         </profile>
         <profile>
             <id>android</id>
             <properties>
-                <client.target>android</client.target>
+                <gluonfx.target>android</gluonfx.target>
             </properties>
         </profile>
     </profiles>

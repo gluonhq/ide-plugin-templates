@@ -1,6 +1,6 @@
 {
     "name": "Gluon Mobile - Multi View Project",
-    "description": "Creates a Gluon Mobile based Java application, with multiple views, targeted for Android, iOS, desktop and embedded devices. The project uses the Gluon Client plugin to create native images for the aforementioned platforms.",
+    "description": "Creates a Gluon Mobile based Java application, with multiple views, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
     "executions": [
         "recipe.json.ftl"
     ]

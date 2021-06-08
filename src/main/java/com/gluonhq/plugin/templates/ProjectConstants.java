@@ -20,8 +20,8 @@ public class ProjectConstants {
     private static final String GLUON_DESKTOP_VERSION = "1.1.3";
     private static final String GLUON_MOBILE_VERSION = "6.0.5";
     private static final String GLUON_ATTACH_VERSION = "4.0.8";
-    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.31";
-    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.31";
+    private static final String GLUON_GLUONFX_MAVEN_PLUGIN = "0.9.0";
+    private static final String GLUON_GLUONFX_GRADLE_PLUGIN = "0.9.0";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.5";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
@@ -74,8 +74,8 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
     public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
     public static final String PARAM_GLUON_ATTACH_VERSION = "attachVersion";
-    public static final String PARAM_GLUON_CLIENT_MAVEN_PLUGIN = "clientMavenPlugin";
-    public static final String PARAM_GLUON_CLIENT_GRADLE_PLUGIN = "clientGradlePlugin";
+    public static final String PARAM_GLUONFX_MAVEN_PLUGIN = "gluonfxMavenPlugin";
+    public static final String PARAM_GLUONFX_GRADLE_PLUGIN = "gluonfxGradlePlugin";
     public static final String PARAM_GLUON_GLISTEN_AFTERBURNER_VERSION = "glistenAfterburnerVersion";
 
     // Function
@@ -94,7 +94,7 @@ public class ProjectConstants {
         if (properties == null) {
             properties = new Properties();
             try {
-                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.10.properties");
+                URL url = new URL("http://download.gluonhq.com/ideplugins/settings.properties");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
@@ -125,12 +125,12 @@ public class ProjectConstants {
         return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
     }
 
-    public static final String getClientMavenPluginVersion() {
-        return retrieveRemoteProperties().getProperty("clientMavenPlugin", GLUON_CLIENT_MAVEN_PLUGIN);
+    public static final String getGluonFXMavenPluginVersion() {
+        return retrieveRemoteProperties().getProperty("gluonfxMavenPlugin", GLUON_GLUONFX_MAVEN_PLUGIN);
     }
 
-    public static final String getClientGradlePluginVersion() {
-        return retrieveRemoteProperties().getProperty("clientGradlePlugin", GLUON_CLIENT_GRADLE_PLUGIN);
+    public static final String getGluonFXGradlePluginVersion() {
+        return retrieveRemoteProperties().getProperty("gluonfxGradlePlugin", GLUON_GLUONFX_GRADLE_PLUGIN);
     }
 
     public static final String getJavaFXVersion() {

@@ -33,45 +33,45 @@
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-client build</actionName>
-        <displayName>client build</displayName>
+        <actionName>CUSTOM-gluonfx build</actionName>
+        <displayName>gluonfx build</displayName>
         <goals>
-            <goal>client:build</goal>
+            <goal>gluonfx:build</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-client compile</actionName>
-        <displayName>client compile</displayName>
+        <actionName>CUSTOM-gluonfx compile</actionName>
+        <displayName>gluonfx compile</displayName>
         <goals>
-            <goal>client:compile</goal>
+            <goal>gluonfx:compile</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-client install</actionName>
-        <displayName>client install</displayName>
+        <actionName>CUSTOM-gluonfx install</actionName>
+        <displayName>gluonfx install</displayName>
         <goals>
-            <goal>client:install</goal>
+            <goal>gluonfx:install</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-client link</actionName>
-        <displayName>client link</displayName>
+        <actionName>CUSTOM-gluonfx link</actionName>
+        <displayName>gluonfx link</displayName>
         <goals>
-            <goal>client:link</goal>
+            <goal>gluonfx:link</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-client package</actionName>
-        <displayName>client package</displayName>
+        <actionName>CUSTOM-gluonfx package</actionName>
+        <displayName>gluonfx package</displayName>
         <goals>
-            <goal>client:package</goal>
+            <goal>gluonfx:package</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-client run</actionName>
-        <displayName>client run</displayName>
+        <actionName>CUSTOM-gluonfx run</actionName>
+        <displayName>gluonfx run</displayName>
         <goals>
-            <goal>client:run</goal>
+            <goal>gluonfx:run</goal>
         </goals>
     </action>
 </actions>
