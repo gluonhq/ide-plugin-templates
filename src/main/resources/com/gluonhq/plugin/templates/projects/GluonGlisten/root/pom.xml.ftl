@@ -13,7 +13,7 @@
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>${javafxVersion}</javafx.version>
         <attach.version>${attachVersion}</attach.version>
-        <gluonfx.plugin.version>${gluonfxMavenPlugin}</gluonfx.plugin.version>
+        <gluonfx.plugin.version>${clientMavenPlugin}</gluonfx.plugin.version>
         <javafx.plugin.version>${javafxMavenPlugin}</javafx.plugin.version>
         <mainClassName>${mainClass}</mainClassName>
     </properties>
