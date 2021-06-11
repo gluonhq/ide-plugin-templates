@@ -1,7 +1,7 @@
 plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '${javafxGradlePlugin}'
-    id 'com.gluonhq.client-gradle-plugin' version '${clientGradlePlugin}'
+    id 'com.gluonhq.gluonfx-gradle-plugin' version '${clientGradlePlugin}'
 }
 
 repositories {
@@ -23,7 +23,7 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-gluonClient {
+gluonfx {
     <#if iosEnabled>
     // target = 'ios' // Uncomment to enable iOS
     </#if>

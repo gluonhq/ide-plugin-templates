@@ -28,22 +28,22 @@ public class GluonProject {
 
     public static GluonProject MOBILE_SINGLE = new GluonProject("GluonGlisten",
             "Gluon Mobile - Single View Project",
-            "Creates a Gluon Mobile based Java application with a single view targeted for Android, iOS, desktop and embedded devices. The project uses the Gluon Client plugin to create native images for the aforementioned platforms.",
+            "Creates a Gluon Mobile based Java application with a single view targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
             "https://download2.gluonhq.com/ideplugins/templates/GluonGlisten.zip",
             GluonProjectTarget.IDE);
     public static GluonProject MOBILE_MULTIVIEW = new GluonProject("GluonGlistenMulti",
             "Gluon Mobile - Multi View Project",
-            "Creates a Gluon Mobile based Java application, with multiple views, targeted for Android, iOS, desktop and embedded devices. The project uses the Gluon Client plugin to create native images for the aforementioned platforms.",
+            "Creates a Gluon Mobile based Java application, with multiple views, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
             "https://download2.gluonhq.com/ideplugins/templates/GluonGlistenMulti.zip",
             GluonProjectTarget.IDE);
     public static GluonProject MOBILE_MULTIVIEWFXML = new GluonProject("GluonGlistenMultiFXML",
             "Gluon Mobile - Multi View Project with FXML",
-            "Creates a Gluon Mobile based Java application, with multiple views designed with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses the Gluon Client plugin to create native images for the aforementioned platforms.",
+            "Creates a Gluon Mobile based Java application, with multiple views designed with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
             "https://download2.gluonhq.com/ideplugins/templates/GluonGlistenMultiFXML.zip",
             GluonProjectTarget.IDE);
     public static GluonProject MOBILE_MULTIVIEW_GAF = new GluonProject("GluonGlistenMultiFXMLGAf",
             "Gluon Mobile - Multiple View Project with Glisten Afterburner",
-            "Creates a new Gluon Mobile Afterburner application with multiple Views created with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses the Gluon Client plugin to create native images for the aforementioned platforms.",
+            "Creates a new Gluon Mobile Afterburner application with multiple Views created with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
             "https://download2.gluonhq.com/ideplugins/templates/GluonGlistenMultiFXMLGAf.zip",
             GluonProjectTarget.IDE);
 

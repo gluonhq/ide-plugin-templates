@@ -9,7 +9,7 @@ group = 'com.gluonhq'
 version = '2.10.4-SNAPSHOT'
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
