@@ -6,7 +6,7 @@
     <artifactId>${projectName?lower_case?replace("\\s+", "-", "r")}</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>>${projectName}</name>
+    <name>${projectName}</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
