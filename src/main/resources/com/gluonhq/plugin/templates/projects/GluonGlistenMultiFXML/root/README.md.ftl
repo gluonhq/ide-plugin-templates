@@ -19,7 +19,7 @@ These application can run on the JVM on desktop platforms. To run the applicatio
 
 ```
 <#if buildTool == "maven">
-mvn javafx:run
+mvn gluonfx:run
 <#elseif buildTool == "gradle">
 ./gradlew run
 </#if>
@@ -31,7 +31,7 @@ To create a native image, execute the following command:
 
 ```
 <#if buildTool == "maven">
-mvn gluonfx:build gluonfx:run
+mvn gluonfx:build gluonfx:nativerun
 <#elseif buildTool == "gradle">
 ./gradlew nativeBuild nativeRun
 </#if>

@@ -78,6 +78,47 @@
                 <configuration>
                     <mainClass>${r"${mainClassName}"}</mainClass>
                 </configuration>
+<#if ide == "netbeans">
+                <executions>
+                    <execution>
+                        <!-- Default configuration for running -->
+                        <!-- Usage: mvn clean javafx:run -->
+                        <id>default-cli</id>
+                    </execution>
+                    <execution>
+                        <!-- Configuration for manual attach debugging -->
+                        <!-- Usage: mvn clean javafx:run@debug -->
+                        <id>debug</id>
+                        <configuration>
+                            <options>
+                                <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:8000</option>
+                            </options>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- Configuration for automatic IDE debugging -->
+                        <id>ide-debug</id>
+                        <configuration>
+                            <options>
+                                <option>-agentlib:jdwp=transport=dt_socket,server=n,address=${r"${jpda.address}"}</option>
+                            </options>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <!-- Configuration for automatic IDE profiling -->
+                        <id>ide-profile</id>
+                        <configuration>
+                            <options>
+                                <option>${r"${profiler.jvmargs.arg1}"}</option>
+                                <option>${r"${profiler.jvmargs.arg2}"}</option>
+                                <option>${r"${profiler.jvmargs.arg3}"}</option>
+                                <option>${r"${profiler.jvmargs.arg4}"}</option>
+                                <option>${r"${profiler.jvmargs.arg5}"}</option>
+                            </options>
+                        </configuration>
+                    </execution>
+                </executions>
+</#if>
             </plugin>
 
             <plugin>
@@ -99,35 +140,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>desktop</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <gluonfx.target>host</gluonfx.target>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>display</artifactId>
-                    <version>${r"${attach.version}"}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>lifecycle</artifactId>
-                    <version>${r"${attach.version}"}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>storage</artifactId>
-                    <version>${r"${attach.version}"}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-            </dependencies>
-        </profile>
         <profile>
             <id>ios</id>
             <properties>

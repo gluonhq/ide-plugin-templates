@@ -6,13 +6,13 @@
             <packaging>jar</packaging>
         </packagings>
         <goals>
-            <goal>javafx:run</goal>
+            <goal>gluonfx:run</goal>
         </goals>
     </action>
     <action>
         <actionName>debug</actionName>
         <goals>
-            <goal>javafx:run@ide-debug</goal>
+            <goal>gluonfx:run@ide-debug</goal>
         </goals>
         <properties>
             <jpda.listen>true</jpda.listen>
@@ -21,7 +21,7 @@
     <action>
         <actionName>profile</actionName>
         <goals>
-            <goal>javafx:run@ide-profile</goal>
+            <goal>gluonfx:run@ide-profile</goal>
         </goals>
     </action>
     <action>
@@ -68,10 +68,10 @@
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-gluonfx run</actionName>
-        <displayName>gluonfx run</displayName>
+        <actionName>CUSTOM-gluonfx nativerun</actionName>
+        <displayName>gluonfx nativerun</displayName>
         <goals>
-            <goal>gluonfx:run</goal>
+            <goal>gluonfx:nativerun</goal>
         </goals>
     </action>
 </actions>
