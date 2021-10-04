@@ -119,9 +119,9 @@ public class GluonProject {
     }
 
     public Path getProjectLocation() {
-        /*if (location != null && projectLocation == null) {
+        if (location != null && projectLocation == null) {
             projectLocation = downloadAndUnzipTemplates();
-        }*/
+        }
         return projectLocation;
     }
 
