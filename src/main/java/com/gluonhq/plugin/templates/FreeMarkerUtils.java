@@ -32,7 +32,7 @@ public class FreeMarkerUtils {
                 throw new IllegalArgumentException("Error: projectName can't be null or empty");
             }
         } else {
-            // Gluon Mobile subProject
+            // Gluon subProject
             String name = String.valueOf(projectName);
             if (! name.toLowerCase(Locale.ROOT).endsWith("app")) {
                 name = name + "App";

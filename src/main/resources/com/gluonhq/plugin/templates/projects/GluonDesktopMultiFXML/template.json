@@ -1,7 +1,0 @@
-{
-    "name": "Gluon Desktop - Multiple View Project with FXML",
-    "description": "Using Gluon Desktop, create a desktop-only JavaFX application using multiple views created with FXML.",
-    "executions": [
-        "recipe.json.ftl"
-    ]
-}

@@ -1,6 +1,6 @@
 {
-    "name": "Gluon Mobile - Single View Project",
-    "description": "Creates a Gluon Mobile based Java application with a single view targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
+    "name": "Gluon - Single View Project",
+    "description": "Creates a Gluon based Java application with a single view targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
     "executions": [
         "recipe.json.ftl"
     ]

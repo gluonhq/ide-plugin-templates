@@ -3,7 +3,7 @@ package ${packageName};
 import com.gluonhq.attach.lifecycle.LifecycleService;
 import com.gluonhq.attach.util.Platform;
 import com.gluonhq.attach.util.Services;
-import com.gluonhq.charm.glisten.application.MobileApplication;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.Avatar;
 import com.gluonhq.charm.glisten.control.NavigationDrawer;
@@ -17,10 +17,10 @@ import static ${packageName}.${mainClassName}.${secondaryViewName?upper_case}_VI
 
 public class DrawerManager {
 
-    public static void buildDrawer(MobileApplication app) {
+    public static void buildDrawer(AppManager app) {
         NavigationDrawer drawer = app.getDrawer();
         
-        NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Mobile",
+        NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Application",
                 "Multi View Project",
                 new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
         drawer.setHeader(header);

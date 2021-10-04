@@ -1,15 +1,14 @@
 package ${packageName}.views;
 
-import com.gluonhq.charm.glisten.afterburner.GluonPresenter;
 import com.gluonhq.charm.glisten.animation.BounceInRightTransition;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.control.FloatingActionButton;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import ${packageName}.${mainClassName};
 import javafx.fxml.FXML;
 
-public class ${secondaryViewName}Presenter extends GluonPresenter<${mainClassName}> {
+public class ${secondaryViewName}Presenter {
 
     @FXML
     private View ${secondaryCSSName};
@@ -23,9 +22,10 @@ public class ${secondaryViewName}Presenter extends GluonPresenter<${mainClassNam
         
         ${secondaryCSSName}.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
-                AppBar appBar = getApp().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        getApp().getDrawer().open()));
+                AppManager appManager = AppManager.getInstance();
+                AppBar appBar = appManager.getAppBar();
+                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e ->
+                        appManager.getDrawer().open()));
                 appBar.setTitleText("${secondaryViewName}");
                 appBar.getActionItems().add(MaterialDesignIcon.FAVORITE.button(e -> 
                         System.out.println("Favorite")));

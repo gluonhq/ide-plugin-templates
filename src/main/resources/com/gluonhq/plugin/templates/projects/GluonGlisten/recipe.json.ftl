@@ -26,7 +26,7 @@
   },
   {
     "command": "copylist",
-    "list": "gradle_wrapper.lst",
+    "list": "/gradle/gradle_wrapper.lst",
     "base": "/gradle/wrapper",
     "to": "./"
   },
