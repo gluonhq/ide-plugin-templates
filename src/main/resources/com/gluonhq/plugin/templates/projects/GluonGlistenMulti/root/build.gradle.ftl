@@ -14,7 +14,7 @@ repositories {
 mainClassName = '${mainClass}'
 
 dependencies {
-    implementation 'com.gluonhq:charm-glisten:${mobileVersion}'
+    implementation 'com.gluonhq:charm-glisten:${glistenVersion}'
 }
 
 javafx {

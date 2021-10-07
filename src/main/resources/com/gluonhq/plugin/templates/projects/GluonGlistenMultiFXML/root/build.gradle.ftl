@@ -14,7 +14,7 @@ repositories {
 mainClassName = '${mainClass}'
 
 dependencies {
-    implementation 'com.gluonhq:charm-glisten:${mobileVersion}'
+    implementation 'com.gluonhq:charm-glisten:${glistenVersion}'
     <#if afterburnerEnabled>
     implementation 'com.airhacks:afterburner.mfx:1.6.3'
     implementation 'javax.annotation:javax.annotation-api:1.3.2'

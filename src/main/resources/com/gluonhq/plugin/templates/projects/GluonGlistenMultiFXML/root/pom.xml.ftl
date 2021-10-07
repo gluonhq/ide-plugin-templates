@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.gluonhq</groupId>
             <artifactId>charm-glisten</artifactId>
-            <version>${mobileVersion}</version>
+            <version>${glistenVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
