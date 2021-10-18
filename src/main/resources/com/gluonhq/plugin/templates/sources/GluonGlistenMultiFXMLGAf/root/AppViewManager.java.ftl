@@ -31,7 +31,7 @@ public class AppViewManager {
         return presenterClass.getSimpleName().toUpperCase(Locale.ROOT).replace("PRESENTER", "");
     }
     
-    public static void registerViewsAndDrawer(AppManager app) {
+    public static void registerViewsAndDrawer() {
         for (AppView view : REGISTRY.getViews()) {
             view.registerView();
         }
@@ -40,6 +40,6 @@ public class AppViewManager {
                 "Multi View Project",
                 new Avatar(21, new Image(${mainClassName}.class.getResourceAsStream("/icon.png"))));
 
-        Utils.buildDrawer(app.getDrawer(), header, REGISTRY.getViews()); 
+        Utils.buildDrawer(AppManager.getInstance().getDrawer(), header, REGISTRY.getViews()); 
     }
 }

@@ -23,7 +23,7 @@ public class ${mainClassName} extends Application {
         appManager.start(primaryStage);
     }
 
-    public void postInit(Scene scene) {
+    private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
         <#if desktopEnabled>

@@ -14,7 +14,7 @@ public class ${mainClassName} extends Application {
 
     @Override
     public void init() {
-        AppViewManager.registerViewsAndDrawer(appManager);
+        AppViewManager.registerViewsAndDrawer();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ${mainClassName} extends Application {
         appManager.start(primaryStage);
     }
 
-    public void postInit(Scene scene) {
+    private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
         <#if cssProjectEnabled>scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());</#if>
