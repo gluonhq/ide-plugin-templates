@@ -33,5 +33,5 @@ jobs:
           key: ${{ secrets.UPLOADER_SSHKEY }}
           port: ${{ secrets.SCP_PORT }}
           source: "build/templates"
-          target: ${{ secrets.SCP_TARGET }}
+          target: "/var/www/html/ideplugins/templatesv2"
           strip_components: 2

@@ -25,22 +25,22 @@ public class GluonProject {
     public static GluonProject SINGLEVIEW = new GluonProject("GluonGlisten",
             "Gluon - Single View Project",
             "Creates a Gluon based Java application with a single view targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
-            "https://download2.gluonhq.com/ideplugins/templates/GluonGlisten.zip",
+            "https://download2.gluonhq.com/ideplugins/templatesv2/GluonGlisten.zip",
             GluonProjectTarget.IDE);
     public static GluonProject MULTIVIEW = new GluonProject("GluonGlistenMulti",
             "Gluon - Multi View Project",
             "Creates a Gluon based Java application, with multiple views, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
-            "https://download2.gluonhq.com/ideplugins/templates/GluonGlistenMulti.zip",
+            "https://download2.gluonhq.com/ideplugins/templatesv2/GluonGlistenMulti.zip",
             GluonProjectTarget.IDE);
     public static GluonProject MULTIVIEW_FXML = new GluonProject("GluonGlistenMultiFXML",
             "Gluon - Multi View Project with FXML",
             "Creates a Gluon based Java application, with multiple views designed with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
-            "https://download2.gluonhq.com/ideplugins/templates/GluonGlistenMultiFXML.zip",
+            "https://download2.gluonhq.com/ideplugins/templatesv2/GluonGlistenMultiFXML.zip",
             GluonProjectTarget.IDE);
     public static GluonProject MULTIVIEW_GAF = new GluonProject("GluonGlistenMultiFXMLGAf",
             "Gluon - Multiple View Project with Glisten Afterburner",
             "Creates a new Gluon Afterburner application with multiple Views created with FXML, targeted for Android, iOS, desktop and embedded devices. The project uses the GluonFX plugin to create native images for the aforementioned platforms.",
-            "https://download2.gluonhq.com/ideplugins/templates/GluonGlistenMultiFXMLGAf.zip",
+            "https://download2.gluonhq.com/ideplugins/templatesv2/GluonGlistenMultiFXMLGAf.zip",
             GluonProjectTarget.IDE);
 
     public static GluonProject FUNCTION = new GluonProject("GluonFunction", "GluonFunction", "Gluon Function - Create a Gluon Function Project", GluonProjectTarget.IDE);
