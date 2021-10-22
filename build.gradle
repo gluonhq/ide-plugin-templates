@@ -46,7 +46,6 @@ task generateResourcesList(dependsOn: processResources) {
     def iosAssetsDir = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/ios/assets")
 
     def projects = [ 'GluonBasic', 'GluonGlisten', 'GluonGlistenMulti', 'GluonGlistenMultiFXML', 'GluonGlistenMultiFXMLGAf' ]
-    def projectsDesktop = [ 'GluonDesktop', 'GluonDesktopMulti', 'GluonDesktopMultiFXML', 'GluonGlistenMultiFXMLGAf' ]
 
     doLast {
         projects.each {
@@ -71,16 +70,6 @@ task generateResourcesList(dependsOn: processResources) {
                 fileTree(iosAssetsDir).each {
                     def path = it.absolutePath - iosAssetsDir.absolutePath
                     out.writeLine(path[1..path.length()-1])
-                }
-            }
-        }
-
-        projectsDesktop.each {
-            def gradleWrapperList = file("${project.sourceSets.main.output.resourcesDir}/com/gluonhq/plugin/templates/projects/$it/root/gradle_wrapper.lst")
-            gradleWrapperList.withWriter('UTF-8') { out ->
-                fileTree(gradleWrapperDir).each {
-                    def path = it.absolutePath - gradleWrapperDir.absolutePath
-                    out.writeLine(path[1..path.length() - 1])
                 }
             }
         }
