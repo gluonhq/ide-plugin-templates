@@ -1,23 +1,29 @@
 package ${packageName};
 
-import com.gluonhq.charm.glisten.application.MobileApplication;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import javafx.application.Application;
 import javafx.scene.Scene;
 <#if desktopEnabled>import javafx.scene.image.Image;</#if>
 import javafx.stage.Stage;
-<#if gluon_user_license_mobile?has_content>
-import com.gluonhq.charm.glisten.license.License;
 
-@License(key="${gluon_user_license_mobile?lower_case}")</#if>
-public class ${mainClassName} extends MobileApplication {
+import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
+
+public class ${mainClassName} extends Application {
+
+    private final AppManager appManager = AppManager.initialize(this::postInit);
 
     @Override
     public void init() {
-        addViewFactory(HOME_VIEW, BasicView::new);
+        appManager.addViewFactory(HOME_VIEW, BasicView::new);
     }
 
     @Override
-    public void postInit(Scene scene) {
+    public void start(Stage primaryStage) throws Exception {
+        appManager.start(primaryStage);
+    }
+
+    private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
         <#if desktopEnabled>

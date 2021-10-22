@@ -1,29 +1,32 @@
 package ${packageName};
 
 import ${packageName}.views.AppViewManager;
-import com.gluonhq.charm.glisten.application.MobileApplication;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-<#if desktopEnabled>import javafx.stage.Stage;</#if>
-<#if gluon_user_license_mobile?has_content>
-import com.gluonhq.charm.glisten.license.License;
+import javafx.stage.Stage;
 
-@License(key="${gluon_user_license_mobile?lower_case}")</#if>
-public class ${mainClassName} extends MobileApplication {
+public class ${mainClassName} extends Application {
+
+    private final AppManager appManager = AppManager.initialize(this::postInit);
 
     @Override
     public void init() {
-        AppViewManager.registerViewsAndDrawer(this);
+        AppViewManager.registerViewsAndDrawer();
     }
 
     @Override
-    public void postInit(Scene scene) {
+    public void start(Stage primaryStage) throws Exception {
+        appManager.start(primaryStage);
+    }
+
+    private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
         <#if cssProjectEnabled>scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());</#if>
-        <#if desktopEnabled>
-        ((Stage) scene.getWindow()).getIcons().add(new Image(${mainClassName}.class.getResourceAsStream("/icon.png")));</#if>
+        ((Stage) scene.getWindow()).getIcons().add(new Image(${mainClassName}.class.getResourceAsStream("/icon.png")));
     }
 
     public static void main(String args[]) {

@@ -23,6 +23,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
 task fatJar(type: Jar) {
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.directory ? it : zipTree(it) } }
@@ -31,6 +36,7 @@ task fatJar(type: Jar) {
 
 artifacts {
     archives javadocJar
+    archives sourcesJar
     archives fatJar
 }
 

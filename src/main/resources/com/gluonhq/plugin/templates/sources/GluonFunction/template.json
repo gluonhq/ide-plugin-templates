@@ -1,6 +1,6 @@
 {
     "name": "Gluon Function - Create a Function Project",
-    "description": "Create a new Java application, as a Gradle project, to define a Function to use with Gluon Mobile and Gluon CloudLink",
+    "description": "Create a new Java application, as a Gradle project, to define a Function to use with Gluon CloudLink",
     "executions": [
         "recipe.json.ftl"
     ]

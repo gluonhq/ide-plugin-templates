@@ -1,6 +1,6 @@
 package ${packageName}.views;
 
-import com.gluonhq.charm.glisten.application.MobileApplication;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
@@ -18,9 +18,9 @@ public class ${primaryViewName}Presenter {
     public void initialize() {
         ${primaryCSSName}.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
-                AppBar appBar = MobileApplication.getInstance().getAppBar();
+                AppBar appBar = AppManager.getInstance().getAppBar();
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().getDrawer().open()));
+                        AppManager.getInstance().getDrawer().open()));
                 appBar.setTitleText("${primaryViewName}");
                 appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
                         System.out.println("Search")));

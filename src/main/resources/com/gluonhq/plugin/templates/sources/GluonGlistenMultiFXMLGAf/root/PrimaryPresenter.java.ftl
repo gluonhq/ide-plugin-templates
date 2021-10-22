@@ -1,15 +1,14 @@
 package ${packageName}.views;
 
-import com.gluonhq.charm.glisten.afterburner.GluonPresenter;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import ${packageName}.${mainClassName};
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ${primaryViewName}Presenter extends GluonPresenter<${mainClassName}> {
+public class ${primaryViewName}Presenter {
 
     @FXML
     private View ${primaryCSSName};
@@ -23,9 +22,10 @@ public class ${primaryViewName}Presenter extends GluonPresenter<${mainClassName}
     public void initialize() {
         ${primaryCSSName}.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
-                AppBar appBar = getApp().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        getApp().getDrawer().open()));
+                AppManager appManager = AppManager.getInstance();
+                AppBar appBar = appManager.getAppBar();
+                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e ->
+                        appManager.getDrawer().open()));
                 appBar.setTitleText("${primaryViewName}");
                 appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
                         System.out.println("Search")));

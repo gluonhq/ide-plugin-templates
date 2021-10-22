@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.gluonhq</groupId>
             <artifactId>charm-glisten</artifactId>
-            <version>${mobileVersion}</version>
+            <version>${glistenVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
@@ -64,6 +64,11 @@
             <groupId>com.airhacks</groupId>
             <artifactId>afterburner.mfx</artifactId>
             <version>1.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
         </#if>
     </dependencies>

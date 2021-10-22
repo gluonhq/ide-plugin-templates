@@ -2,36 +2,42 @@ package ${packageName};
 
 import ${packageName}.views.${primaryViewName}View;
 import ${packageName}.views.${secondaryViewName}View;
-import com.gluonhq.charm.glisten.application.MobileApplication;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-<#if desktopEnabled>import javafx.stage.Stage;</#if>
-<#if gluon_user_license_mobile?has_content>
-import com.gluonhq.charm.glisten.license.License;
+import javafx.stage.Stage;
 
-@License(key="${gluon_user_license_mobile?lower_case}")</#if>
-public class ${mainClassName} extends MobileApplication {
+import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
+
+public class ${mainClassName} extends Application {
 
     public static final String ${primaryViewName?upper_case}_VIEW = HOME_VIEW;
     public static final String ${secondaryViewName?upper_case}_VIEW = "${secondaryViewName} View";
-    
+
+    private final AppManager appManager = AppManager.initialize(this::postInit);
+
     @Override
     public void init() {
-        addViewFactory(${primaryViewName?upper_case}_VIEW, ${primaryViewName}View::new);
-        addViewFactory(${secondaryViewName?upper_case}_VIEW, ${secondaryViewName}View::new);
+        appManager.addViewFactory(${primaryViewName?upper_case}_VIEW, ${primaryViewName}View::new);
+        appManager.addViewFactory(${secondaryViewName?upper_case}_VIEW, ${secondaryViewName}View::new);
         
-        DrawerManager.buildDrawer(this);
+        DrawerManager.buildDrawer(appManager);
     }
 
     @Override
-    public void postInit(Scene scene) {
+    public void start(Stage primaryStage) throws Exception {
+        appManager.start(primaryStage);
+    }
+
+    private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
         <#if cssProjectEnabled>
-        scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());</#if>
-        <#if desktopEnabled>
-        ((Stage) scene.getWindow()).getIcons().add(new Image(${mainClassName}.class.getResourceAsStream("/icon.png")));</#if>
+        scene.getStylesheets().add(${mainClassName}.class.getResource("style.css").toExternalForm());
+        </#if>
+        ((Stage) scene.getWindow()).getIcons().add(new Image(${mainClassName}.class.getResourceAsStream("/icon.png")));
     }
 
     public static void main(String args[]) {

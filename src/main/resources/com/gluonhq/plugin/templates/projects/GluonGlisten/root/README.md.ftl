@@ -1,9 +1,9 @@
-# Gluon Mobile - Single View
+# Gluon - Single View
 
-Gluon Mobile Applications are Java application written in JavaFX.
+Gluon Applications are Java application written in JavaFX.
 These applications ensure that developers can create high performance, great looking, and cloud connected mobile apps from a single Java code base.
 
-This sample contains a simple Gluon Mobile application which can be used to run, test and create a native application for any targeted device.
+This sample contains a simple Gluon application which can be used to run, test and create a native application for any targeted device.
 
 ## Pre-requisites
 

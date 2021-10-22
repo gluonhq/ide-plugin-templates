@@ -17,9 +17,8 @@ public class ProjectConstants {
     private static final String JAVAFX_MAVEN_PLUGIN = "0.0.4";
     private static final String JAVAFX_GRADLE_PLUGIN = "0.0.9";
 
-    private static final String GLUON_DESKTOP_VERSION = "1.1.3";
-    private static final String GLUON_MOBILE_VERSION = "6.0.5";
-    private static final String GLUON_ATTACH_VERSION = "4.0.8";
+    private static final String GLUON_GLISTEN_VERSION = "6.0.6";
+    private static final String GLUON_ATTACH_VERSION = "4.0.13";
     private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.31";
     private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.31";
     private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.5";
@@ -32,8 +31,7 @@ public class ProjectConstants {
     public static final String PARAM_USER_IDE_OPTIN = "gluon_ide_optin";
     public static final String PARAM_USER_EMAIL = "gluon_user_email";
     public static final String PARAM_USER_UPTODATE = "gluon_user_uptodate";
-    public static final String PARAM_USER_LICENSE_MOBILE = "gluon_user_license_mobile";
-    public static final String PARAM_USER_LICENSE_DESKTOP = "gluon_user_license_desktop";
+    public static final String PARAM_USER_LICENSE = "gluon_user_license";
     public static final String PARAM_USER_MAC_ADDRESS = "gluon_user_mac_address";
     public static final String PARAM_USER_PLUGIN_VERSION = "gluon_user_plugin_version";
 
@@ -71,8 +69,7 @@ public class ProjectConstants {
     public static final String PARAM_GLUON_CLOUDLINK_USER_KEY = "gluonCloudLinkUserKey";
     public static final String PARAM_GLUON_CLOUDLINK_IDE_KEY = "gluonCloudLinkIdeKey";
 
-    public static final String PARAM_GLUON_DESKTOP_VERSION = "desktopVersion";
-    public static final String PARAM_GLUON_MOBILE_VERSION = "mobileVersion";
+    public static final String PARAM_GLUON_GLISTEN_VERSION = "glistenVersion";
     public static final String PARAM_GLUON_ATTACH_VERSION = "attachVersion";
     public static final String PARAM_GLUON_CLIENT_MAVEN_PLUGIN = "clientMavenPlugin";
     public static final String PARAM_GLUON_CLIENT_GRADLE_PLUGIN = "clientGradlePlugin";
@@ -108,13 +105,9 @@ public class ProjectConstants {
         }
         return properties;
     }
-    
-    public static final String getDesktopVersion() {
-        return retrieveRemoteProperties().getProperty("desktop", GLUON_DESKTOP_VERSION);
-    }
 
-    public static final String getMobileVersion() {
-        return retrieveRemoteProperties().getProperty("mobile", GLUON_MOBILE_VERSION);
+    public static final String getGlistenVersion() {
+        return retrieveRemoteProperties().getProperty("glisten", GLUON_GLISTEN_VERSION);
     }
 
     public static final String getAttachVersion() {
