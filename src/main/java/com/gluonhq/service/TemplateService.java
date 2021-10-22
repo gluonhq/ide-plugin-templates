@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class TemplateService {
 
     private static final Logger LOG = Logger.getLogger(TemplateService.class.getName());
-    private static final String CONFIG_LOCATION = "https://download2.gluonhq.com/ideplugins/templates/config.json";
+    private static final String CONFIG_LOCATION = "https://download2.gluonhq.com/ideplugins/templatesv2/config.json";
 
     /**
      * A list of GluonProject generated from a remote config.json file.
