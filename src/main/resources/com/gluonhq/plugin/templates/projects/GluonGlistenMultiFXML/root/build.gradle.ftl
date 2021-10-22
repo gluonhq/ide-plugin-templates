@@ -1,7 +1,7 @@
 plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '${javafxGradlePlugin}'
-    id 'com.gluonhq.gluonfx-gradle-plugin' version '${clientGradlePlugin}'
+    id 'com.gluonhq.gluonfx-gradle-plugin' version '${gluonfxMavenPlugin}'
 }
 
 repositories {

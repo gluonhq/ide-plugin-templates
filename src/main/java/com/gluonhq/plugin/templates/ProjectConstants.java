@@ -14,14 +14,14 @@ public class ProjectConstants {
     public static final String IDE_NETBEANS = "netbeans";
 
     private static final String JAVAFX_VERSION = "11";
-    private static final String JAVAFX_MAVEN_PLUGIN = "0.0.4";
-    private static final String JAVAFX_GRADLE_PLUGIN = "0.0.9";
+    private static final String JAVAFX_MAVEN_PLUGIN = "0.0.8";
+    private static final String JAVAFX_GRADLE_PLUGIN = "0.0.10";
+    private static final String GLUONFX_MAVEN_PLUGIN = "1.0.7";
+    private static final String GLUONFX_GRADLE_PLUGIN = "1.0.7";
 
-    private static final String GLUON_GLISTEN_VERSION = "6.0.6";
+    private static final String GLUON_GLISTEN_VERSION = "6.1.0";
     private static final String GLUON_ATTACH_VERSION = "4.0.13";
-    private static final String GLUON_CLIENT_MAVEN_PLUGIN = "0.1.31";
-    private static final String GLUON_CLIENT_GRADLE_PLUGIN = "0.1.31";
-    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.0.5";
+    private static final String GLUON_GLISTEN_AFTERBURNER_VERSION = "2.1.0";
 
     public static final String DEFAULT_PROJECT_NAME = "GluonApplication";
     public static final String DEFAULT_PACKAGE_NAME = "com.gluonapplication";
@@ -71,8 +71,8 @@ public class ProjectConstants {
 
     public static final String PARAM_GLUON_GLISTEN_VERSION = "glistenVersion";
     public static final String PARAM_GLUON_ATTACH_VERSION = "attachVersion";
-    public static final String PARAM_GLUON_CLIENT_MAVEN_PLUGIN = "clientMavenPlugin";
-    public static final String PARAM_GLUON_CLIENT_GRADLE_PLUGIN = "clientGradlePlugin";
+    public static final String PARAM_GLUONFX_MAVEN_PLUGIN = "gluonfxMavenPlugin";
+    public static final String PARAM_GLUONFX_GRADLE_PLUGIN = "gluonfxGradlePlugin";
     public static final String PARAM_GLUON_GLISTEN_AFTERBURNER_VERSION = "glistenAfterburnerVersion";
 
     // Function
@@ -91,7 +91,7 @@ public class ProjectConstants {
         if (properties == null) {
             properties = new Properties();
             try {
-                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.10.properties");
+                URL url = new URL("http://download.gluonhq.com/ideplugins/settings-2.10.4.properties");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
@@ -118,12 +118,12 @@ public class ProjectConstants {
         return retrieveRemoteProperties().getProperty("glistenAfterburner", GLUON_GLISTEN_AFTERBURNER_VERSION);
     }
 
-    public static final String getClientMavenPluginVersion() {
-        return retrieveRemoteProperties().getProperty("clientMavenPlugin", GLUON_CLIENT_MAVEN_PLUGIN);
+    public static final String getGluonFXMavenPluginVersion() {
+        return retrieveRemoteProperties().getProperty("gluonfxMavenPlugin", GLUONFX_MAVEN_PLUGIN);
     }
 
-    public static final String getClientGradlePluginVersion() {
-        return retrieveRemoteProperties().getProperty("clientGradlePlugin", GLUON_CLIENT_GRADLE_PLUGIN);
+    public static final String getGluonFXGradlePluginVersion() {
+        return retrieveRemoteProperties().getProperty("gluonfxGradlePlugin", GLUONFX_GRADLE_PLUGIN);
     }
 
     public static final String getJavaFXVersion() {
